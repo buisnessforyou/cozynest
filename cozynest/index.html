@@ -152,15 +152,37 @@
 
     /* ===== HERO — SCROLL-DRIVEN ROOM REVEAL ===== */
 
-    /* The section is tall to provide scroll distance */
-    .hero { position:relative; height:400vh; }
+    /* Self-contained scroll container — avoids window.scrollY/sticky bugs */
+    .hero {
+      position:relative;
+      width:100%;
+      height:100vh;
+      overflow:hidden; /* clip children */
+    }
 
-    /* Sticky viewport — stays in view while user scrolls */
+    /* Tall inner track — scrolls inside hero, drives the animation */
+    .hero-track {
+      position:absolute; inset:0;
+      overflow-y:scroll;
+      overflow-x:hidden;
+      /* hide scrollbar but keep scrolling */
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+    }
+    .hero-track::-webkit-scrollbar { display:none; }
+
+    /* Spacer that gives scroll distance — 3x viewport tall */
+    .hero-spacer { height:400vh; pointer-events:none; }
+
+    /* Stage sits fixed relative to the track viewport */
     .hero-stage {
       position:sticky; top:0;
       width:100%; height:100vh;
-      overflow:hidden; /* clip scaled products */
+      overflow:hidden;
+      pointer-events:none; /* track handles scroll, not stage */
     }
+    /* Re-enable pointer events for interactive children */
+    .hero-stage > * { pointer-events:all; }
 
     /* Living room background photo */
     .room-bg {
@@ -917,6 +939,10 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="heroSection">
+  <!-- Scrollable track — drives the animation progress -->
+  <div class="hero-track" id="heroTrack">
+    <div class="hero-spacer"></div>
+  </div>
   <div class="hero-stage">
 
     <!-- Room photo -->
@@ -1543,21 +1569,21 @@
 
   /* ── Hero scroll-driven room reveal ── */
   (function() {
-    const heroSection = document.getElementById('heroSection');
+    const heroTrack   = document.getElementById('heroTrack');
     const roomBg      = document.getElementById('roomBg');
     const roomWash    = document.getElementById('roomWash');
     const roomOverlay = document.getElementById('roomOverlay');
     const heroCopy    = document.getElementById('heroCopy');
     const rItems      = document.querySelectorAll('.r-item');
-    if (!heroSection || !roomBg) return;
+    if (!heroTrack || !roomBg) return;
 
     function easeOut(t)  { return 1 - Math.pow(1 - t, 3); }
     function clamp(v,a,b){ return v < a ? a : v > b ? b : v; }
 
     function tick() {
-      const maxScroll = heroSection.offsetHeight - window.innerHeight;
+      const maxScroll = heroTrack.scrollHeight - heroTrack.clientHeight;
       if (maxScroll <= 0) return;
-      const p = clamp(window.scrollY / maxScroll, 0, 1);
+      const p = clamp(heroTrack.scrollTop / maxScroll, 0, 1);
 
       // Phase A (0→0.18): only copy fades, room unchanged
       // Phase B (0.18→0.55): room dims + desaturates, overlay goes, products peek in
@@ -1616,7 +1642,7 @@
       });
     }
 
-    window.addEventListener('scroll', tick, { passive: true });
+    heroTrack.addEventListener('scroll', tick, { passive: true });
     tick(); // initial call
   })();
 
