@@ -11,6 +11,8 @@
   <meta property="og:image" content="/images/products/blanket-natural-oat.jpg">
   <meta property="og:url" content="https://thesnugspot.com/">
   <meta property="og:type" content="website">
+  <link rel="canonical" href="https://thesnugspot.com/"/>
+  <meta name="robots" content="index, follow"/>
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
@@ -340,7 +342,7 @@
     }
     .hero-h1 em { font-style:italic; color:var(--terracotta); }
     .hero-sub {
-      font-size:15px; line-height:1.75; color:rgba(255,248,238,.55);
+      font-size:15px; line-height:1.75; color:rgba(255,248,238,.72);
       font-weight:300; max-width:400px; margin-bottom:40px;
       opacity:0; transform:translate3d(0,24px,0);
     }
@@ -843,7 +845,7 @@
     .why-title { color:var(--cream); }
     .why-body {
       font-size:15px; line-height:1.82; font-weight:300;
-      color:rgba(250,247,242,.55); margin:22px 0 44px;
+      color:rgba(250,247,242,.72); margin:22px 0 44px;
     }
     .why-feats { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
     .why-feat { display:flex; flex-direction:column; gap:10px; }
@@ -1261,6 +1263,8 @@
     .ck-sum-total { display:flex; justify-content:space-between; font-size:15px; font-weight:600; color:var(--deep-brown); }
 
     .ck-actions { display:flex; gap:12px; margin-top:24px; }
+    .ck-error { background:rgba(192,57,43,.08); border:1px solid rgba(192,57,43,.2); border-radius:4px; padding:12px 16px; font-size:13px; color:#c0392b; margin-top:14px; display:none; }
+    .ck-error.show { display:block; }
     .btn-ck-back {
       padding:13px 24px; border:1px solid var(--border); background:none;
       border-radius:2px; cursor:pointer; font-size:11px; letter-spacing:.1em;
@@ -1526,7 +1530,7 @@
     </div>
 
     <!-- Scroll indicator -->
-    <div class="scroll-indicator" id="scrollIndicator">
+    <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
       <span class="scroll-indicator-text">Scroll</span>
       <div class="scroll-indicator-line"></div>
     </div>
@@ -2024,7 +2028,7 @@
         <div class="ck-field">
           <label>Country</label>
           <select id="ckCountry" autocomplete="country">
-            <option value="">Select country…</option>
+            <option value="" disabled selected>Select country…</option>
             <option>United Kingdom</option>
             <option>United States</option>
             <option>Canada</option>
@@ -2053,7 +2057,7 @@
       <div class="ck-row full">
         <div class="ck-field">
           <label>Card Number</label>
-          <input type="text" id="ckCard" placeholder="4242 4242 4242 4242" maxlength="19" autocomplete="cc-number">
+          <input type="text" id="ckCard" placeholder="4242 4242 4242 4242" maxlength="19" autocomplete="cc-number" inputmode="numeric">
         </div>
       </div>
       <div class="ck-row">
@@ -2063,7 +2067,7 @@
         </div>
         <div class="ck-field">
           <label>CVV</label>
-          <input type="text" id="ckCvv" placeholder="•••" maxlength="4" autocomplete="cc-csc">
+          <input type="text" id="ckCvv" placeholder="•••" maxlength="4" autocomplete="cc-csc" inputmode="numeric">
         </div>
       </div>
       <div class="ck-row full">
@@ -2076,6 +2080,7 @@
         <button class="btn-ck-back" id="ckBackShipping">← Back</button>
         <button class="btn-ck-next" id="ckPlaceOrder">Place Order</button>
       </div>
+      <div class="ck-error" id="ckError"></div>
     </div>
 
     <!-- Step 3: Confirmation -->
@@ -2147,8 +2152,10 @@
     const CARD_DURATION    = 0.6;   /* card entrance animation duration (seconds) */
     const PARALLAX_RANGE   = 15;    /* px shift for card image parallax           */
 
+    var _heroRetries = 0;
     function initHero() {
       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        if (++_heroRetries > 50) return; // give up after ~4s
         setTimeout(initHero, 80);
         return;
       }
@@ -2537,7 +2544,16 @@
   (function() {
     /* ── State — persisted in localStorage ── */
     const CART_KEY = 'snugspot_cart';
-    let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+    let cart;
+    try {
+      cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+      if (!Array.isArray(cart)) cart = [];
+      cart = cart.filter(i => i && typeof i.name === 'string' && typeof i.price === 'number' && typeof i.qty === 'number' && i.qty > 0);
+    } catch(e) { cart = []; }
+    /* Cart TTL: expire after 7 days */
+    const CART_TTL = 7 * 24 * 60 * 60 * 1000;
+    const cartTimestamp = parseInt(localStorage.getItem(CART_KEY + '_ts') || '0', 10);
+    if (cart.length && Date.now() - cartTimestamp > CART_TTL) { cart = []; }
 
     /* ── DOM refs ── */
     const cartOverlay   = document.getElementById('cartOverlay');
@@ -2592,12 +2608,15 @@
     cartClose.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
 
+    function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
     /* ── Render cart ── */
     function renderCart() {
       const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
       const count = cart.reduce((s, i) => s + i.qty, 0);
 
       localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      localStorage.setItem(CART_KEY + '_ts', String(Date.now()));
       cartDot.textContent = count || '0';
       cartDot.style.background = count ? 'var(--terracotta)' : 'var(--text-light)';
       cartHeadCount.textContent = count === 1 ? '1 item' : count + ' items';
@@ -2615,9 +2634,9 @@
         const el = document.createElement('div');
         el.className = 'cart-item';
         el.innerHTML = `
-          <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.style.background='var(--linen)'">
+          <img class="cart-item-img" src="${item.img}" alt="${esc(item.name)}" onerror="this.style.background='var(--linen)'">
           <div class="cart-item-info">
-            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-name">${esc(item.name)}</div>
             <div class="cart-item-price">£${item.price}</div>
             <div class="cart-item-controls">
               <button class="qty-btn" data-action="dec" data-idx="${idx}">−</button>
@@ -2701,6 +2720,17 @@
     ckClose.addEventListener('click', closeCheckout);
     checkoutOverlay.addEventListener('click', e => { if (e.target === checkoutOverlay) closeCheckout(); });
 
+    /* Focus trap for checkout modal */
+    checkoutOverlay.addEventListener('keydown', e => {
+      if (e.key !== 'Tab') return;
+      const modal = document.getElementById('checkoutModal');
+      const focusable = modal.querySelectorAll('input,select,button,[tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
     /* ── Step navigation ── */
     function showCkStep(n) {
       ckStep1El.style.display = n === 1 ? 'block' : 'none';
@@ -2709,6 +2739,8 @@
       [ckS1, ckS2, ckS3].forEach((s, i) => {
         s.classList.toggle('active', i + 1 === n);
         s.classList.toggle('done',   i + 1 < n);
+        var num = s.querySelector('.ck-step-num');
+        if (num) num.textContent = (i + 1 < n) ? '\u2713' : (i + 1);
       });
       const titles = ['', 'Shipping', 'Payment', 'Order Confirmed'];
       ckTitle.textContent = titles[n];
@@ -2716,6 +2748,29 @@
     }
 
     ckToPayment.addEventListener('click', () => {
+      /* Validate shipping fields */
+      const fields = [
+        { id: 'ckFirst', label: 'First Name' },
+        { id: 'ckLast', label: 'Last Name' },
+        { id: 'ckEmail', label: 'Email' },
+        { id: 'ckAddr', label: 'Address' },
+        { id: 'ckCity', label: 'City' },
+        { id: 'ckPost', label: 'Postcode' }
+      ];
+      let valid = true;
+      fields.forEach(f => {
+        const el = document.getElementById(f.id);
+        if (!el.value.trim()) { el.style.borderColor = 'var(--terracotta)'; valid = false; }
+        else { el.style.borderColor = ''; }
+      });
+      const email = document.getElementById('ckEmail');
+      if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        email.style.borderColor = 'var(--terracotta)'; valid = false;
+      }
+      const country = document.getElementById('ckCountry');
+      if (!country.value) { country.style.borderColor = 'var(--terracotta)'; valid = false; }
+      else { country.style.borderColor = ''; }
+      if (!valid) return;
       ckSummary.innerHTML = buildSummaryHTML();
       showCkStep(2);
     });
@@ -2739,7 +2794,10 @@
       ? (window.location.port === '3001' ? '' : 'http://localhost:3001')
       : '';  // production: Netlify redirects /api/* to functions
 
+    let _submitting = false;
     ckPlaceOrder.addEventListener('click', async () => {
+      if (_submitting) return;
+      _submitting = true;
       ckPlaceOrder.disabled    = true;
       ckPlaceOrder.textContent = 'Processing…';
 
@@ -2792,7 +2850,10 @@
         renderCart();
 
       } catch (err) {
-        alert('⚠️ ' + err.message + '\n\nMake sure the backend server is running on port 3001.');
+        var ckErr = document.getElementById('ckError');
+        ckErr.textContent = err.message || 'Something went wrong. Please try again.';
+        ckErr.classList.add('show');
+        _submitting = false;
         ckPlaceOrder.disabled    = false;
         ckPlaceOrder.textContent = 'Place Order';
       }
@@ -3133,6 +3194,7 @@ document.addEventListener('visibilitychange',function(){
 
 animate();
 new IntersectionObserver(function(e){if(!e[0].isIntersecting){cancelAnimationFrame(rafId);}else{animate();}},{threshold:0}).observe(heroPin);
+window.addEventListener('unload',function(){cancelAnimationFrame(rafId);});
 
 }catch(e){console.error('Atmosphere error:',e.message,e.stack);}
 })();
@@ -3353,6 +3415,7 @@ document.addEventListener('visibilitychange',function(){
 });
 animate();
 new IntersectionObserver(function(e){if(!e[0].isIntersecting){cancelAnimationFrame(rafId);}else{animate();}},{threshold:0}).observe(document.querySelector('.hero-pin')||document.body);
+window.addEventListener('unload',function(){cancelAnimationFrame(rafId);});
 })();
 </script>
 

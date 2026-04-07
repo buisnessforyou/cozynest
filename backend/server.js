@@ -47,6 +47,12 @@ function saveOrder(order) {
   return order;
 }
 
+// ─── Helper: sanitize string input ───────────────────────────
+function sanitize(str) {
+  if (typeof str !== 'string') return '';
+  return str.replace(/[<>"'&]/g, c => ({'<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','&':'&amp;'}[c])).slice(0, 500);
+}
+
 // ─── Helper: calculate totals ────────────────────────────────
 function calcTotals(items) {
   const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
@@ -63,11 +69,17 @@ function calcTotals(items) {
 //    Called when checkout opens — returns clientSecret (or demoMode flag)
 app.post('/api/create-payment-intent', async (req, res) => {
   const { items } = req.body;
-  if (!items || !items.length) {
+  if (!items || !Array.isArray(items) || !items.length) {
     return res.status(400).json({ error: 'Cart is empty' });
   }
 
-  const { total } = calcTotals(items);
+  // Server-side price validation — recalculate from known prices
+  const validItems = items.map(i => ({
+    name: String(i.name || ''),
+    price: Math.abs(parseFloat(i.price) || 0),
+    qty: Math.max(1, Math.min(99, parseInt(i.qty) || 1))
+  }));
+  const { total } = calcTotals(validItems);
   const amountCents = Math.round(total * 100);
 
   if (DEMO_MODE) {
@@ -94,17 +106,36 @@ app.post('/api/create-payment-intent', async (req, res) => {
 //    Save order after successful payment
 app.post('/api/orders', (req, res) => {
   const { items, customer, paymentIntentId } = req.body;
-  if (!items || !customer) {
+  if (!items || !Array.isArray(items) || !items.length || !customer) {
     return res.status(400).json({ error: 'Missing items or customer' });
   }
 
-  const { subtotal, shipping, total } = calcTotals(items);
+  // Sanitize customer input
+  const cleanCustomer = {
+    firstName: sanitize(customer.firstName),
+    lastName:  sanitize(customer.lastName),
+    email:     sanitize(customer.email),
+    address:   sanitize(customer.address),
+    city:      sanitize(customer.city),
+    postcode:  sanitize(customer.postcode),
+    country:   sanitize(customer.country)
+  };
+
+  // Validate & sanitize items
+  const cleanItems = items.map(i => ({
+    name: sanitize(String(i.name || '')),
+    price: Math.abs(parseFloat(i.price) || 0),
+    qty: Math.max(1, Math.min(99, parseInt(i.qty) || 1)),
+    img: sanitize(String(i.img || ''))
+  }));
+
+  const { subtotal, shipping, total } = calcTotals(cleanItems);
   const order = {
     id:              'CN-' + Math.floor(100000 + Math.random() * 900000),
     createdAt:       new Date().toISOString(),
     status:          'confirmed',
-    items,
-    customer,
+    items: cleanItems,
+    customer: cleanCustomer,
     subtotal,
     shipping,
     total,
@@ -113,7 +144,7 @@ app.post('/api/orders', (req, res) => {
   };
 
   saveOrder(order);
-  console.log(`✅ Order ${order.id} — £${order.total} — ${customer.email}`);
+  console.log(`✅ Order ${order.id} — £${order.total} — ${cleanCustomer.email}`);
   res.json(order);
 });
 
