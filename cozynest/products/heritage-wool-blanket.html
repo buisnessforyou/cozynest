@@ -23,7 +23,7 @@
     "brand": {"@type": "Brand", "name": "The Snug Spot"},
     "offers": {
       "@type": "AggregateOffer",
-      "lowPrice": "17.99",
+      "lowPrice": "13.99",
       "highPrice": "51.99",
       "priceCurrency": "GBP",
       "availability": "https://schema.org/InStock",
@@ -261,40 +261,40 @@
       <span class="p-rating-count">4.9 · 248 reviews</span>
     </div>
 
-    <div class="p-price"><span class="from">from</span><span id="displayPrice">£17.99</span></div>
+    <div class="p-price"><span class="from">from</span><span id="displayPrice">£13.99</span></div>
 
     <!-- SIZE SELECTOR -->
     <p class="option-label">Size <span id="selectedSizeLabel">— XS</span></p>
     <div class="size-grid">
-      <button class="size-btn selected" data-size="XS" data-price="17.99" onclick="selectSize(this)">
+      <button class="size-btn selected" data-size="XS" data-price="13.99" onclick="selectSize(this)">
         <span class="sz-label">XS</span>
         <span class="sz-dim">70×100 cm</span>
-        <span class="sz-price">£17.99</span>
+        <span class="sz-price">£13.99</span>
       </button>
-      <button class="size-btn" data-size="Small" data-price="24.99" onclick="selectSize(this)">
+      <button class="size-btn" data-size="Small" data-price="20.99" onclick="selectSize(this)">
         <span class="sz-label">Small</span>
         <span class="sz-dim">90×120 cm</span>
-        <span class="sz-price">£24.99</span>
+        <span class="sz-price">£20.99</span>
       </button>
-      <button class="size-btn" data-size="Standard" data-price="31.99" onclick="selectSize(this)">
+      <button class="size-btn" data-size="Standard" data-price="27.99" onclick="selectSize(this)">
         <span class="sz-label">Standard</span>
         <span class="sz-dim">130×160 cm</span>
-        <span class="sz-price">£31.99</span>
+        <span class="sz-price">£27.99</span>
       </button>
-      <button class="size-btn" data-size="Large" data-price="39.99" onclick="selectSize(this)">
+      <button class="size-btn" data-size="Large" data-price="35.99" onclick="selectSize(this)">
         <span class="sz-label">Large</span>
         <span class="sz-dim">150×200 cm</span>
-        <span class="sz-price">£39.99</span>
+        <span class="sz-price">£35.99</span>
       </button>
-      <button class="size-btn" data-size="XL" data-price="47.99" onclick="selectSize(this)">
+      <button class="size-btn" data-size="XL" data-price="43.99" onclick="selectSize(this)">
         <span class="sz-label">XL</span>
         <span class="sz-dim">180×220 cm</span>
-        <span class="sz-price">£47.99</span>
+        <span class="sz-price">£43.99</span>
       </button>
-      <button class="size-btn" data-size="XXL" data-price="55.99" onclick="selectSize(this)">
+      <button class="size-btn" data-size="XXL" data-price="51.99" onclick="selectSize(this)">
         <span class="sz-label">XXL</span>
         <span class="sz-dim">200×240 cm</span>
-        <span class="sz-price">£55.99</span>
+        <span class="sz-price">£51.99</span>
       </button>
     </div>
 
@@ -402,7 +402,7 @@
   let cart; try { cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch(e) { cart = []; localStorage.setItem(CART_KEY, '[]'); }
   let qty = 1;
   let selectedSize = 'Small';
-  let selectedPrice = 17.99;
+  let selectedPrice = 13.99;
   let selectedColour = 'Natural Oat';
 
   function updateCartCount() {
