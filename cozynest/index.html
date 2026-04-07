@@ -1872,7 +1872,7 @@
     <div class="foot-col"><h4>Support</h4><ul class="foot-links"><li><a href='/faq.html'>FAQ</a></li><li><a href='/shipping.html'>Shipping</a></li><li><a href='/returns.html'>Returns</a></li><li><a href='/track-order.html'>Track Order</a></li><li><a href='/contact.html'>Contact</a></li></ul></div>
   </div>
   <div class="foot-bot">
-    <p class="foot-copy"><a href='/sourcing.html' style='color:inherit;text-decoration:none;'>©</a> 2026 The Snug Spot is a trading name of Milene Borges de Moura. All rights reserved.</p>
+    <p class="foot-copy"><a href='/sourcing.html' style='color:inherit;text-decoration:none;'>©</a> 2026 The Snug Spot is a trading name of Milene Borges de Moura (Sole Trader). 58 Sydney Road, London SW20 8EF. All rights reserved.</p>
     <div class="foot-legal">
       <a href='/privacy.html'>Privacy Policy</a>
       <a href='/terms.html'>Terms of Service</a>
@@ -1921,6 +1921,7 @@
       </div>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button id="cookieAcceptAllBtn" style="flex:1;padding:13px;background:var(--terracotta);color:var(--cream);border:none;border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:background .3s;" onmouseover="this.style.background='var(--deep-brown)'" onmouseout="this.style.background='var(--terracotta)'">Accept all</button>
         <button id="cookieSaveBtn" style="flex:1;padding:13px;background:var(--deep-brown);color:var(--cream);border:none;border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:background .3s;" onmouseover="this.style.background='var(--terracotta)'" onmouseout="this.style.background='var(--deep-brown)'">Save preferences</button>
         <button id="cookieRejectBtn" style="padding:13px 20px;background:none;color:var(--text-mid);border:1px solid var(--sand);border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:border-color .3s,color .3s;" onmouseover="this.style.borderColor='var(--deep-brown)';this.style.color='var(--deep-brown)'" onmouseout="this.style.borderColor='var(--sand)';this.style.color='var(--text-mid)'">Essential only</button>
       </div>
@@ -2042,6 +2043,9 @@
           </select>
         </div>
       </div>
+      <div style="background:rgba(143,166,138,.08);border:1px solid rgba(143,166,138,.2);border-radius:4px;padding:12px 16px;margin-top:18px;font-size:12px;color:var(--text-mid);line-height:1.65;">
+        <strong style="color:var(--deep-brown);">Your rights:</strong> Under the Consumer Contracts Regulations 2013, you have <strong>14 days from delivery</strong> to cancel your order for any reason. We also offer a 30-day money-back guarantee. <a href="/returns.html" target="_blank" style="color:var(--terracotta);text-decoration:underline;">Full returns policy</a>
+      </div>
       <div class="ck-actions">
         <button class="btn-ck-next" id="ckToPayment">Continue to Payment →</button>
       </div>
@@ -2076,6 +2080,10 @@
           <input type="text" id="ckCardName" placeholder="Jane Smith" autocomplete="cc-name">
         </div>
       </div>
+      <label class="ck-tc-agree" style="display:flex;align-items:flex-start;gap:10px;margin-top:18px;font-size:12px;color:var(--text-mid);line-height:1.6;cursor:pointer;">
+        <input type="checkbox" id="ckAgreeTC" style="margin-top:3px;accent-color:var(--terracotta);flex-shrink:0;">
+        <span>I agree to the <a href="/terms.html" target="_blank" style="color:var(--terracotta);text-decoration:underline;">Terms of Service</a> and <a href="/privacy.html" target="_blank" style="color:var(--terracotta);text-decoration:underline;">Privacy Policy</a>, and understand I have a <strong>14-day right to cancel</strong> under the Consumer Contracts Regulations 2013.</span>
+      </label>
       <div class="ck-actions">
         <button class="btn-ck-back" id="ckBackShipping">← Back</button>
         <button class="btn-ck-next" id="ckPlaceOrder">Place Order</button>
@@ -2428,30 +2436,48 @@
   })();
 
 
-  /* ── Cookie Preferences Modal ── */
+  /* ── Cookie Preferences Modal (GDPR / UK PECR compliant) ── */
   (function() {
     const modal = document.getElementById('cookieModal');
     const link  = document.getElementById('cookiePrefLink');
-    const saveBtn   = document.getElementById('cookieSaveBtn');
-    const rejectBtn = document.getElementById('cookieRejectBtn');
-    if (!modal || !link) return;
+    const acceptAllBtn = document.getElementById('cookieAcceptAllBtn');
+    const saveBtn      = document.getElementById('cookieSaveBtn');
+    const rejectBtn    = document.getElementById('cookieRejectBtn');
+    if (!modal) return;
 
-    function openCookieModal(e) {
-      e.preventDefault();
+    function openCookieModal(isAutoShow) {
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
-      // Load saved prefs
-      const prefs = JSON.parse(localStorage.getItem('cnCookiePrefs') || '{}');
-      document.getElementById('cookieAnalytics').checked       = prefs.analytics       !== false;
-      document.getElementById('cookiePersonalisation').checked = prefs.personalisation !== false;
+      if (isAutoShow) {
+        // First visit: default to unchecked (essential only)
+        document.getElementById('cookieAnalytics').checked       = false;
+        document.getElementById('cookiePersonalisation').checked = false;
+      } else {
+        // Opened from footer link: load saved prefs
+        const prefs = JSON.parse(localStorage.getItem('cnCookiePrefs') || '{}');
+        document.getElementById('cookieAnalytics').checked       = prefs.analytics       !== false;
+        document.getElementById('cookiePersonalisation').checked = prefs.personalisation !== false;
+      }
     }
     function closeCookieModal() {
       modal.style.display = 'none';
       document.body.style.overflow = '';
     }
 
-    link.addEventListener('click', openCookieModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeCookieModal(); });
+    // Footer link opens modal (not auto-show, so load saved prefs)
+    if (link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        openCookieModal(false);
+      });
+    }
+
+    // No overlay-click-to-dismiss — users must make an active choice
+
+    acceptAllBtn.addEventListener('click', () => {
+      localStorage.setItem('cnCookiePrefs', JSON.stringify({ analytics: true, personalisation: true }));
+      closeCookieModal();
+    });
 
     saveBtn.addEventListener('click', () => {
       localStorage.setItem('cnCookiePrefs', JSON.stringify({
@@ -2460,10 +2486,16 @@
       }));
       closeCookieModal();
     });
+
     rejectBtn.addEventListener('click', () => {
       localStorage.setItem('cnCookiePrefs', JSON.stringify({ analytics: false, personalisation: false }));
       closeCookieModal();
     });
+
+    // Auto-show on first visit if no cookie choice has been made
+    if (localStorage.getItem('cnCookiePrefs') === null) {
+      openCookieModal(true);
+    }
   })();
 
   /* ── Sticky Nav ── */
@@ -2797,6 +2829,14 @@
     let _submitting = false;
     ckPlaceOrder.addEventListener('click', async () => {
       if (_submitting) return;
+      const tcBox = document.getElementById('ckAgreeTC');
+      if (!tcBox || !tcBox.checked) {
+        tcBox.parentElement.style.outline = '2px solid var(--terracotta)';
+        tcBox.parentElement.style.outlineOffset = '4px';
+        tcBox.focus();
+        return;
+      }
+      tcBox.parentElement.style.outline = '';
       _submitting = true;
       ckPlaceOrder.disabled    = true;
       ckPlaceOrder.textContent = 'Processing…';
