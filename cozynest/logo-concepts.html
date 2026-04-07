@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>The Snug Spot — Logo Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#FAF7F2; font-family:'DM Sans',sans-serif; color:#2C1A0E; padding:40px 20px 80px; }
+  h1 { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:300; text-align:center; margin-bottom:8px; }
+  .sub { text-align:center; color:#8A7A6E; font-size:14px; margin-bottom:48px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(500px,1fr)); gap:36px; max-width:1200px; margin:0 auto; }
+  .card { background:white; border:1px solid #EDE5D8; border-radius:16px; overflow:hidden; }
+  .card:hover { box-shadow:0 8px 40px rgba(44,26,14,.1); }
+  .logo-area { height:420px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid #EDE5D8; padding:30px; position:relative; }
+  .card-body { padding:20px 24px 24px; }
+  .card-num { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#C4785A; margin-bottom:6px; }
+  .card-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:#2C1A0E; margin-bottom:6px; }
+  .card-desc { font-size:13px; color:#8A7A6E; line-height:1.6; }
+
+  /* Logo layout styles */
+  .logo-stack { display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .logo-horiz { display:flex; align-items:center; gap:24px; }
+  .logo-badge { display:flex; flex-direction:column; align-items:center; gap:6px; }
+
+  .sofa-img { height:140px; object-fit:contain; }
+  .sofa-img-sm { height:100px; object-fit:contain; }
+  .sofa-img-lg { height:170px; object-fit:contain; }
+
+  .brand-text { font-family:'Cormorant Garamond',serif; font-weight:400; line-height:1.1; }
+  .brand-text .accent { color:#C4785A; }
+  .tagline { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:0.22em; text-transform:uppercase; }
+
+  /* Backgrounds */
+  .bg-black { background:#0A0A0A; }
+  .bg-cream { background:#FAF7F2; }
+  .bg-white { background:#FFFFFF; }
+  .bg-navy { background:#0D1B2A; }
+  .bg-dark-brown { background:#1A1410; }
+
+  /* Inverted sofa for light backgrounds */
+  .sofa-invert { filter: invert(1); }
+  /* Tinted versions */
+  .sofa-gold { filter: invert(1) sepia(1) saturate(2) hue-rotate(10deg) brightness(0.85); }
+  .sofa-terracotta { filter: invert(1) sepia(1) saturate(3) hue-rotate(-10deg) brightness(0.75); }
+  .sofa-sage { filter: invert(1) sepia(1) saturate(1) hue-rotate(80deg) brightness(0.7); }
+
+  /* Circle badge */
+  .circle-badge {
+    width:220px; height:220px; border-radius:50%;
+    border:2px solid rgba(255,255,255,0.2);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .circle-badge img { height:220px; object-fit:contain; }
+</style>
+</head>
+<body>
+<h1>The Snug Spot — Logo Concepts</h1>
+<p class="sub">Your sofa icon + brand text in 10 layout and colour variations</p>
+
+<div class="grid">
+
+<!-- ═══ 01: White on Black — Stacked ═══ -->
+<div class="card">
+<div class="logo-area bg-black">
+  <div class="logo-stack">
+    <div class="brand-text" style="font-size:34px; color:#fff;">The Snug<span class="accent">Spot</span></div>
+    <img src="images/sofa-logo.png" class="sofa-img-lg" alt="Sofa"/>
+    <div class="tagline" style="color:#8A7A6E;">Your Cosiest Corner</div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 01</div>
+  <div class="card-title">White on Black — Stacked</div>
+  <div class="card-desc">The original. Text above, sofa centre, tagline below. Bold and clean on black.</div>
+</div>
+</div>
+
+<!-- ═══ 02: Dark on Cream — Stacked ═══ -->
+<div class="card">
+<div class="logo-area bg-cream">
+  <div class="logo-stack">
+    <div class="brand-text" style="font-size:34px; color:#2C1A0E;">The Snug<span class="accent">Spot</span></div>
+    <img src="images/sofa-logo.png" class="sofa-img-lg sofa-invert" alt="Sofa"/>
+    <div class="tagline" style="color:#8A7A6E;">Your Cosiest Corner</div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 02</div>
+  <div class="card-title">Dark on Cream</div>
+  <div class="card-desc">Inverted for light backgrounds. Works on paper, packaging, website headers.</div>
+</div>
+</div>
+
+<!-- ═══ 03: Gold Tint on Black ═══ -->
+<div class="card">
+<div class="logo-area bg-black">
+  <div class="logo-stack">
+    <div class="brand-text" style="font-size:34px; color:#D4AA5A;">The Snug<span style="color:#F0D080;">Spot</span></div>
+    <img src="images/sofa-logo.png" class="sofa-img-lg sofa-gold" alt="Sofa"/>
+    <div class="tagline" style="color:#8A7A6E;">Curated Comfort</div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 03</div>
+  <div class="card-title">Gold Luxury</div>
+  <div class="card-desc">Gold-tinted sofa on black with gold text. Premium, boutique, luxury feel.</div>
+</div>
+</div>
+
+<!-- ═══ 04: Terracotta Tint on Cream ═══ -->
+<div class="card">
+<div class="logo-area bg-cream">
+  <div class="logo-stack">
+    <div class="brand-text" style="font-size:34px; color:#2C1A0E;">The Snug<span class="accent">Spot</span></div>
+    <img src="images/sofa-logo.png" class="sofa-img-lg sofa-terracotta" alt="Sofa"/>
+    <div class="tagline" style="color:#8A7A6E;">Home Comfort</div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 04</div>
+  <div class="card-title">Terracotta Brand</div>
+  <div class="card-desc">Sofa tinted to your brand terracotta colour. Warm, inviting, on-brand.</div>
+</div>
+</div>
+
+<!-- ═══ 05: Horizontal Layout ═══ -->
+<div class="card">
+<div class="logo-area bg-white">
+  <div class="logo-horiz">
+    <img src="images/sofa-logo.png" class="sofa-img-sm sofa-invert" alt="Sofa"/>
+    <div>
+      <div class="brand-text" style="font-size:30px; color:#2C1A0E;">The Snug<span class="accent">Spot</span></div>
+      <div class="tagline" style="color:#8A7A6E; margin-top:4px;">Home Comfort</div>
+    </div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 05</div>
+  <div class="card-title">Horizontal Layout</div>
+  <div class="card-desc">Sofa left, text right. Perfect for website headers, email signatures, business cards.</div>
+</div>
+</div>
+
+<!-- ═══ 06: Horizontal on Black ═══ -->
+<div class="card">
+<div class="logo-area bg-black">
+  <div class="logo-horiz">
+    <img src="images/sofa-logo.png" class="sofa-img-sm" alt="Sofa"/>
+    <div>
+      <div class="brand-text" style="font-size:30px; color:#fff;">The Snug<span class="accent">Spot</span></div>
+      <div class="tagline" style="color:#8A7A6E; margin-top:4px;">Your Cosiest Corner</div>
+    </div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 06</div>
+  <div class="card-title">Horizontal — Dark</div>
+  <div class="card-desc">Same horizontal layout on dark. Great for dark website headers and packaging labels.</div>
+</div>
+</div>
+
+<!-- ═══ 07: Circle Badge ═══ -->
+<div class="card">
+<div class="logo-area bg-black">
+  <div class="logo-badge">
+    <div class="circle-badge">
+      <img src="images/sofa-logo.png" alt="Sofa"/>
+    </div>
+    <div class="brand-text" style="font-size:28px; color:#fff; margin-top:10px;">The Snug<span class="accent">Spot</span></div>
+    <div class="tagline" style="color:#8A7A6E;">Premium Living</div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 07</div>
+  <div class="card-title">Circle Badge</div>
+  <div class="card-desc">Sofa in a circle mark — perfect for favicon, app icon, social media avatar, or stamp.</div>
+</div>
+</div>
+
+<!-- ═══ 08: Cream on Navy ═══ -->
+<div class="card">
+<div class="logo-area bg-navy">
+  <div class="logo-stack">
+    <div class="brand-text" style="font-size:34px; color:#D4C8B4;">The Snug<span style="color:#E8C44A;">Spot</span></div>
+    <img src="images/sofa-logo.png" class="sofa-img-lg" alt="Sofa"/>
+    <div class="tagline" style="color:#6A88B8;">Curated Comfort</div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 08</div>
+  <div class="card-title">Navy & Gold</div>
+  <div class="card-desc">White sofa on deep navy with gold "Spot" accent. Rich, sophisticated, premium.</div>
+</div>
+</div>
+
+<!-- ═══ 09: Sage Green ═══ -->
+<div class="card">
+<div class="logo-area" style="background:#E8EDE4;">
+  <div class="logo-stack">
+    <div class="brand-text" style="font-size:34px; color:#3A5232;">The Snug<span style="color:#7A9464;">Spot</span></div>
+    <img src="images/sofa-logo.png" class="sofa-img-lg sofa-sage" alt="Sofa"/>
+    <div class="tagline" style="color:#7A9464;">Your Cosiest Corner</div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 09</div>
+  <div class="card-title">Sage Green</div>
+  <div class="card-desc">Earthy sage tones. Natural, organic, Scandi-inspired. Warm and grounded.</div>
+</div>
+</div>
+
+<!-- ═══ 10: Sofa Only — Icon Mark ═══ -->
+<div class="card">
+<div class="logo-area bg-black">
+  <div class="logo-stack">
+    <img src="images/sofa-logo.png" class="sofa-img-lg" style="height:200px;" alt="Sofa"/>
+    <div class="tagline" style="color:#555; margin-top:12px; font-size:12px; letter-spacing:0.3em;">THE SNUG SPOT</div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="card-num">Concept 10</div>
+  <div class="card-title">Icon Mark — Minimal</div>
+  <div class="card-desc">Sofa icon dominant, tiny text below. Maximum impact. For use when the brand is already known.</div>
+</div>
+</div>
+
+</div>
+
+<div style="text-align:center; margin-top:48px; padding:24px; color:#8A7A6E; font-size:13px; line-height:1.8;">
+  <p><strong>All concepts use your exact sofa drawing.</strong> Pick your favourite and I'll deploy it as the site logo!</p>
+</div>
+
+</body>
+</html>

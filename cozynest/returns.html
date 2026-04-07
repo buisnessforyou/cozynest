@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="/images/sofa-logo.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Returns — The Snug Spot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FAF7F2; --off-white: #F5F0E8; --sand: #EDE5D8;
+      --deep-brown: #2C1A0E; --walnut: #5C3D2E; --terracotta: #C4785A;
+      --sage: #8FA68A;
+      --text-dark: #1A1410; --text-mid: #4A3728; --text-light: #8A7A6E;
+      --font-display: 'Cormorant Garamond', serif; --font-body: 'DM Sans', sans-serif;
+    }
+    body { background: var(--cream); color: var(--text-dark); font-family: var(--font-body); font-size: 15px; line-height: 1.8; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,242,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44,26,14,0.08);
+      padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--deep-brown); text-decoration: none; }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-back { font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--text-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s; }
+    .nav-back:hover { color: var(--terracotta); }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    .hero { background: var(--deep-brown); padding: 80px 48px 64px; text-align: center; }
+    .eyebrow { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 16px; }
+    .hero-sub { font-size: 15px; color: rgba(250,247,242,.55); font-weight: 300; max-width: 440px; margin: 0 auto; }
+
+    .wrap { max-width: 780px; margin: 0 auto; padding: 72px 48px 100px; }
+
+    .promise-banner {
+      background: var(--deep-brown); color: var(--cream);
+      border-radius: 12px; padding: 36px 40px;
+      display: flex; align-items: center; gap: 24px; margin-bottom: 60px;
+    }
+    .promise-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(196,120,90,.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .promise-icon svg { width: 22px; height: 22px; stroke: var(--terracotta); fill: none; stroke-width: 1.8; }
+    .promise-text h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 4px; }
+    .promise-text p { font-size: 14px; color: rgba(250,247,242,.65); line-height: 1.6; margin: 0; }
+
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin: 40px 0 60px; }
+    .step { background: var(--off-white); border: 1px solid var(--sand); border-radius: 10px; padding: 26px; text-align: center; }
+    .step-num { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--terracotta); line-height: 1; margin-bottom: 12px; }
+    .step h3 { font-family: var(--font-display); font-size: 1.05rem; color: var(--deep-brown); margin-bottom: 8px; }
+    .step p { font-size: 13px; color: var(--text-light); line-height: 1.7; margin: 0; }
+
+    .section { margin-bottom: 52px; }
+    .section h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; color: var(--deep-brown); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--sand); }
+    .section p { color: var(--text-mid); margin-bottom: 14px; }
+    .section ul { padding-left: 20px; color: var(--text-mid); margin-bottom: 14px; }
+    .section li { margin-bottom: 7px; }
+
+    .highlight { background: var(--off-white); border-left: 3px solid var(--sage); border-radius: 0 8px 8px 0; padding: 16px 22px; margin: 20px 0; color: var(--text-mid); font-size: 14px; }
+
+    footer { background: var(--deep-brown); padding: 40px 48px; text-align: center; }
+    .foot-copy { color: rgba(250,247,242,.45); font-size: 13px; margin-bottom: 12px; }
+    .foot-legal { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .foot-legal a { color: rgba(250,247,242,.55); font-size: 13px; text-decoration: none; transition: color .2s; }
+    .foot-legal a:hover { color: var(--terracotta); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 24px; } .hero { padding: 56px 24px 48px; } .wrap { padding: 48px 24px 72px; }
+      .steps { grid-template-columns: 1fr; }
+      .promise-banner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">The Snug<span>Spot</span></a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to shop
+  </a>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">No fuss</p>
+  <h1>Returns &<br>Refunds</h1>
+  <p class="hero-sub">30 days. No questions asked. We want you to love every purchase from The Snug Spot.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="promise-banner">
+    <div class="promise-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div class="promise-text">
+      <h3>30-day money-back guarantee</h3>
+      <p>If you're not completely satisfied with your purchase, return it within 30 days of delivery for a full refund — no questions, no hassle.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>How to return an item</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Contact us</h3>
+      <p>Email us at support@thesnugspot.com with your order number and the item(s) you'd like to return.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Pack & send</h3>
+      <p>We'll send you a prepaid return label. Pack your item securely in its original packaging if possible.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Refund issued</h3>
+      <p>Once we receive and inspect the return, your refund will be processed within 5–7 business days.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Your statutory right to cancel</h2>
+    <p>As an online shopper, UK law (Consumer Contracts Regulations 2013) gives you an automatic <strong>14-day cooling-off period</strong> from the day you receive your order — no reason needed. Simply email <a href="mailto:support@thesnugspot.com" style="color:var(--terracotta);text-decoration:none;">support@thesnugspot.com</a> within that window. We'll refund the full purchase price plus standard delivery within 14 days of receiving the return.</p>
+    <p>On top of that, our own 30-day policy gives you even more time.</p>
+  </div>
+
+  <div class="section">
+    <h2>What can be returned?</h2>
+    <p>We accept returns on most items within 30 days of delivery, provided they are:</p>
+    <ul>
+      <li>Unused and in their original condition</li>
+      <li>In original packaging where applicable</li>
+      <li>Not personalised or custom-made items</li>
+    </ul>
+    <div class="highlight">
+      If your item arrived damaged or faulty, the Consumer Rights Act 2015 gives you the right to a full refund within 30 days, or a repair/replacement after that. Contact us with photos and your order number — we'll resolve it immediately, free of charge.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Refund timeline</h2>
+    <p>Refunds are issued to your original payment method. Please allow:</p>
+    <ul>
+      <li><strong>5–7 business days</strong> for us to process your return once received</li>
+      <li>An additional <strong>3–5 business days</strong> for your bank or card provider to post the credit</li>
+    </ul>
+    <p>You'll receive an email confirmation as soon as your refund has been issued.</p>
+  </div>
+
+  <div class="section">
+    <h2>Need help?</h2>
+    <p>If you have any questions about a return or refund, <a href="/contact.html" style="color:var(--terracotta);text-decoration:none;">get in touch</a> and we'll sort it out.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p class="foot-copy">© 2026 The Snug Spot is a trading name of Milene Borges de Moura. All rights reserved.</p>
+  <div class="foot-legal">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/">Back to Shop</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="/images/sofa-logo.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ — The Snug Spot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FAF7F2; --off-white: #F5F0E8; --sand: #EDE5D8;
+      --deep-brown: #2C1A0E; --walnut: #5C3D2E; --terracotta: #C4785A;
+      --text-dark: #1A1410; --text-mid: #4A3728; --text-light: #8A7A6E;
+      --font-display: 'Cormorant Garamond', serif; --font-body: 'DM Sans', sans-serif;
+    }
+    body { background: var(--cream); color: var(--text-dark); font-family: var(--font-body); font-size: 15px; line-height: 1.8; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,242,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44,26,14,0.08);
+      padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--deep-brown); text-decoration: none; }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-back { font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--text-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s; }
+    .nav-back:hover { color: var(--terracotta); }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    .hero { background: var(--deep-brown); padding: 80px 48px 64px; text-align: center; }
+    .eyebrow { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 16px; }
+    .hero-sub { font-size: 15px; color: rgba(250,247,242,.55); font-weight: 300; max-width: 440px; margin: 0 auto; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 72px 48px 100px; }
+
+    .faq-coming {
+      text-align: center; padding: 80px 40px;
+      background: var(--off-white); border: 1px solid var(--sand); border-radius: 16px;
+    }
+    .faq-coming svg { width: 48px; height: 48px; stroke: var(--terracotta); fill: none; stroke-width: 1.2; margin-bottom: 24px; }
+    .faq-coming h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; color: var(--deep-brown); margin-bottom: 12px; }
+    .faq-coming p { color: var(--text-light); max-width: 380px; margin: 0 auto 28px; }
+    .btn-contact {
+      display: inline-block; padding: 14px 36px;
+      background: var(--deep-brown); color: var(--cream);
+      font-family: var(--font-body); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px; transition: background .3s;
+    }
+    .btn-contact:hover { background: var(--terracotta); }
+
+    footer { background: var(--deep-brown); padding: 40px 48px; text-align: center; }
+    .foot-copy { color: rgba(250,247,242,.45); font-size: 13px; margin-bottom: 12px; }
+    .foot-legal { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .foot-legal a { color: rgba(250,247,242,.55); font-size: 13px; text-decoration: none; transition: color .2s; }
+    .foot-legal a:hover { color: var(--terracotta); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 24px; } .hero { padding: 56px 24px 48px; } .wrap { padding: 48px 24px 72px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">The Snug<span>Spot</span></a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to shop
+  </a>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">Help centre</p>
+  <h1>Frequently Asked<br>Questions</h1>
+  <p class="hero-sub">Everything you need to know, in one place.</p>
+</div>
+
+<div class="wrap">
+  <div class="faq-coming">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <h2>Coming soon</h2>
+    <p>We're building out our full FAQ section. In the meantime, our team is happy to answer any questions directly.</p>
+    <a href="/contact.html" class="btn-contact">Get in touch</a>
+  </div>
+</div>
+
+<footer>
+  <p class="foot-copy">© 2026 The Snug Spot is a trading name of Milene Borges de Moura. All rights reserved.</p>
+  <div class="foot-legal">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/">Back to Shop</a>
+  </div>
+</footer>
+
+</body>
+</html>

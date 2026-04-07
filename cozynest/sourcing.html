@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="/images/sofa-logo.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sourcing — Cozynest Internal</title>
+  <title>Admin Dashboard — The Snug Spot</title>
   <meta name="robots" content="noindex, nofollow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -123,25 +124,104 @@
     .dash-hero {
       background: var(--off-white);
       border-bottom: 1px solid var(--sand);
-      padding: 48px;
+      padding: 48px 48px 0;
     }
     .dash-hero h1 {
       font-family: var(--font-display);
       font-size: 2.4rem; font-weight: 300;
       color: var(--deep-brown); margin-bottom: 8px;
     }
-    .dash-hero p { color: var(--text-light); font-size: 14px; }
+    .dash-hero > p { color: var(--text-light); font-size: 14px; }
+
     .dash-stats {
-      display: flex; gap: 32px; margin-top: 24px;
+      display: flex; gap: 36px; margin-top: 28px;
     }
-    .dash-stat { text-align: center; }
+    .dash-stat { text-align: left; }
     .dash-stat-n {
       font-family: var(--font-display);
-      font-size: 2rem; font-weight: 500;
-      color: var(--terracotta); display: block;
+      font-size: 2.2rem; font-weight: 500;
+      color: var(--terracotta); display: block; line-height: 1;
     }
-    .dash-stat-l { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); }
+    .dash-stat-l { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); margin-top: 4px; display: block; }
 
+    /* ── Tabs ── */
+    .dash-tabs { display: flex; gap: 0; margin-top: 32px; border-bottom: 2px solid var(--sand); }
+    .dash-tab {
+      padding: 12px 28px; background: none; border: none;
+      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--text-light); cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: color .2s, border-color .2s;
+    }
+    .dash-tab.active { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+    .dash-tab:hover:not(.active) { color: var(--text-mid); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Orders Tab ── */
+    .orders-wrap { max-width: 1200px; margin: 0 auto; padding: 48px; }
+    .orders-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+    }
+    .orders-filter { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 6px 16px; border: 1px solid var(--sand); border-radius: 20px;
+      background: none; font-size: 12px; font-weight: 500; cursor: pointer;
+      color: var(--text-mid); transition: all .2s; font-family: var(--font-body);
+    }
+    .filter-btn.active { background: var(--deep-brown); border-color: var(--deep-brown); color: var(--cream); }
+    .filter-btn:hover:not(.active) { border-color: var(--walnut); color: var(--walnut); }
+    .refresh-btn {
+      padding: 8px 18px; background: var(--off-white);
+      border: 1px solid var(--sand); border-radius: 8px;
+      font-size: 12px; cursor: pointer; color: var(--text-mid);
+      transition: background .2s; display: flex; align-items: center; gap: 6px;
+      font-family: var(--font-body);
+    }
+    .refresh-btn:hover { background: var(--sand); }
+    .orders-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--sand); }
+    .orders-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .orders-table th {
+      background: var(--off-white); padding: 12px 16px; text-align: left;
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-light); border-bottom: 1px solid var(--sand); white-space: nowrap;
+      font-weight: 500;
+    }
+    .orders-table td { padding: 14px 16px; border-bottom: 1px solid var(--sand); vertical-align: top; color: var(--text-dark); }
+    .orders-table tr:last-child td { border-bottom: none; }
+    .orders-table tbody tr:hover td { background: var(--off-white); cursor: pointer; }
+    .status-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+    .status-confirmed { background: rgba(143,166,138,.18); color: #4a7c4e; }
+    .status-paid { background: rgba(39,174,96,.15); color: #1e8449; }
+    .status-pending { background: rgba(196,120,90,.12); color: var(--terracotta); }
+    .status-shipped { background: rgba(52,152,219,.12); color: #2471a3; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin .8s linear infinite; }
+    .order-items-list { font-size: 12px; color: var(--text-light); line-height: 1.7; }
+    .order-id { font-family: monospace; font-size: 12px; color: var(--text-light); }
+    .no-orders {
+      text-align: center; padding: 80px 20px; color: var(--text-light);
+    }
+    .no-orders-icon { font-size: 48px; margin-bottom: 16px; opacity: .4; }
+    .no-orders h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; color: var(--text-mid); margin-bottom: 8px; }
+    .no-orders p { font-size: 13px; }
+    .order-detail-row, .order-detail { display: none; }
+    .order-detail-row.open, .order-detail.open { display: table-row; }
+    .order-detail-row td, .order-detail td { background: var(--off-white); padding: 20px 24px; font-size: 12.5px; border-bottom: 1px solid var(--sand); }
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+    .od-block { }
+    .od-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); display: block; margin-bottom: 4px; }
+    .od-val { font-size: 13px; color: var(--text-dark); font-weight: 500; }
+    .detail-field label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); display: block; margin-bottom: 4px; }
+    .detail-field p { font-size: 13px; color: var(--text-dark); font-weight: 500; }
+    .order-items-detail { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--sand); }
+    .order-item-row { display: flex; justify-content: space-between; font-size: 12.5px; padding: 5px 0; color: var(--text-mid); border-bottom: 1px solid rgba(237,229,216,.5); }
+    .order-item-row:last-child { border-bottom: none; }
+
+    /* ── Sourcing Tab ── */
     .dash-body { max-width: 1200px; margin: 0 auto; padding: 48px; }
 
     .section-label {
@@ -149,40 +229,25 @@
       color: var(--terracotta); margin-bottom: 20px;
       display: flex; align-items: center; gap: 10px;
     }
-    .section-label::after {
-      content: ''; flex: 1; height: 1px; background: var(--sand);
-    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--sand); }
 
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 20px;
-      margin-bottom: 56px;
+      gap: 20px; margin-bottom: 56px;
     }
-
     .product-card {
-      background: white;
-      border: 1px solid var(--sand);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: box-shadow .2s;
+      background: white; border: 1px solid var(--sand);
+      border-radius: 12px; overflow: hidden; transition: box-shadow .2s;
     }
     .product-card:hover { box-shadow: 0 4px 24px rgba(44,26,14,.08); }
 
     .pc-head {
-      padding: 20px 20px 16px;
-      border-bottom: 1px solid var(--sand);
+      padding: 20px 20px 16px; border-bottom: 1px solid var(--sand);
       display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
     }
-    .pc-name {
-      font-family: var(--font-display);
-      font-size: 1.2rem; font-weight: 500;
-      color: var(--deep-brown); line-height: 1.2;
-    }
-    .pc-cat {
-      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-light); margin-top: 4px;
-    }
+    .pc-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; color: var(--deep-brown); line-height: 1.2; }
+    .pc-cat { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); margin-top: 4px; }
     .pc-price-wrap { text-align: right; flex-shrink: 0; }
     .pc-retail { font-size: 18px; font-weight: 500; color: var(--terracotta); }
     .pc-retail-label { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: .08em; }
@@ -196,38 +261,40 @@
     .pc-links { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 8px; }
     .ali-link {
       display: flex; align-items: center; gap: 8px;
-      padding: 10px 14px;
-      background: var(--cream);
-      border: 1px solid var(--sand);
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 12.5px; color: var(--walnut);
+      padding: 10px 14px; background: var(--cream);
+      border: 1px solid var(--sand); border-radius: 8px;
+      text-decoration: none; font-size: 12.5px; color: var(--walnut);
       transition: background .2s, border-color .2s;
     }
     .ali-link:hover { background: var(--off-white); border-color: var(--terracotta); color: var(--terracotta); }
     .ali-link svg { width: 14px; height: 14px; flex-shrink: 0; }
     .ali-link .link-label { font-weight: 500; flex: 1; }
-    .ali-link .link-type {
-      font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
-      color: var(--text-light);
-    }
+    .ali-link .link-type { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-light); }
 
     .pc-tip {
-      margin: 0 20px 16px;
-      padding: 10px 14px;
-      background: rgba(143,166,138,.1);
-      border-radius: 8px;
-      font-size: 12px; color: var(--text-mid);
-      line-height: 1.6;
+      margin: 0 20px 16px; padding: 10px 14px;
+      background: rgba(143,166,138,.1); border-radius: 8px;
+      font-size: 12px; color: var(--text-mid); line-height: 1.6;
     }
     .pc-tip strong { color: var(--walnut); }
 
+    .pc-shop-link {
+      margin: 0 20px 8px; display: flex; align-items: center; gap: 8px;
+      padding: 9px 14px; background: rgba(44,26,14,.04);
+      border: 1px solid rgba(44,26,14,.12); border-radius: 8px;
+      text-decoration: none; font-size: 12px; color: var(--deep-brown);
+      font-weight: 500; transition: background .2s;
+    }
+    .pc-shop-link:hover { background: rgba(44,26,14,.08); }
+    .pc-shop-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
     @media (max-width: 640px) {
       .dash-nav { padding: 0 20px; }
-      .dash-hero { padding: 32px 20px; }
-      .dash-body { padding: 32px 20px; }
+      .dash-hero { padding: 32px 20px 0; }
+      .dash-body, .orders-wrap { padding: 32px 20px; }
       .product-grid { grid-template-columns: 1fr; }
-      .dash-stats { gap: 20px; }
+      .dash-stats { gap: 20px; flex-wrap: wrap; }
+      .dash-tabs { overflow-x: auto; }
     }
   </style>
 </head>
@@ -235,7 +302,7 @@
 
 <!-- ── GATE ── -->
 <div id="gate">
-  <a href="/" class="gate-logo">Cozy<span>nest</span></a>
+  <a href="/" class="gate-logo">The Snug<span>Spot</span></a>
   <div class="gate-box">
     <div class="gate-icon">🔒</div>
     <h2>Internal Access</h2>
@@ -253,486 +320,119 @@
   </div>
 </div>
 
-<!-- ── DASHBOARD ── -->
-<div id="dashboard">
-
-  <nav class="dash-nav">
-    <a href="/" class="dash-nav-logo">Cozy<span>nest</span></a>
-    <div class="dash-nav-right">
-      <span class="dash-badge">Internal</span>
-      <a href="/" class="dash-back">← Back to shop</a>
-    </div>
-  </nav>
-
-  <div class="dash-hero">
-    <h1>Supplier Sourcing</h1>
-    <p>Alibaba links for all 12 active products. Retail prices shown in GBP.</p>
-    <div class="dash-stats">
-      <div class="dash-stat">
-        <span class="dash-stat-n">12</span>
-        <span class="dash-stat-l">Products</span>
-      </div>
-      <div class="dash-stat">
-        <span class="dash-stat-n">£778</span>
-        <span class="dash-stat-l">Total retail value</span>
-      </div>
-      <div class="dash-stat">
-        <span class="dash-stat-n">~5x</span>
-        <span class="dash-stat-l">Avg markup</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="dash-body">
-
-    <!-- MAIN PRODUCTS -->
-    <p class="section-label">Main Collection — 6 Products</p>
-    <div class="product-grid">
-
-      <!-- 1. Alpaca Throw -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Alpaca Chunky Throw</div>
-            <div class="pc-cat">Textiles</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£89</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£12–20</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">50–200 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~75%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Filter for Gold Supplier ≥3 yr. Request enamel-coated fibres for anti-pill finish. Ask for alpaca % certification.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/alpaca-blankets-wholesale.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Alpaca Blankets Wholesale</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/chunky-knit-blanket.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Chunky Knit Blankets</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/product-detail/Wholesale-Chunky-Knit-Twin-Thick-Alpaca_1600686263593.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Wholesale Chunky Knit Alpaca (specific listing)</span>
-            <span class="link-type">Product</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 2. Salt Lamp -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Himalayan Salt Lamp</div>
-            <div class="pc-cat">Lighting</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£64</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£7–12</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">20–50 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~82%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Specify CE/UK plug. Ask for dimmer switch & wooden base. 1–2 kg weight range sells best for retail gifting.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/himalayan-salt-lamps-wholesale.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Himalayan Salt Lamps Wholesale</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/himalayan-salt-lamp.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Salt Lamp — Main Showroom</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/product-detail/Wholesale-natural-pink-crafted-Himalayan-salt_1600929861136.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Natural Pink Himalayan Salt Lamp (specific listing)</span>
-            <span class="link-type">Product</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 3. Reed Diffuser -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Ceramic Reed Diffuser</div>
-            <div class="pc-cat">Fragrance</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£72</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£5–10</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">50–200 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~86%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Source the ceramic vessel and fragrance oil separately for better control. Look for matte glaze finishes. Add your own label for branding.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/ceramic-reed-diffuser-bottle.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Ceramic Reed Diffuser Bottles</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/ceramic-vase-reed-diffuser.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Ceramic Vase Reed Diffuser</span>
-            <span class="link-type">Showroom</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 4. Cast Iron Teapot -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Cast Iron Teapot</div>
-            <div class="pc-cat">Serveware</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£118</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£15–28</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">20–50 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~78%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Always specify enamel-coated interior (non-rusty). Request tea strainer inclusion. Check food-safe certification for UK market.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/wholesale-cast-iron-teapots.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Wholesale Cast Iron Teapots</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/cast-iron-tetsubin-tea-pot.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Cast Iron Tetsubin Tea Pot</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/japanese-tetsubin-tea-kettle-cast-iron-teapot.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Japanese Tetsubin Kettle</span>
-            <span class="link-type">Showroom</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 5. Boucle Cushion -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Boucle Cushion Set</div>
-            <div class="pc-cat">Textiles</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£95</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£5–12 each</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">50–100 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~80%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Source covers only (no insert) to keep shipping costs down. Sell as 2-pack set. Cream/ivory and oatmeal shades sell best.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/boucle-pillow.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Boucle Pillow Wholesale</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/cushion-cover-wholesale.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Cushion Cover Wholesale</span>
-            <span class="link-type">Showroom</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 6. Mist Diffuser -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Ultrasonic Mist Diffuser</div>
-            <div class="pc-cat">Fragrance</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£84</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£7–15</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">50–200 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~83%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> CE & FCC certified suppliers only. Look for 300–500ml tank, auto shut-off, LED mood light. UK plug requirement.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/ultrasonic-diffuser-wholesale.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Ultrasonic Diffuser Wholesale</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/ultrasonic-mist-diffuser-essential-oils.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Ultrasonic Mist + Essential Oils</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/product-detail/Ultrasonic-Cool-Mist-Aromatherapy-Essential-Oil_1600509173187.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Ultrasonic Cool Mist Diffuser (specific listing)</span>
-            <span class="link-type">Product</span>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- NEW ARRIVALS / CAROUSEL -->
-    <p class="section-label">New Arrivals Carousel — 6 Products</p>
-    <div class="product-grid">
-
-      <!-- 7. Merino Wool Socks -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Merino Wool Socks</div>
-            <div class="pc-cat">Textiles</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£34</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£3–6/pair</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">100 pairs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~82%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Request at least 80% merino content. Sell as pair sets. Neutral tones (oatmeal, grey, forest) move fastest.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/merino-wool-socks.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Merino Wool Socks</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/wholesale-merino-wool-sock.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Wholesale Merino Wool Socks</span>
-            <span class="link-type">Showroom</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 8. Linen Eye Mask -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Linen Eye Mask</div>
-            <div class="pc-cat">Wellness</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£28</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£2–5</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">50–200 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~86%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Linen or cotton-linen blend. Look for adjustable elastic strap. Great candidate for custom embroidery/branding.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/wholesale-eye-mask.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Wholesale Eye Mask for Sleep</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/cloth-eye-mask.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Cloth / Linen Eye Masks</span>
-            <span class="link-type">Showroom</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 9. Marble Coasters -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Marble Coaster Set</div>
-            <div class="pc-cat">Serveware</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£52</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£5–10/set</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">20–100 sets</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~82%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Sets of 4 coasters with holder sell best. White/grey marble with gold rim is top seller. Cork backing prevents scratching.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/marble-coasters-wholesale.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Marble Coasters Wholesale</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/marble-coasters.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Marble Coasters — Main Showroom</span>
-            <span class="link-type">Showroom</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 10. Turkish Towels -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Turkish Cotton Towels</div>
-            <div class="pc-cat">Textiles</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£68</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£6–14</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">50–100 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~80%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Peshtemal/fouta style (flat weave) is on trend. 100% Turkish cotton. Fringed ends. Lightweight — lowers shipping cost vs terry towels.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/wholesale-turkish-towel.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Wholesale Turkish Towels (4000+)</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/hammam-peshtemal.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Hammam Peshtemal — 100% Turkish Cotton</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="http://www.alibaba.com/showroom/wholesale-turkish-hammam-towels.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Wholesale Turkish Hammam Towels</span>
-            <span class="link-type">Showroom</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 11. Soy Candle -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Soy Wax Candle Trio</div>
-            <div class="pc-cat">Fragrance</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£46</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£4–8/set</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">50–200 sets</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~85%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> 100% natural soy wax. Cotton wick only (no zinc/lead). Frosted glass jar. Private label with Cozynest branding available from MOQ 100.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/soy-candles-wholesale.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Luxury Soy Candles Wholesale</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/private-label-candles.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Private Label Candles</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/supplier/candles-wholesale-suppliers.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Aromatherapy Candle Suppliers</span>
-            <span class="link-type">Directory</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 12. Rattan Tray -->
-      <div class="product-card">
-        <div class="pc-head">
-          <div>
-            <div class="pc-name">Rattan Storage Tray</div>
-            <div class="pc-cat">Serveware</div>
-          </div>
-          <div class="pc-price-wrap">
-            <div class="pc-retail">£38</div>
-            <div class="pc-retail-label">Retail</div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-row"><span class="pc-row-label">Est. unit cost</span><span class="pc-row-val green">£4–9</span></div>
-          <div class="pc-row"><span class="pc-row-label">MOQ</span><span class="pc-row-val">20–100 pcs</span></div>
-          <div class="pc-row"><span class="pc-row-label">Est. margin</span><span class="pc-row-val green">~79%</span></div>
-        </div>
-        <div class="pc-tip"><strong>Tip:</strong> Natural rattan or seagrass with leather handles. Rectangular shape (vanity tray style) suits Cozynest aesthetic. Handwoven preferred.</div>
-        <div class="pc-links">
-          <a class="ali-link" href="https://www.alibaba.com/showroom/rattan-organizer.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Rattan Organiser Wholesale</span>
-            <span class="link-type">Showroom</span>
-          </a>
-          <a class="ali-link" href="https://www.alibaba.com/showroom/rattan-fruit-tray.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span class="link-label">Rattan Fruit Tray / Wicker</span>
-            <span class="link-type">Showroom</span>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-  </div><!-- /dash-body -->
-</div><!-- /dashboard -->
+<!-- Dashboard content is AES-256-GCM encrypted -->
+<div id="dashboard"></div>
+<script id="enc-payload" type="application/octet-stream">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</script>
 
 <script>
-  // Check session on load
-  if (sessionStorage.getItem('cn_sourcing') === 'unlocked') {
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
+  /* ─── Secure Auth (AES-256-GCM) ─── */
+  const PW_HASH = '212d66bc2e283bbf9e297bd56ae38e6aecad0e9b2b3a68422082f77497bac051';
+  let attempts = 0;
+  let lockoutUntil = 0;
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
   }
 
-  function checkPassword() {
+  async function deriveKey(password, salt) {
+    const keyMaterial = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:100000, hash:'SHA-256'}, keyMaterial, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  }
+
+  async function decryptDashboard(password) {
+    try {
+      const b64 = document.getElementById('enc-payload').textContent;
+      const raw = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+      const salt = raw.slice(0, 16);
+      const iv = raw.slice(16, 28);
+      const authTag = raw.slice(28, 44);
+      const ciphertext = raw.slice(44);
+      const combined = new Uint8Array(ciphertext.length + 16);
+      combined.set(ciphertext);
+      combined.set(authTag, ciphertext.length);
+      const key = await deriveKey(password, salt);
+      const decrypted = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, combined);
+      return new TextDecoder().decode(decrypted);
+    } catch(e) {
+      return null;
+    }
+  }
+
+  async function checkPassword() {
+    if (Date.now() < lockoutUntil) {
+      const secs = Math.ceil((lockoutUntil - Date.now()) / 1000);
+      document.getElementById('gateError').textContent = 'Too many attempts. Wait ' + secs + 's.';
+      document.getElementById('gateError').style.display = 'block';
+      return;
+    }
+
     const val = document.getElementById('pwInput').value;
-    if (val === 'REDACTED') {
-      sessionStorage.setItem('cn_sourcing', 'unlocked');
-      document.getElementById('gate').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
+    const hash = await sha256(val);
+
+    if (hash === PW_HASH) {
+      const dashHTML = await decryptDashboard(val);
+      if (dashHTML) {
+        const container = document.createElement('div');
+        container.innerHTML = dashHTML;
+        const dashEl = container.querySelector('#dashboard') || container.firstElementChild;
+        // The decrypted content IS the dashboard div, inject its innerHTML
+        document.getElementById('dashboard').innerHTML = dashEl ? dashEl.innerHTML : container.innerHTML;
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        sessionStorage.setItem('cn_sourcing', hash);
+        loadOrders();
+      }
     } else {
+      attempts++;
+      if (attempts >= 5) {
+        lockoutUntil = Date.now() + 60000;
+        document.getElementById('gateError').textContent = 'Too many attempts. Locked for 60s.';
+      } else {
+        document.getElementById('gateError').textContent = 'Incorrect password. ' + (5 - attempts) + ' attempts left.';
+      }
       document.getElementById('gateError').style.display = 'block';
       document.getElementById('pwInput').value = '';
       document.getElementById('pwInput').focus();
     }
   }
+
+  // Override checkPassword — no plaintext caching in sessionStorage
+  checkPassword = async function() {
+    const val = document.getElementById('pwInput').value;
+    const hash = await sha256(val);
+    if (hash === PW_HASH) {
+      const dashHTML = await decryptDashboard(val);
+      if (dashHTML) {
+        const temp = document.createElement('div');
+        temp.innerHTML = dashHTML;
+        const inner = temp.querySelector('#dashboard');
+        const content = inner ? inner.innerHTML : temp.innerHTML;
+        document.getElementById('dashboard').innerHTML = content;
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadOrders();
+        return;
+      }
+    }
+    // Fall through to error handling
+    if (Date.now() < lockoutUntil) {
+      const secs = Math.ceil((lockoutUntil - Date.now()) / 1000);
+      document.getElementById('gateError').textContent = 'Too many attempts. Wait ' + secs + 's.';
+      document.getElementById('gateError').style.display = 'block';
+      return;
+    }
+    attempts++;
+    if (attempts >= 5) {
+      lockoutUntil = Date.now() + 60000;
+      document.getElementById('gateError').textContent = 'Too many attempts. Locked for 60s.';
+    } else {
+      document.getElementById('gateError').textContent = 'Incorrect password. ' + (5 - attempts) + ' attempts left.';
+    }
+    document.getElementById('gateError').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  };
 
   function togglePw() {
     const inp = document.getElementById('pwInput');
@@ -750,6 +450,274 @@
   document.getElementById('pwInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') checkPassword();
   });
+
+  /* ─── Tabs ─── */
+  function switchTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.dash-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    document.getElementById('tab-btn-' + name).classList.add('active');
+  }
+
+  /* ─── Orders System ─── */
+  let allOrders = [];
+  let currentFilter = 'all';
+  let searchQuery = '';
+  const API = window.location.origin;
+  function esc(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  const STATUSES = ['confirmed','processing','shipped','delivered'];
+
+  /* Normalize order data from API or localStorage */
+  function normalizeOrder(o) {
+    const c = o.customer || {};
+    const isObj = typeof c === 'object' && c !== null;
+    return {
+      id:       o.id || 'N/A',
+      date:     o.createdAt || o.date || null,
+      name:     isObj ? ((c.firstName||'')+' '+(c.lastName||'')).trim() : (o.name || c || '—'),
+      email:    isObj ? (c.email||'') : (o.email || ''),
+      address:  isObj ? [c.address, c.city, c.postcode, c.country].filter(Boolean).join(', ') : (o.address || o.shipping || ''),
+      phone:    isObj ? (c.phone||'') : (o.phone || ''),
+      items:    o.items || o.cart || [],
+      subtotal: parseFloat(o.subtotal) || 0,
+      shipping: parseFloat(o.shipping) || 0,
+      total:    parseFloat(o.total) || 0,
+      status:   (o.status || 'confirmed').toLowerCase(),
+      notes:    o.notes || '',
+      tracking: o.trackingNumber || '',
+      trackingUrl: o.trackingUrl || '',
+      demoMode: o.demoMode || false,
+      raw: o
+    };
+  }
+
+  /* Load orders — try API first, fallback to localStorage */
+  async function loadOrders() {
+    const btn = document.getElementById('refreshBtn');
+    const status = document.getElementById('apiStatus');
+    if (btn) btn.innerHTML = '<svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Loading…';
+
+    try {
+      const res = await fetch(API + '/api/orders', { cache: 'no-store' });
+      if (!res.ok) throw new Error('API ' + res.status);
+      const apiOrders = await res.json();
+      allOrders = apiOrders.map(normalizeOrder);
+      if (status) { status.style.display = 'block'; status.style.background = 'rgba(143,166,138,.15)'; status.style.color = '#4a7c4e'; status.innerHTML = '🟢 Connected to server — ' + allOrders.length + ' orders loaded from API'; }
+      setTimeout(() => { if(status) status.style.display='none'; }, 3000);
+    } catch (e) {
+      try {
+        const local = JSON.parse(localStorage.getItem('snugspot_orders') || '[]');
+        allOrders = local.map(normalizeOrder);
+        if (status) { status.style.display = 'block'; status.style.background = 'rgba(196,120,90,.12)'; status.style.color = 'var(--terracotta)'; status.innerHTML = '🟡 Offline — showing ' + allOrders.length + ' orders from local cache'; }
+      } catch (e2) {
+        allOrders = [];
+        if (status) { status.style.display = 'block'; status.style.background = 'rgba(192,57,43,.1)'; status.style.color = '#c0392b'; status.innerHTML = '🔴 Could not load orders'; }
+      }
+    }
+
+    if (btn) btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Refresh';
+    updateStats();
+    applyFilters();
+  }
+
+  function updateStats() {
+    const active = allOrders.filter(o => o.status !== 'archived');
+    const revenue = active.reduce((s, o) => s + o.total, 0);
+    const itemsSold = active.reduce((s, o) => s + o.items.reduce((ss, it) => ss + (it.qty||1), 0), 0);
+    const avg = active.length ? revenue / active.length : 0;
+    const el = id => document.getElementById(id);
+    if (el('statOrders'))  el('statOrders').textContent = active.length;
+    if (el('statRevenue')) el('statRevenue').textContent = '£' + revenue.toFixed(2);
+    if (el('statAvgOrder'))el('statAvgOrder').textContent = '£' + avg.toFixed(2);
+    if (el('statItems'))   el('statItems').textContent = itemsSold;
+  }
+
+  function applyFilters() {
+    let filtered = allOrders.filter(o => o.status !== 'archived');
+    if (currentFilter !== 'all') filtered = filtered.filter(o => o.status === currentFilter);
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(o =>
+        o.id.toLowerCase().includes(q) ||
+        o.name.toLowerCase().includes(q) ||
+        o.email.toLowerCase().includes(q) ||
+        o.items.some(it => (it.name||'').toLowerCase().includes(q))
+      );
+    }
+    renderOrders(filtered);
+  }
+
+  function filterOrders(type) {
+    currentFilter = type;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    const btn = document.getElementById('filter-' + type);
+    if (btn) btn.classList.add('active');
+    applyFilters();
+  }
+
+  function searchOrders(q) {
+    searchQuery = q;
+    applyFilters();
+  }
+
+  /* Update order status via API */
+  async function updateStatus(orderId, newStatus, event) {
+    if (event) event.stopPropagation();
+    try {
+      const res = await fetch(API + '/api/orders/' + orderId, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      });
+      if (!res.ok) throw new Error('Update failed');
+      await loadOrders();
+    } catch (e) {
+      const order = allOrders.find(o => o.id === orderId);
+      if (order) { order.status = newStatus; order.raw.status = newStatus; }
+      try { localStorage.setItem('snugspot_orders', JSON.stringify(allOrders.map(o => o.raw))); } catch(x){}
+      applyFilters();
+    }
+  }
+
+  /* Add tracking info */
+  async function addTracking(orderId, event) {
+    if (event) event.stopPropagation();
+    const num = prompt('Enter tracking number:');
+    if (!num) return;
+    const url = prompt('Tracking URL (optional):') || '';
+    try {
+      await fetch(API + '/api/orders/' + orderId, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ trackingNumber: num, trackingUrl: url, status: 'shipped' })
+      });
+      await loadOrders();
+    } catch (e) { alert('Failed to save tracking'); }
+  }
+
+  /* Add order notes */
+  async function addNote(orderId, event) {
+    if (event) event.stopPropagation();
+    const order = allOrders.find(o => o.id === orderId);
+    const note = prompt('Order notes:', order ? order.notes : '');
+    if (note === null) return;
+    try {
+      await fetch(API + '/api/orders/' + orderId, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ notes: note })
+      });
+      await loadOrders();
+    } catch (e) { alert('Failed to save note'); }
+  }
+
+  /* Archive order */
+  async function archiveOrder(orderId, event) {
+    if (event) event.stopPropagation();
+    if (!confirm('Archive order ' + orderId + '?')) return;
+    try {
+      await fetch(API + '/api/orders/' + orderId, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'archived' })
+      });
+      await loadOrders();
+    } catch (e) { alert('Failed to archive order'); }
+  }
+
+  /* Export CSV */
+  function exportCSV() {
+    if (!allOrders.length) return alert('No orders to export');
+    const headers = ['Order ID','Date','Customer','Email','Address','Items','Subtotal','Shipping','Total','Status','Tracking','Notes'];
+    const rows = allOrders.filter(o=>o.status!=='archived').map(o => [
+      o.id,
+      o.date ? new Date(o.date).toLocaleDateString('en-GB') : '',
+      '"'+o.name.replace(/"/g,'""')+'"',
+      o.email,
+      '"'+o.address.replace(/"/g,'""')+'"',
+      '"'+o.items.map(it=>(it.name||'?')+' x'+(it.qty||1)).join('; ').replace(/"/g,'""')+'"',
+      o.subtotal.toFixed(2),
+      o.shipping.toFixed(2),
+      o.total.toFixed(2),
+      o.status,
+      o.tracking,
+      '"'+(o.notes||'').replace(/"/g,'""')+'"'
+    ]);
+    const csv = [headers.join(','), ...rows.map(r=>r.join(','))].join('\n');
+    const blob = new Blob([csv], {type:'text/csv'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'snugspot-orders-'+new Date().toISOString().slice(0,10)+'.csv';
+    a.click();
+  }
+
+  /* Render orders table */
+  function renderOrders(orders) {
+    const tbody = document.getElementById('ordersBody');
+    if (!tbody) return;
+    if (!orders || orders.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7"><div class="no-orders"><div class="no-orders-icon">📭</div><h3>No orders yet</h3><p>Orders will appear here once customers check out from the shop.</p></div></td></tr>';
+      return;
+    }
+    tbody.innerHTML = orders.map((o, i) => {
+      const date = o.date ? new Date(o.date).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '—';
+      const statusColors = { confirmed:'status-confirmed', processing:'status-pending', shipped:'status-shipped', delivered:'status-paid', paid:'status-paid' };
+      const statusClass = statusColors[o.status] || 'status-confirmed';
+      const itemsSummary = o.items.length ? o.items.map(it => esc(it.name||'?') + ' ×' + (it.qty||1)).join('<br>') : '—';
+
+      /* Status dropdown */
+      const statusOpts = STATUSES.map(s => '<option value="'+s+'"'+(s===o.status?' selected':'')+'>'+s.charAt(0).toUpperCase()+s.slice(1)+'</option>').join('');
+      const statusSelect = '<select onchange="updateStatus(\''+o.id+'\',this.value,event)" style="padding:4px 8px;border:1px solid var(--sand);border-radius:6px;font-size:11px;font-family:var(--font-body);background:white;cursor:pointer">'+statusOpts+'</select>';
+
+      /* Action buttons */
+      const actions = '<div style="display:flex;gap:4px;flex-wrap:wrap">' +
+        '<button onclick="addTracking(\''+o.id+'\',event)" title="Add tracking" style="padding:4px 8px;border:1px solid var(--sand);border-radius:6px;font-size:11px;background:white;cursor:pointer;font-family:var(--font-body)">📦 Track</button>' +
+        '<button onclick="addNote(\''+o.id+'\',event)" title="Add note" style="padding:4px 8px;border:1px solid var(--sand);border-radius:6px;font-size:11px;background:white;cursor:pointer;font-family:var(--font-body)">📝 Note</button>' +
+        '<button onclick="archiveOrder(\''+o.id+'\',event)" title="Archive" style="padding:4px 8px;border:1px solid var(--sand);border-radius:6px;font-size:11px;background:white;cursor:pointer;color:#c0392b;font-family:var(--font-body)">🗑</button>' +
+        '</div>';
+
+      /* Detail items */
+      const detailItems = o.items.length ? o.items.map(it =>
+        '<div class="order-item-row"><span>'+esc(it.name||'?')+'</span><span>×'+(it.qty||1)+' — £'+((it.price||0)*(it.qty||1)).toFixed(2)+'</span></div>'
+      ).join('') : '';
+
+      /* Tracking display */
+      const trackingHTML = o.tracking ? '<div class="od-block"><div class="od-label">Tracking</div><div class="od-val">' +
+        (o.trackingUrl ? '<a href="'+esc(o.trackingUrl)+'" target="_blank" style="color:var(--terracotta)">'+esc(o.tracking)+'</a>' : esc(o.tracking)) +
+        '</div></div>' : '';
+
+      /* Notes display */
+      const notesHTML = o.notes ? '<div class="od-block"><div class="od-label">Notes</div><div class="od-val" style="font-style:italic">'+esc(o.notes)+'</div></div>' : '';
+
+      return '<tr onclick="toggleDetail('+i+')" style="cursor:pointer">' +
+        '<td><span class="order-id">'+o.id+'</span></td>' +
+        '<td style="white-space:nowrap">'+date+'</td>' +
+        '<td><strong>'+esc(o.name)+'</strong>'+(o.email?'<br><span style="font-size:11px;color:var(--text-light)">'+esc(o.email)+'</span>':'')+'</td>' +
+        '<td><span class="order-items-list">'+itemsSummary+'</span></td>' +
+        '<td style="font-weight:500">£'+o.total.toFixed(2)+'</td>' +
+        '<td>'+statusSelect+'</td>' +
+        '<td>'+actions+'</td>' +
+        '</tr>' +
+        '<tr class="order-detail" id="detail-'+i+'">' +
+        '<td colspan="7">' +
+        '<div class="detail-grid">' +
+          '<div class="od-block"><div class="od-label">Customer</div><div class="od-val">'+esc(o.name)+'</div></div>' +
+          (o.email?'<div class="od-block"><div class="od-label">Email</div><div class="od-val"><a href="mailto:'+esc(o.email)+'" style="color:var(--terracotta)">'+esc(o.email)+'</a></div></div>':'') +
+          (o.phone?'<div class="od-block"><div class="od-label">Phone</div><div class="od-val">'+esc(o.phone)+'</div></div>':'') +
+          (o.address?'<div class="od-block"><div class="od-label">Address</div><div class="od-val">'+esc(o.address)+'</div></div>':'') +
+          '<div class="od-block"><div class="od-label">Subtotal</div><div class="od-val">£'+o.subtotal.toFixed(2)+'</div></div>' +
+          '<div class="od-block"><div class="od-label">Shipping</div><div class="od-val">'+(o.shipping>0?'£'+o.shipping.toFixed(2):'Free')+'</div></div>' +
+          trackingHTML + notesHTML +
+        '</div>' +
+        (detailItems?'<div class="order-items-detail"><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px">Order Items</div>'+detailItems+'</div>':'') +
+        '</td></tr>';
+    }).join('');
+  }
+
+  function toggleDetail(i) {
+    const row = document.getElementById('detail-' + i);
+    if (row) row.classList.toggle('open');
+  }
 </script>
 </body>
 </html>

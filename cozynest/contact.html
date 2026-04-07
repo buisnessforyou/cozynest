@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="/images/sofa-logo.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — The Snug Spot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FAF7F2; --off-white: #F5F0E8; --sand: #EDE5D8;
+      --deep-brown: #2C1A0E; --walnut: #5C3D2E; --terracotta: #C4785A;
+      --text-dark: #1A1410; --text-mid: #4A3728; --text-light: #8A7A6E;
+      --font-display: 'Cormorant Garamond', serif; --font-body: 'DM Sans', sans-serif;
+    }
+    body { background: var(--cream); color: var(--text-dark); font-family: var(--font-body); font-size: 15px; line-height: 1.8; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,242,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44,26,14,0.08);
+      padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--deep-brown); text-decoration: none; }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-back { font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--text-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s; }
+    .nav-back:hover { color: var(--terracotta); }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    .hero { background: var(--deep-brown); padding: 80px 48px 64px; text-align: center; }
+    .eyebrow { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 16px; }
+    .hero-sub { font-size: 15px; color: rgba(250,247,242,.55); font-weight: 300; max-width: 440px; margin: 0 auto; }
+
+    .wrap { max-width: 640px; margin: 0 auto; padding: 72px 48px 100px; }
+
+    .contact-card {
+      background: var(--off-white); border: 1px solid var(--sand);
+      border-radius: 16px; padding: 44px 48px; text-align: center;
+    }
+    .contact-card svg { width: 44px; height: 44px; stroke: var(--terracotta); fill: none; stroke-width: 1.2; margin-bottom: 20px; }
+    .contact-card h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; color: var(--deep-brown); margin-bottom: 12px; }
+    .contact-card p { color: var(--text-mid); max-width: 380px; margin: 0 auto 28px; line-height: 1.75; }
+    .contact-email {
+      display: inline-block; font-size: 16px; font-weight: 500;
+      color: var(--terracotta); text-decoration: none; letter-spacing: .02em;
+      padding: 14px 32px; border: 1.5px solid var(--terracotta); border-radius: 3px;
+      transition: background .3s, color .3s;
+    }
+    .contact-email:hover { background: var(--terracotta); color: var(--cream); }
+
+    .response-time {
+      margin-top: 20px; font-size: 12px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-light);
+    }
+
+    footer { background: var(--deep-brown); padding: 40px 48px; text-align: center; }
+    .foot-copy { color: rgba(250,247,242,.45); font-size: 13px; margin-bottom: 12px; }
+    .foot-legal { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .foot-legal a { color: rgba(250,247,242,.55); font-size: 13px; text-decoration: none; transition: color .2s; }
+    .foot-legal a:hover { color: var(--terracotta); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 24px; } .hero { padding: 56px 24px 48px; }
+      .wrap { padding: 48px 24px 72px; } .contact-card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">The Snug<span>Spot</span></a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to shop
+  </a>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">Get in touch</p>
+  <h1>Contact Us</h1>
+  <p class="hero-sub">We're a small team and we read every message. We'll always get back to you.</p>
+</div>
+
+<div class="wrap">
+  <div class="contact-card">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <h2>Get in touch</h2>
+    <p>Whether it's a question about an order, a return, or just a general enquiry — we're a small team and we read every message.</p>
+    <a href="mailto:support@thesnugspot.com" class="contact-email">support@thesnugspot.com</a>
+    <p class="response-time" style="margin-bottom:16px;">We aim to reply within 1–2 business days</p>
+    <p style="font-size:14px;color:var(--text-mid);margin-bottom:8px;">Prefer to call?</p>
+    <a href="tel:+447482779995" class="contact-email" style="font-size:15px;">+44 7482 779995</a>
+    <p class="response-time">Monday – Friday, 9am – 6pm</p>
+  </div>
+</div>
+
+<footer>
+  <p class="foot-copy">© 2026 The Snug Spot is a trading name of Milene Borges de Moura. All rights reserved.</p>
+  <div class="foot-legal">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/returns.html">Returns</a>
+    <a href="/">Back to Shop</a>
+  </div>
+</footer>
+
+</body>
+</html>

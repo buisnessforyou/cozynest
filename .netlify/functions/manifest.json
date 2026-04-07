@@ -1,0 +1,1 @@
+{"functions":[{"bundler":"zisi","buildData":{"runtimeAPIVersion":1},"mainFile":"/Users/lukas/ai buisness 1/netlify/functions/api.js","name":"api","priority":10,"runtimeVersion":"nodejs24.x","path":"/Users/lukas/ai buisness 1/.netlify/functions/api.zip","runtime":"js"}],"system":{"arch":"arm64","platform":"darwin"},"timestamp":1775593991543,"version":1}

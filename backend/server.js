@@ -18,16 +18,21 @@ if (!DEMO_MODE) {
 // Raw body needed for Stripe webhooks BEFORE json parser
 app.use('/api/webhook', express.raw({ type: 'application/json' }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGIN || 'https://thesnugspot.com',
+  methods: ['GET','POST','PATCH','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
 
-// Serve the Cozynest frontend
+// Serve The Snug Spot frontend
 app.use(express.static(path.join(__dirname, '../cozynest')));
 
-// ─── Orders storage (JSON file) ──────────────────────────────
-// Use /tmp on Netlify (serverless), local file otherwise
-const ORDERS_FILE = process.env.NETLIFY
-  ? '/tmp/orders.json'
-  : path.join(__dirname, 'orders.json');
+// ─── Orders storage ──────────────────────────────────────────
+// NOTE: On Netlify serverless /tmp is ephemeral (cleared between cold starts).
+// For production persistence, set ORDERS_FILE env var to a mounted volume path,
+// or migrate to a database (MongoDB Atlas free tier recommended).
+const ORDERS_FILE = process.env.ORDERS_FILE
+  || (process.env.NETLIFY ? '/tmp/orders.json' : path.join(__dirname, 'orders.json'));
 
 function getOrders() {
   if (!fs.existsSync(ORDERS_FILE)) return [];
@@ -45,7 +50,7 @@ function saveOrder(order) {
 // ─── Helper: calculate totals ────────────────────────────────
 function calcTotals(items) {
   const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
-  const shipping  = subtotal >= 75 ? 0 : 8.95;
+  const shipping  = subtotal >= 75 ? 0 : 4.95;
   const total     = parseFloat((subtotal + shipping).toFixed(2));
   return { subtotal, shipping, total };
 }
@@ -108,7 +113,7 @@ app.post('/api/orders', (req, res) => {
   };
 
   saveOrder(order);
-  console.log(`✅ Order ${order.id} — $${order.total} — ${customer.email}`);
+  console.log(`✅ Order ${order.id} — £${order.total} — ${customer.email}`);
   res.json(order);
 });
 
@@ -123,6 +128,38 @@ app.get('/api/orders/:id', (req, res) => {
   const order = getOrders().find(o => o.id === req.params.id);
   if (!order) return res.status(404).json({ error: 'Order not found' });
   res.json(order);
+});
+
+// ── PATCH /api/orders/:id ────────────────────────────────────
+//    Update order status, notes, or tracking
+app.patch('/api/orders/:id', (req, res) => {
+  const orders = getOrders();
+  const order = orders.find(o => o.id === req.params.id);
+  if (!order) return res.status(404).json({ error: 'Order not found' });
+
+  const allowed = ['status', 'notes', 'trackingNumber', 'trackingUrl'];
+  for (const key of allowed) {
+    if (req.body[key] !== undefined) order[key] = req.body[key];
+  }
+  order.updatedAt = new Date().toISOString();
+
+  fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
+  console.log(`📝 Order ${order.id} updated — status: ${order.status}`);
+  res.json(order);
+});
+
+// ── DELETE /api/orders/:id ───────────────────────────────────
+//    Archive (soft-delete) an order
+app.delete('/api/orders/:id', (req, res) => {
+  const orders = getOrders();
+  const idx = orders.findIndex(o => o.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Order not found' });
+
+  orders[idx].status = 'archived';
+  orders[idx].updatedAt = new Date().toISOString();
+  fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
+  console.log(`🗄️  Order ${orders[idx].id} archived`);
+  res.json({ success: true, id: orders[idx].id });
 });
 
 // ── GET /api/status ──────────────────────────────────────────
@@ -181,7 +218,7 @@ if (require.main === module) {
   app.listen(PORT, () => {
     console.log('');
     console.log('  ╔══════════════════════════════════════╗');
-    console.log('  ║   🏡  Cozynest Backend  v1.0          ║');
+    console.log('  ║   🏡  The Snug Spot Backend  v1.0     ║');
     console.log(`  ║   http://localhost:${PORT}               ║`);
     console.log(`  ║   Mode: ${DEMO_MODE ? '🟡 DEMO (no payments)   ' : '🟢 LIVE (Stripe active) '}  ║`);
     console.log('  ╚══════════════════════════════════════╝');

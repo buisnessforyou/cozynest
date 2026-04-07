@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 110" width="240" height="110">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Arch mark — centred at x=120 -->
+  <!-- Arch: 40px wide, r=20, straight sides from y=44 to y=28, arc top at y=8 -->
+  <path d="M 100,44 L 100,28 A 20,20 0 0 0 140,28 L 140,44"
+        fill="none" stroke="#2C1A0E" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter"/>
+  <!-- Base / windowsill -->
+  <line x1="95" y1="44" x2="145" y2="44" stroke="#2C1A0E" stroke-width="2.4" stroke-linecap="square"/>
+  <!-- Inner glow dot — terracotta ember -->
+  <circle cx="120" cy="33" r="3.2" fill="#C4785A"/>
+
+  <!-- Thin terracotta rule -->
+  <line x1="95" y1="53" x2="145" y2="53" stroke="#C4785A" stroke-width="0.7"/>
+
+  <!-- THE — small spaced caps -->
+  <text x="120" y="67"
+        text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="8.5"
+        font-weight="400"
+        letter-spacing="5.5"
+        fill="#8A7A6E">THE</text>
+
+  <!-- SNUG SPOT — display weight -->
+  <text x="120" y="92"
+        text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="26"
+        font-weight="300"
+        letter-spacing="5"
+        fill="#2C1A0E">SNUG <tspan fill="#C4785A">SPOT</tspan></text>
+</svg>

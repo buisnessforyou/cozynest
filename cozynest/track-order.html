@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="/images/sofa-logo.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Order — The Snug Spot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FAF7F2; --off-white: #F5F0E8; --sand: #EDE5D8;
+      --deep-brown: #2C1A0E; --walnut: #5C3D2E; --terracotta: #C4785A;
+      --text-dark: #1A1410; --text-mid: #4A3728; --text-light: #8A7A6E;
+      --font-display: 'Cormorant Garamond', serif; --font-body: 'DM Sans', sans-serif;
+    }
+    body { background: var(--cream); color: var(--text-dark); font-family: var(--font-body); font-size: 15px; line-height: 1.8; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,242,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44,26,14,0.08);
+      padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--deep-brown); text-decoration: none; }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-back { font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--text-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s; }
+    .nav-back:hover { color: var(--terracotta); }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    .hero { background: var(--deep-brown); padding: 80px 48px 64px; text-align: center; }
+    .eyebrow { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 16px; }
+    .hero-sub { font-size: 15px; color: rgba(250,247,242,.55); font-weight: 300; max-width: 440px; margin: 0 auto; }
+
+    .wrap { max-width: 640px; margin: 0 auto; padding: 72px 48px 100px; }
+
+    .track-card {
+      background: var(--off-white); border: 1px solid var(--sand);
+      border-radius: 16px; padding: 44px 48px; margin-bottom: 40px;
+    }
+    .track-card h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; color: var(--deep-brown); margin-bottom: 8px; }
+    .track-card p { color: var(--text-light); font-size: 14px; margin-bottom: 28px; }
+
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .field label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-mid); font-weight: 500; }
+    .field input {
+      padding: 13px 16px; border: 1px solid var(--sand); border-radius: 4px;
+      background: #fff; font-family: var(--font-body); font-size: 14px; color: var(--deep-brown);
+      outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .field input:focus { border-color: var(--terracotta); box-shadow: 0 0 0 3px rgba(196,120,90,.1); }
+    .field input::placeholder { color: var(--text-light); }
+
+    .btn-track {
+      width: 100%; padding: 15px; background: var(--deep-brown); color: var(--cream);
+      border: none; border-radius: 3px; cursor: pointer;
+      font-family: var(--font-body); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      margin-top: 8px; transition: background .3s;
+    }
+    .btn-track:hover { background: var(--terracotta); }
+
+    .accounts-notice {
+      background: var(--deep-brown); color: var(--cream);
+      border-radius: 12px; padding: 32px 36px;
+    }
+    .accounts-notice h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .accounts-notice h3 svg { width: 18px; height: 18px; stroke: var(--terracotta); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+    .accounts-notice p { font-size: 14px; color: rgba(250,247,242,.65); line-height: 1.75; margin-bottom: 12px; }
+    .accounts-notice p:last-child { margin-bottom: 0; }
+    .accounts-notice a { color: var(--terracotta); text-decoration: none; }
+    .accounts-notice a:hover { text-decoration: underline; }
+
+    footer { background: var(--deep-brown); padding: 40px 48px; text-align: center; }
+    .foot-copy { color: rgba(250,247,242,.45); font-size: 13px; margin-bottom: 12px; }
+    .foot-legal { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .foot-legal a { color: rgba(250,247,242,.55); font-size: 13px; text-decoration: none; transition: color .2s; }
+    .foot-legal a:hover { color: var(--terracotta); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 24px; } .hero { padding: 56px 24px 48px; }
+      .wrap { padding: 48px 24px 72px; } .track-card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">The Snug<span>Spot</span></a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to shop
+  </a>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">Where's my order?</p>
+  <h1>Track Your<br>Order</h1>
+  <p class="hero-sub">Enter your order number and email to see the latest status of your delivery.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="track-card">
+    <h2>Order lookup</h2>
+    <p>Your order number can be found in your confirmation email (e.g. CN-123456).</p>
+    <div class="field">
+      <label>Order number</label>
+      <input type="text" placeholder="CN-123456"/>
+    </div>
+    <div class="field">
+      <label>Email address</label>
+      <input type="email" placeholder="you@example.com"/>
+    </div>
+    <button class="btn-track" onclick="alert('Tracking is coming soon. Please check your shipping confirmation email for your tracking link, or contact us for help.')">Track my order</button>
+  </div>
+
+  <div class="accounts-notice">
+    <h3>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Customer accounts — coming soon
+    </h3>
+    <p>We're building a full account system so you can log in, view your order history, track deliveries, and manage your details all in one place.</p>
+    <p>Once accounts launch, you'll be able to sign up and access everything from your personal dashboard. We'll announce it via email — <a href="/">subscribe on our homepage</a> to be the first to know.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p class="foot-copy">© 2026 The Snug Spot is a trading name of Milene Borges de Moura. All rights reserved.</p>
+  <div class="foot-legal">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/">Back to Shop</a>
+  </div>
+</footer>
+
+</body>
+</html>
