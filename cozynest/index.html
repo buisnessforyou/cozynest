@@ -1413,6 +1413,9 @@
       .bundle-item { flex:0 0 100%; }
       .bundle-plus { display:none; }
     }
+    #cookieAcceptAllBtn:hover { background: var(--deep-brown) !important; }
+    #cookieSaveBtn:hover { background: var(--terracotta) !important; }
+    #cookieRejectBtn:hover { border-color: var(--deep-brown) !important; color: var(--deep-brown) !important; }
   </style>
   <!-- Animation libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -1449,7 +1452,7 @@
 
 <!-- ─── NAVBAR ─── -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-logo"><span class="nav-mark"><img src="images/sofa-logo.png" alt="The Snug Spot sofa icon"/></span>The Snug<span>Spot</span></a>
+  <a href="/" class="nav-logo"><span class="nav-mark"><img src="images/sofa-logo.png" alt="The Snug Spot sofa icon"/></span>The Snug<span>Spot</span></a>
   <ul class="nav-links">
     <li><a href="#products">Shop</a></li>
     <li><a href="#why">Collections</a></li>
@@ -1561,7 +1564,7 @@
   <div class="grid-products">
 
     <!-- Product 1 – Alpaca Throw -->
-    <div class="p-card reveal d1" id="cat-throws" data-tilt onclick="window.location.href='/products/heritage-wool-blanket.html'" style="cursor:pointer">
+    <div class="p-card reveal d1" id="cat-throws" data-tilt onclick="window.location.href='/products/heritage-wool-blanket.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
       <div class="p-card-inner">
         <div class="p-img-wrap">
           <div class="p-img pi1"></div>
@@ -1581,7 +1584,7 @@
     </div>
 
     <!-- Product 3 – Bonfire Flame Diffuser -->
-    <div class="p-card reveal d3" id="cat-wellness" data-tilt onclick="window.location.href='/products/mist-diffuser.html'" style="cursor:pointer">
+    <div class="p-card reveal d3" id="cat-wellness" data-tilt onclick="window.location.href='/products/mist-diffuser.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
       <div class="p-card-inner">
         <div class="p-img-wrap">
           <div class="p-img pi6"></div>
@@ -1602,7 +1605,7 @@
 
 
     <!-- Product 4 – Rattan Storage Tray -->
-    <div class="p-card reveal d1" id="cat-trays" data-tilt onclick="window.location.href='/products/rattan-tray.html'" style="cursor:pointer">
+    <div class="p-card reveal d1" id="cat-trays" data-tilt onclick="window.location.href='/products/rattan-tray.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
       <div class="p-card-inner">
         <div class="p-img-wrap">
           <div class="p-img pi4"></div>
@@ -1622,7 +1625,7 @@
     </div>
 
     <!-- Product 5 – Soy Wax Candle Trio -->
-    <div class="p-card reveal d2" id="cat-candles-trio" data-tilt onclick="window.location.href='/products/candle-trio.html'" style="cursor:pointer">
+    <div class="p-card reveal d2" id="cat-candles-trio" data-tilt onclick="window.location.href='/products/candle-trio.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
       <div class="p-card-inner">
         <div class="p-img-wrap">
           <div class="p-img pi5"></div>
@@ -1787,7 +1790,7 @@
 <footer>
   <div class="foot-top">
     <div>
-      <a href="#" class="foot-logo">The Snug<span>Spot</span></a>
+      <a href="/" class="foot-logo">The Snug<span>Spot</span></a>
       <p class="foot-desc">Blankets, candles, diffusers and home accessories — hand-picked for warmth, beauty and quality. Free 30-day returns on every order.</p>
       <div class="foot-socials">
         <a href="https://instagram.com/thesnugspot" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="foot-soc"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
@@ -1796,7 +1799,7 @@
       </div>
     </div>
     <div class="foot-col"><h4>Shop</h4><ul class="foot-links"><li><a href="#products">All Products</a></li><li><a href="#cat-throws">Throws &amp; Blankets</a></li><li><a href="#cat-candles-trio">Candles &amp; Diffusers</a></li><li><a href="#cat-trays">Trays &amp; Storage</a></li><li><a href="#cat-wellness">Wellness</a></li></ul></div>
-    <div class="foot-col"><h4>Company</h4><ul class="foot-links"><li><a href='/our-story.html'>Our Story</a></li><li><a href="#why">Sustainability</a></li></ul></div>
+    <div class="foot-col"><h4>Company</h4><ul class="foot-links"><li><a href='/our-story.html'>Our Story</a></li><li><a href="/#why">Sustainability</a></li></ul></div>
     <div class="foot-col"><h4>Support</h4><ul class="foot-links"><li><a href='/faq.html'>FAQ</a></li><li><a href='/shipping.html'>Shipping</a></li><li><a href='/returns.html'>Returns</a></li><li><a href='/track-order.html'>Track Order</a></li><li><a href='/contact.html'>Contact</a></li></ul></div>
   </div>
   <div class="foot-bot">
@@ -1850,9 +1853,9 @@
       </div>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <button id="cookieAcceptAllBtn" style="flex:1;padding:13px;background:var(--terracotta);color:var(--cream);border:none;border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:background .3s;" onmouseover="this.style.background='var(--deep-brown)'" onmouseout="this.style.background='var(--terracotta)'">Accept all</button>
-        <button id="cookieSaveBtn" style="flex:1;padding:13px;background:var(--deep-brown);color:var(--cream);border:none;border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:background .3s;" onmouseover="this.style.background='var(--terracotta)'" onmouseout="this.style.background='var(--deep-brown)'">Save preferences</button>
-        <button id="cookieRejectBtn" style="padding:13px 20px;background:none;color:var(--text-mid);border:1px solid var(--sand);border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:border-color .3s,color .3s;" onmouseover="this.style.borderColor='var(--deep-brown)';this.style.color='var(--deep-brown)'" onmouseout="this.style.borderColor='var(--sand)';this.style.color='var(--text-mid)'">Essential only</button>
+        <button id="cookieAcceptAllBtn" style="flex:1;padding:13px;background:var(--terracotta);color:var(--cream);border:none;border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:background .3s;">Accept all</button>
+        <button id="cookieSaveBtn" style="flex:1;padding:13px;background:var(--deep-brown);color:var(--cream);border:none;border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:background .3s;">Save preferences</button>
+        <button id="cookieRejectBtn" style="padding:13px 20px;background:none;color:var(--text-mid);border:1px solid var(--sand);border-radius:2px;cursor:pointer;font-family:var(--font-body);font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:border-color .3s,color .3s;">Essential only</button>
       </div>
     </div>
   </div>
@@ -2084,7 +2087,7 @@
     if (typeof cart !== 'undefined') { cart = currentCart; if (typeof renderCart === 'function') renderCart(); }
     var dot = document.querySelector('.cart-dot');
     if (dot) { var c = currentCart.reduce(function(s,i){return s+i.qty;},0); dot.textContent = c||'0'; dot.style.background = c ? 'var(--terracotta)' : 'var(--text-light)'; }
-    alert('The Snug Evening Bundle has been added to your cart!');
+    var t=document.getElementById('toast');if(t){t.textContent='\u2713 Bundle added to cart';t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2200);}
   }
 
 
