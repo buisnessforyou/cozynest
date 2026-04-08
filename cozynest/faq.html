@@ -5,7 +5,7 @@
   <link rel="icon" type="image/png" href="/images/sofa-logo.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FAQ — The Snug Spot</title>
-  <meta name="description" content="Frequently asked questions about The Snug Spot — shipping, returns, payments, product care and more. Get answers to common queries."/>
+  <meta name="description" content="Frequently asked questions about The Snug Spot beeswax candles — shipping, returns, payments, candle care, scents and more."/>
   <link rel="canonical" href="https://thesnugspot.com/faq.html"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -40,13 +40,32 @@
 
     .wrap { max-width: 760px; margin: 0 auto; padding: 72px 48px 100px; }
 
-    .faq-coming {
-      text-align: center; padding: 80px 40px;
-      background: var(--off-white); border: 1px solid var(--sand); border-radius: 16px;
+    .faq-category { margin-bottom: 48px; }
+    .faq-category h2 {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 400;
+      color: var(--deep-brown); margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--sand);
     }
-    .faq-coming svg { width: 48px; height: 48px; stroke: var(--terracotta); fill: none; stroke-width: 1.2; margin-bottom: 24px; }
-    .faq-coming h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; color: var(--deep-brown); margin-bottom: 12px; }
-    .faq-coming p { color: var(--text-light); max-width: 380px; margin: 0 auto 28px; }
+    .faq-item {
+      background: var(--off-white); border: 1px solid var(--sand); border-radius: 10px;
+      margin-bottom: 12px; overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; padding: 18px 22px; background: none; border: none;
+      font-family: var(--font-body); font-size: 15px; font-weight: 500;
+      color: var(--deep-brown); text-align: left; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .faq-q:hover { color: var(--terracotta); }
+    .faq-q svg { width: 16px; height: 16px; stroke: var(--text-light); fill: none; stroke-width: 2; flex-shrink: 0; transition: transform .2s; }
+    .faq-q[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .faq-a { padding: 0 22px 18px; color: var(--text-mid); font-size: 14px; line-height: 1.75; display: none; }
+    .faq-a.open { display: block; }
+    .faq-contact {
+      text-align: center; padding: 40px; margin-top: 20px;
+      background: var(--off-white); border: 1px solid var(--sand); border-radius: 12px;
+    }
+    .faq-contact p { color: var(--text-mid); margin-bottom: 16px; }
     .btn-contact {
       display: inline-block; padding: 14px 36px;
       background: var(--deep-brown); color: var(--cream);
@@ -85,10 +104,120 @@
 </div>
 
 <div class="wrap">
-  <div class="faq-coming">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-    <h2>Coming soon</h2>
-    <p>We're building out our full FAQ section. In the meantime, our team is happy to answer any questions directly.</p>
+  <div class="faq-category">
+    <h2>Our Candles</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What are your candles made from?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Our candles are made from 100% natural beeswax. Beeswax is a clean-burning, non-toxic wax that produces a warm, naturally sweet honey-like aroma. Each candle weighs 220g and features a cotton wick.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What scents are available?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">We offer three scents: Vanilla, Chocolate, and Cinnamon. Each scent is delicately blended with natural essential oils. You can purchase them individually at £20 each, or get all three in our Beeswax Candle Trio bundle for £50.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How long do the candles burn for?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Each 220g beeswax candle provides approximately 40–50 hours of burn time, depending on conditions. Beeswax naturally burns slower and longer than paraffin or soy candles, making them excellent value.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What is the Beeswax Candle Trio?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">The Beeswax Candle Trio is a bundle of all three scents — Vanilla, Chocolate, and Cinnamon — for £50 (saving £10 compared to buying individually). It makes a wonderful gift or a great way to try all our scents.</div>
+    </div>
+  </div>
+
+  <div class="faq-category">
+    <h2>Candle Care</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How should I care for my beeswax candle?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">For the best burn, trim the wick to approximately 5mm before each use. Allow the wax to melt fully to the edges on the first burn to prevent tunnelling. Keep the candle away from draughts and direct sunlight when not in use. Store in a cool, dry place.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Are beeswax candles safe?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Beeswax candles are considered one of the safest types of candles. They are non-toxic, produce minimal soot, and do not release harmful chemicals when burned. As with all candles, never leave a burning candle unattended, keep away from children, pets, and flammable materials, and always place on a stable, heat-resistant surface.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Why does my beeswax candle have a white film on it?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">This white film is called "bloom" and is a natural characteristic of pure beeswax. It occurs when natural oils rise to the surface over time. It is not a defect — in fact, it is a sign of quality and purity. You can gently wipe it off with a soft cloth if you prefer, or leave it for a rustic look.</div>
+    </div>
+  </div>
+
+  <div class="faq-category">
+    <h2>Orders &amp; Shipping</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How long does delivery take?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Orders are processed within 3–4 business days. Standard delivery takes 4–14 business days (£4.95, or free over £75). Express delivery takes 2–5 business days (£9.95). You will receive a tracking number by email once your order is dispatched.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How are candles packed for shipping?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Each candle is individually wrapped and packed upright with protective padding to prevent damage during transit. During warmer months, we may use insulated packaging to protect the beeswax from softening.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What payment methods do you accept?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">We accept Visa, Mastercard, American Express, Apple Pay, and Google Pay. All payments are processed securely through Stripe.</div>
+    </div>
+  </div>
+
+  <div class="faq-category">
+    <h2>Returns &amp; Refunds</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Can I return a candle?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Yes. You can return any unused, unburnt candle within 30 days of delivery for a full refund. The candle must be in its original packaging with the wick untrimmed. Email <a href="mailto:support@thesnugspot.com" style="color:var(--terracotta);">support@thesnugspot.com</a> with your order number to start a return. We provide free prepaid return labels.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What if my candle arrives damaged?
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">If your candle arrives cracked, broken, or otherwise damaged, please contact us at <a href="mailto:support@thesnugspot.com" style="color:var(--terracotta);">support@thesnugspot.com</a> with photos of the damage and your order number. We will arrange a free replacement or full refund.</div>
+    </div>
+  </div>
+
+  <div class="faq-contact">
+    <p>Still have a question? We're happy to help.</p>
     <a href="/contact.html" class="btn-contact">Get in touch</a>
   </div>
 </div>

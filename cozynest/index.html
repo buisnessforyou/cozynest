@@ -5,9 +5,9 @@
   <link rel="icon" type="image/png" href="/images/sofa-logo.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Snug Spot — Your Cosiest Corner of the Internet</title>
-  <meta name="description" content="Premium curated home comfort — blankets, candles, diffusers and accessories. Hand-picked for warmth, beauty and enduring quality. Free UK returns.">
-  <meta property="og:title" content="The Snug Spot — Curated Home Comfort">
-  <meta property="og:description" content="Premium blankets, candles, diffusers and home accessories. Hand-picked for quality. Free 30-day returns.">
+  <meta name="description" content="Hand-poured beeswax candles in Vanilla, Chocolate and Cinnamon. 220g, 40-45 hour burn time. Free UK returns.">
+  <meta property="og:title" content="The Snug Spot — Hand-Poured Beeswax Candles">
+  <meta property="og:description" content="Hand-poured beeswax candles in three warming scents. Individually or as a trio bundle. Free 30-day returns.">
   <meta property="og:image" content="/images/products/coming-soon.svg">
   <meta property="og:url" content="https://thesnugspot.com/">
   <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
     "name": "The Snug Spot",
     "url": "https://thesnugspot.com",
     "logo": "https://thesnugspot.com/logo.svg",
-    "description": "Premium curated home comfort goods — blankets, candles, diffusers and accessories.",
+    "description": "Hand-poured beeswax candles in warming scents — Vanilla, Chocolate and Cinnamon.",
     "sameAs": []
   }
   </script>
@@ -29,38 +29,11 @@
   [{
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "Heritage Wool Blanket",
+    "name": "Beeswax Candle",
     "image": "https://thesnugspot.com/images/products/coming-soon.svg",
-    "description": "Soft, premium-quality wool throw blanket in natural oat. Perfect for cosy evenings at home.",
+    "description": "Hand-poured 220g beeswax candle available in Vanilla, Chocolate and Cinnamon. 40-45 hour burn time.",
     "brand": {"@type": "Brand", "name": "The Snug Spot"},
-    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/heritage-wool-blanket.html", "priceCurrency": "GBP", "price": "13.99", "availability": "https://schema.org/InStock"}
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Bonfire Flame Aroma Diffuser",
-    "image": "https://thesnugspot.com/images/products/coming-soon.svg",
-    "description": "Realistic flame-effect aroma diffuser with warm LED glow. Fills your room with calming fragrance.",
-    "brand": {"@type": "Brand", "name": "The Snug Spot"},
-    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/mist-diffuser.html", "priceCurrency": "GBP", "price": "29.99", "availability": "https://schema.org/InStock"}
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Rattan Storage Tray",
-    "image": "https://thesnugspot.com/images/products/coming-soon.svg",
-    "description": "Handwoven rattan tray, perfect for organising coffee table essentials or bathroom accessories.",
-    "brand": {"@type": "Brand", "name": "The Snug Spot"},
-    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/rattan-tray.html", "priceCurrency": "GBP", "price": "38.00", "availability": "https://schema.org/InStock"}
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Soy Wax Candle Trio",
-    "image": "https://thesnugspot.com/images/products/coming-soon.svg",
-    "description": "Set of three hand-poured soy wax candles in calming scents. Clean-burning with cotton wicks.",
-    "brand": {"@type": "Brand", "name": "The Snug Spot"},
-    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "15.00", "availability": "https://schema.org/InStock"}
+    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
   }]
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -280,18 +253,12 @@
       overflow:hidden; background:#0A0503;
     }
 
-    /* Three.js hero canvas — inside hero-pin, above bg, below overlay */
+    /* WebGL hero canvas — inside hero-pin, above bg, below overlay */
     #hero-canvas {
       position:absolute; top:0; left:0; width:100%; height:100%;
       z-index:1; pointer-events:none;
     }
-    /* Fire sparks canvas — on top of Three.js, below overlay */
-    #fire-canvas {
-      position:absolute; top:0; left:0; width:100%; height:100%;
-      z-index:2; pointer-events:none;
-    }
-
-    /* Background — hidden when Three.js canvas is active */
+    /* Background — hidden when WebGL canvas is active */
     .hero-bg {
       position:absolute; inset:-10%;
       background:url('/images/hero-bg.jpg') center/cover no-repeat;
@@ -365,8 +332,8 @@
       -webkit-backdrop-filter:blur(20px) saturate(1.3);
       border:1px solid rgba(196,120,90,.18);
       border-radius:14px; padding:12px 18px 12px 12px;
-      cursor:pointer;
-      opacity:0.12; transform:translate3d(0,50px,0) scale(0.95);
+      overflow:hidden; cursor:pointer;
+      opacity:0.12; transform:translate3d(0,20px,0) scale(0.98);
       will-change:transform, opacity;
       transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .3s;
       text-align:left;
@@ -374,98 +341,7 @@
       width:100%;
       position:relative;
     }
-    /* ── Smoke container + particles for diffuser card ── */
-    .smoke-box {
-      position:absolute; inset:0; overflow:hidden;
-      border-radius:14px; pointer-events:none; z-index:2;
-      clip-path:inset(0 round 14px);
-    }
-    @keyframes smokeRise {
-      0%   { transform:translate(0,0) scale(0.6); opacity:0; }
-      10%  { opacity:0.9; }
-      45%  { opacity:0.65; }
-      80%  { opacity:0.25; }
-      100% { transform:translate(var(--sx), var(--ey)) scale(1.5); opacity:0; }
-    }
-    .smoke-particle {
-      position:absolute; pointer-events:none;
-      width:var(--size); height:var(--size);
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(255,255,255,.85) 0%, rgba(230,220,210,.55) 30%, rgba(200,185,170,.25) 55%, transparent 75%);
-      filter:blur(8px);
-      animation:smokeRise var(--dur) ease-out forwards;
-    }
-    /* ── Wax drip for candle card (SVG goo filter) ── */
-    .wax-box {
-      position:absolute; inset:0; overflow:hidden;
-      border-radius:14px; pointer-events:none; z-index:2;
-      filter:url(#waxGoo);
-      opacity:0; transition:opacity .3s;
-    }
-    .wax-box.active { opacity:1; }
-    /* Source pool — drips emerge from this bar via the goo merge */
-    .wax-bar {
-      position:absolute; top:-3px; left:-5%; width:110%; height:22px;
-      background:#fff;
-      border-radius:0 0 6px 6px;
-    }
-    /* ── Main drip animation: 11-phase realistic wax physics ── */
-    @keyframes gooFall {
-      /* Emerge from the bar */
-      0%   { top:-8%; transform:scaleX(1) scaleY(1); opacity:1; }
-      /* Bulge forms — wider, collects weight */
-      8%   { top:-2%; transform:scaleX(1.15) scaleY(.85); }
-      /* Weight pulls down, starts stretching */
-      16%  { top:3%;  transform:scaleX(.8) scaleY(1.5); }
-      /* Neck thins dramatically — about to detach */
-      24%  { top:10%; transform:scaleX(.55) scaleY(2.1); }
-      /* DETACH — surface tension snaps blob round */
-      29%  { top:15%; transform:scaleX(1.15) scaleY(.78); }
-      /* Post-detach wobble */
-      33%  { top:20%; transform:scaleX(.88) scaleY(1.12); }
-      /* Settles into falling teardrop */
-      44%  { top:38%; transform:scaleX(.92) scaleY(1.06); }
-      /* Free fall — slight elongation from speed */
-      68%  { top:64%; transform:scaleX(.88) scaleY(1.1); }
-      /* IMPACT — dramatic squash & spread */
-      82%  { top:84%; transform:scaleX(1.45) scaleY(.45); opacity:1; }
-      /* Bounce recoil */
-      89%  { top:81%; transform:scaleX(1.1) scaleY(.65); opacity:.7; }
-      /* Settle flat and fade */
-      100% { top:88%; transform:scaleX(1.55) scaleY(.2); opacity:0; }
-    }
-    /* ── Residue trail: thin thread connecting blob to bar ── */
-    @keyframes trail {
-      0%        { height:0; opacity:0; }
-      8%        { height:0; opacity:1; }
-      16%,24%   { height:22px; opacity:.9; }
-      30%       { height:4px; opacity:.3; }
-      35%,100%  { height:0; opacity:0; }
-    }
-    .wax-drop {
-      position:absolute;
-      left:var(--dx);
-      width:var(--ds); height:var(--ds);
-      border-radius:50%;
-      background:#fff;
-      will-change:transform, top;
-      animation:gooFall var(--dd) cubic-bezier(.4,0,1,1) infinite;
-      animation-delay:var(--del);
-    }
-    /* Thin trailing thread above each blob */
-    .wax-drop::after {
-      content:'';
-      position:absolute; bottom:100%; left:50%;
-      width:3px; height:0;
-      background:#fff;
-      transform:translateX(-50%);
-      border-radius:2px;
-      animation:trail var(--dd) cubic-bezier(.4,0,1,1) infinite;
-      animation-delay:var(--del);
-    }
     .hero-card:hover, .hero-card:focus-visible {
-      transform:translate3d(0,-8px,0) scale(1) !important;
-      box-shadow:0 24px 48px rgba(0,0,0,.6), 0 0 0 1px rgba(196,120,90,.2);
       border-color:rgba(196,120,90,.35);
     }
     .hero-card:focus-visible {
@@ -473,11 +349,12 @@
       outline-offset:3px;
     }
     .hero-card-img {
-      width:80px; height:80px;
-      border-radius:10px; object-fit:cover; display:block;
-      flex-shrink:0;
-      will-change:transform;
-      transform:translate3d(0,0,0);
+      width:68px; height:68px;
+      min-width:68px; min-height:68px;
+      border-radius:8px; display:block;
+      flex:0 0 68px;
+      aspect-ratio:1/1;
+      box-sizing:border-box;
     }
     .hero-card-body { flex:1; min-width:0; }
     .hero-card-name {
@@ -667,7 +544,7 @@
         background:rgba(16,7,2,.78);
         border-color:rgba(196,120,90,.22);
       }
-      .hero-card-img { width:58px; height:58px; border-radius:8px; }
+      .hero-card-img { width:58px; height:58px; min-width:58px; min-height:58px; flex:0 0 58px; border-radius:8px; }
       .hero-card-body { gap:2px; }
       .hero-card-name { font-size:14px; margin-bottom:2px; }
       .hero-card-cat { font-size:8px; margin-bottom:4px; }
@@ -704,7 +581,7 @@
       .hero-h1 { font-size:clamp(30px,9vw,40px); }
       .hero-sub { font-size:12px; max-width:260px; }
       .hero-card { flex:0 0 230px; padding:8px 12px 8px 8px; }
-      .hero-card-img { width:50px; height:50px; }
+      .hero-card-img { width:50px; height:50px; min-width:50px; min-height:50px; flex:0 0 50px; }
       .hero-card-name { font-size:13px; }
       .hero-card-price { font-size:15px; }
       .hero-curated-line { font-size:11px; }
@@ -720,9 +597,20 @@
       white-space:nowrap; line-height:1;
     }
 
-    .grid-products { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
-    @media (max-width:1024px) { .grid-products { grid-template-columns:repeat(2,1fr); gap:22px; } }
-    @media (max-width:580px)  { .grid-products { grid-template-columns:1fr; gap:18px; } }
+    .grid-products { position:relative; overflow:hidden; max-width:480px; margin:0 auto; }
+    .carousel-track { display:flex; transition:transform .45s cubic-bezier(.4,0,.2,1); }
+    .carousel-track .p-card { min-width:100%; flex:0 0 100%; padding:0 20px; box-sizing:border-box; }
+    .carousel-dots { display:flex; justify-content:center; gap:10px; margin-top:24px; }
+    .carousel-dot { width:10px; height:10px; border-radius:50%; border:2px solid var(--sand); background:transparent; cursor:pointer; transition:all .3s; padding:0; }
+    .carousel-dot.active { background:var(--terracotta); border-color:var(--terracotta); transform:scale(1.2); }
+    .carousel-arrows { display:flex; justify-content:center; gap:16px; margin-top:18px; }
+    .carousel-arrow { width:44px; height:44px; border-radius:50%; border:1.5px solid var(--sand); background:var(--off-white); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .25s; }
+    .carousel-arrow:hover { border-color:var(--terracotta); background:var(--cream); }
+    .carousel-arrow svg { width:18px; height:18px; stroke:var(--text-mid); fill:none; stroke-width:2; }
+    .swipe-hint { text-align:center; margin-top:12px; font-size:12px; color:var(--text-light); letter-spacing:.06em; opacity:.7; }
+    @media (max-width:580px) {
+      .carousel-track .p-card { padding:0 12px; }
+    }
 
     .p-card {
       cursor:pointer;
@@ -738,6 +626,60 @@
     }
 
     .p-img-wrap { position:relative; height:300px; overflow:hidden; }
+
+    /* ── Wax drip for product cards ── */
+    .pwax-box {
+      position:absolute; inset:0; overflow:hidden;
+      pointer-events:none; z-index:4;
+      filter:url(#pWaxGoo);
+      opacity:0; transition:opacity .3s;
+    }
+    .pwax-box.active { opacity:1; }
+    .hero-card:hover .pwax-box { opacity:1; }
+    .hero-card:hover .pwax-drop { animation-play-state:running !important; }
+    .pwax-bar {
+      position:absolute; top:-3px; left:-5%; width:110%; height:22px;
+      border-radius:0 0 6px 6px;
+    }
+    @keyframes pGooFall {
+      0%   { top:-8%; transform:scaleX(1) scaleY(1); opacity:1; }
+      8%   { top:-2%; transform:scaleX(1.15) scaleY(.85); }
+      16%  { top:3%;  transform:scaleX(.8) scaleY(1.5); }
+      24%  { top:10%; transform:scaleX(.55) scaleY(2.1); }
+      29%  { top:15%; transform:scaleX(1.15) scaleY(.78); }
+      33%  { top:20%; transform:scaleX(.88) scaleY(1.12); }
+      44%  { top:38%; transform:scaleX(.92) scaleY(1.06); }
+      65%  { top:60%; transform:scaleX(.96) scaleY(1.02); }
+      80%  { top:76%; transform:scaleX(1.3) scaleY(.4); opacity:.85; }
+      89%  { top:81%; transform:scaleX(1.1) scaleY(.65); opacity:.7; }
+      100% { top:88%; transform:scaleX(1.55) scaleY(.2); opacity:0; }
+    }
+    @keyframes pTrail {
+      0%        { height:0; opacity:0; }
+      8%        { height:0; opacity:1; }
+      16%,24%   { height:22px; opacity:.9; }
+      30%       { height:4px; opacity:.3; }
+      35%,100%  { height:0; opacity:0; }
+    }
+    .pwax-drop {
+      position:absolute;
+      left:var(--dx);
+      width:var(--ds); height:var(--ds);
+      border-radius:50%;
+      will-change:transform, top;
+      animation:pGooFall var(--dd) cubic-bezier(.4,0,1,1) infinite;
+      animation-delay:var(--del);
+    }
+    .pwax-drop::after {
+      content:'';
+      position:absolute; bottom:100%; left:50%;
+      width:3px; height:0;
+      background:inherit;
+      transform:translateX(-50%);
+      border-radius:2px;
+      animation:pTrail var(--dd) cubic-bezier(.4,0,1,1) infinite;
+      animation-delay:var(--del);
+    }
     .p-img {
       width:100%; height:100%;
       transition:transform .7s var(--ease);
@@ -755,6 +697,9 @@
     .pi3 { background:linear-gradient(148deg,#F0E4D6 0%,#D8BEA4 45%,#B29070 100%); }
     .pi4 { background:linear-gradient(148deg,#E6D8C6 0%,#C6A684 45%,#8A6444 100%); }
     .pi5 { background:linear-gradient(148deg,#EAE2D6 0%,#D0B898 45%,#A07E5A 100%); }
+    .pi-vanilla { background:linear-gradient(148deg,#FDF6E8 0%,#F5E6C8 45%,#D4BA8A 100%); }
+    .pi-chocolate { background:linear-gradient(148deg,#4A3525 0%,#3D2A1C 45%,#2C1A0E 100%); }
+    .pi-cinnamon { background:linear-gradient(148deg,#C8A07A 0%,#A0795C 45%,#8B6544 100%); }
     .pi6 { background:linear-gradient(148deg,#D6DDE0 0%,#A8B8C2 45%,#7A9098 100%); }
 
     /* Real photo images inside product cards */
@@ -1426,10 +1371,45 @@
 </head>
 <body class="has-ann">
 
-<!-- SVG goo filter for wax drip (alpha-only merge, lightweight) -->
+<!-- ─── LOADING SCREEN ─── -->
+<div id="loader" style="position:fixed;inset:0;z-index:99999;background:#2C1A0E;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease, visibility .6s ease;">
+  <div style="font-family:'Playfair Display','Cormorant Garamond',Georgia,serif;color:#FAF7F2;text-align:center;">
+    <div style="font-size:52px;font-weight:700;letter-spacing:-2px;line-height:1;">The</div>
+    <div style="font-size:28px;font-weight:400;letter-spacing:-1px;margin-top:-4px;">SnugSpot</div>
+  </div>
+  <div style="margin-top:32px;width:120px;height:2px;background:rgba(250,247,242,0.12);border-radius:2px;overflow:hidden;">
+    <div id="loaderBar" style="width:0%;height:100%;background:linear-gradient(90deg,#C4785A,#FAF7F2);border-radius:2px;transition:width .3s ease;"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var bar = document.getElementById('loaderBar');
+  var loader = document.getElementById('loader');
+  var progress = 0;
+  var interval = setInterval(function(){
+    progress += Math.random() * 15 + 5;
+    if(progress > 90) progress = 90;
+    bar.style.width = progress + '%';
+  }, 150);
+  window.addEventListener('load', function(){
+    clearInterval(interval);
+    bar.style.width = '100%';
+    setTimeout(function(){
+      document.body.style.overflow = '';
+      loader.style.opacity = '0';
+      loader.style.visibility = 'hidden';
+      setTimeout(function(){ loader.remove(); }, 600);
+    }, 1200);
+  });
+  document.body.style.overflow = 'hidden';
+})();
+</script>
+
+
+<!-- SVG goo filter for product card wax drip -->
 <svg style="position:absolute;width:0;height:0" aria-hidden="true">
   <defs>
-    <filter id="waxGoo">
+    <filter id="pWaxGoo">
       <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
       <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" result="goo"/>
       <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
@@ -1457,7 +1437,7 @@
   <a href="/" class="nav-logo"><span class="nav-mark"><img src="images/sofa-logo.png" alt="The Snug Spot sofa icon"/></span>The Snug<span>Spot</span></a>
   <ul class="nav-links">
     <li><a href="#products">Shop</a></li>
-    <li><a href="#why">Collections</a></li>
+    <li><a href="#products">Our Candles</a></li>
 
     <li><a href="#testimonials">Stories</a></li>
   </ul>
@@ -1483,47 +1463,43 @@
     <div class="hero-layout">
       <!-- Left: Headline + CTA -->
       <div class="hero-content" id="heroContent">
-        <p class="hero-eyebrow">Curated for your sanctuary</p>
-        <h1 class="hero-h1">Where every<br>corner feels<br>like <em>home.</em></h1>
-        <p class="hero-sub">Premium-sourced comfort objects for the discerning home. Each piece chosen for its warmth, beauty, and enduring quality.</p>
+        <p class="hero-eyebrow">Hand-poured beeswax candles</p>
+        <h1 class="hero-h1">Warmth in<br>every<br><em>flame.</em></h1>
+        <p class="hero-sub">Hand-poured 220g beeswax candles in three warming scents — Vanilla, Chocolate and Cinnamon. 40-45 hours of calm in every burn.</p>
         <div class="hero-ctas">
           <button class="btn-hero" aria-label="Browse our full product collection" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"><span>Explore Collection</span></button>
-          <a href="#products" class="hero-text-link" aria-label="Jump to product grid">
-            Shop the room
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
         </div>
-        <p class="hero-curated-line">Carefully curated for your home.</p>
+        <p class="hero-curated-line">Three scents. One cosy home.</p>
       </div>
 
       <!-- Right: 3-Card Product Stack -->
       <div class="hero-cards" id="heroCards" aria-label="Featured products">
-        <button class="hero-card" data-href="/products/heritage-wool-blanket.html" data-name="Heritage Wool Blanket" data-price="from £13.99" data-desc="Sumptuous double-sided wool in 7 colours &amp; 6 sizes. The blanket you'll reach for every single evening." data-img="/images/products/coming-soon.svg" aria-label="Heritage Wool Blanket — from £13.99. Click to preview." tabindex="0">
-          <img class="hero-card-img" src="/images/products/coming-soon.svg" alt="Heritage wool blanket in natural oat, draped on sofa" loading="lazy"/>
+        <button class="hero-card" data-href="/products/candle-trio.html" data-name="Beeswax Candle — Vanilla" data-price="£20" data-desc="Hand-poured 220g beeswax candle with a soft, sweet, creamy vanilla warmth. 40-45 hour burn time." data-img="/images/products/coming-soon.svg" aria-label="Beeswax Candle Vanilla — £20. Click to preview." tabindex="0">
+          <div class="hero-card-img" style="background:linear-gradient(148deg,#FDF6E8 0%,#F5E6C8 45%,#D4BA8A 100%);"></div>
           <div class="hero-card-body">
-            <span class="hero-card-name">Heritage Wool Blanket</span>
-            <span class="hero-card-cat">Luxury textiles</span>
-            <span class="hero-card-price">from £13.99</span>
+            <span class="hero-card-name">Beeswax Candle — Vanilla</span>
+            <span class="hero-card-cat">Candles</span>
+            <span class="hero-card-price">£20</span>
           </div>
           <svg class="hero-card-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
 
-        <button class="hero-card" data-href="/products/mist-diffuser.html" data-name="Bonfire Flame Aroma Diffuser" data-price="£29.99" data-desc="Mesmerising simulated bonfire flame with ultrasonic cool mist and 7-colour LED effect. A statement piece." data-img="/images/products/coming-soon.svg" aria-label="Bonfire Flame Aroma Diffuser — £29.99. Click to preview." tabindex="0">
-          <img class="hero-card-img" src="/images/products/coming-soon.svg" alt="Bonfire flame aroma diffuser with warm LED glow" loading="lazy"/>
+        <button class="hero-card" data-href="/products/candle-trio.html" data-name="Beeswax Candle — Chocolate" data-price="£20" data-desc="Hand-poured 220g beeswax candle with a rich, indulgent chocolate aroma. 40-45 hour burn time." data-img="/images/products/coming-soon.svg" aria-label="Beeswax Candle Chocolate — £20. Click to preview." tabindex="0">
+          <div class="hero-card-img" style="background:linear-gradient(148deg,#4A3525 0%,#3D2A1C 45%,#2C1A0E 100%);"></div>
           <div class="hero-card-body">
-            <span class="hero-card-name">Bonfire Flame Diffuser</span>
-            <span class="hero-card-cat">Wellness</span>
-            <span class="hero-card-price">£29.99</span>
+            <span class="hero-card-name">Beeswax Candle — Chocolate</span>
+            <span class="hero-card-cat">Candles</span>
+            <span class="hero-card-price">£20</span>
           </div>
           <svg class="hero-card-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
 
-        <button class="hero-card" data-href="/products/candle-trio.html" data-name="Soy Wax Candle Trio" data-price="£15" data-desc="Three hand-poured soy candles in warm, complementary scents. Hours of calm in every burn." data-img="/images/products/coming-soon.svg" aria-label="Soy Wax Candle Trio — £15. Click to preview." tabindex="0">
-          <img class="hero-card-img" src="/images/products/coming-soon.svg" alt="Three soy wax candles in minimalist ceramic jars" loading="lazy"/>
+        <button class="hero-card" data-href="/products/candle-trio.html" data-name="Beeswax Candle — Cinnamon" data-price="£20" data-desc="Hand-poured 220g beeswax candle with a warm, spicy cinnamon glow. 40-45 hour burn time." data-img="/images/products/coming-soon.svg" aria-label="Beeswax Candle Cinnamon — £20. Click to preview." tabindex="0">
+          <div class="hero-card-img" style="background:linear-gradient(148deg,#C8A07A 0%,#A0795C 45%,#8B6544 100%);"></div>
           <div class="hero-card-body">
-            <span class="hero-card-name">Soy Wax Candle Trio</span>
-            <span class="hero-card-cat">Artisan fragrance</span>
-            <span class="hero-card-price">£15</span>
+            <span class="hero-card-name">Beeswax Candle — Cinnamon</span>
+            <span class="hero-card-cat">Candles</span>
+            <span class="hero-card-price">£20</span>
           </div>
           <svg class="hero-card-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
@@ -1563,125 +1539,110 @@
     </div>
   </div>
 
-  <div class="grid-products">
+  <div class="grid-products" id="candleCarousel">
+    <div class="carousel-track" id="carouselTrack">
 
-    <!-- Product 1 – Alpaca Throw -->
-    <div class="p-card reveal d1" id="cat-throws" data-tilt onclick="window.location.href='/products/heritage-wool-blanket.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
-      <div class="p-card-inner">
-        <div class="p-img-wrap">
-          <div class="p-img pi1"></div>
-          <img class="p-photo" src="/images/products/coming-soon.svg" alt="Wool throw blanket — soft warm premium quality" loading="lazy">
-          <span class="p-badge badge-terra">Bestseller</span>
-          <div class="p-overlay"><button class="btn-add">Add to Cart</button></div>
-        </div>
-        <div class="p-info">
-          <p class="p-cat">Throws</p>
-          <h3 class="p-name"><a href='/products/heritage-wool-blanket.html' style='color:inherit;text-decoration:none;'>Heritage Wool Blanket</a></h3>
-          <p class="p-desc">Sumptuous double-sided wool in 7 colours & 6 sizes. The blanket you'll reach for every single evening.</p>
-          <div class="p-foot">
-            <span class="p-price">from £13.99</span>
+      <!-- Vanilla Candle -->
+      <div class="p-card" id="cat-vanilla" data-tilt onclick="window.location.href='/products/candle-trio.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
+        <div class="p-card-inner">
+          <div class="p-img-wrap">
+            <div class="p-img pi-vanilla"></div>
+            <img class="p-photo" src="/images/products/coming-soon.svg" alt="Hand-poured 220g beeswax candle — Vanilla" loading="lazy">
+            <span class="p-badge badge-sage">Bestseller</span>
+            <div class="p-overlay"><button class="btn-add">Add to Cart</button></div>
+          </div>
+          <div class="p-info">
+            <p class="p-cat">Candles</p>
+            <h3 class="p-name"><a href='/products/candle-trio.html' style='color:inherit;text-decoration:none;'>Vanilla</a></h3>
+            <p class="p-desc">Soft, sweet, creamy warmth. 220g hand-poured beeswax. 40–45 hour burn.</p>
+            <div class="p-foot"><span class="p-price">£20</span></div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Product 3 – Bonfire Flame Diffuser -->
-    <div class="p-card reveal d3" id="cat-wellness" data-tilt onclick="window.location.href='/products/mist-diffuser.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
-      <div class="p-card-inner">
-        <div class="p-img-wrap">
-          <div class="p-img pi6"></div>
-          <img class="p-photo" src="/images/products/coming-soon.svg" alt="Bonfire flame aroma diffuser with realistic LED flame effect" loading="lazy">
-          <span class="p-badge badge-terra">New</span>
-          <div class="p-overlay"><button class="btn-add">Add to Cart</button></div>
-        </div>
-        <div class="p-info">
-          <p class="p-cat">Wellness</p>
-          <h3 class="p-name"><a href='/products/mist-diffuser.html' style='color:inherit;text-decoration:none;'>Bonfire Flame Aroma Diffuser</a></h3>
-          <p class="p-desc">Mesmerising simulated bonfire flame with ultrasonic cool mist and 7-colour LED effect.</p>
-          <div class="p-foot">
-            <span class="p-price">£29.99</span>
+      <!-- Chocolate Candle -->
+      <div class="p-card" id="cat-chocolate" data-tilt onclick="window.location.href='/products/candle-trio.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
+        <div class="p-card-inner">
+          <div class="p-img-wrap">
+            <div class="p-img pi-chocolate"></div>
+            <img class="p-photo" src="/images/products/coming-soon.svg" alt="Hand-poured 220g beeswax candle — Chocolate" loading="lazy">
+            <span class="p-badge badge-dark">Indulgent</span>
+            <div class="p-overlay"><button class="btn-add">Add to Cart</button></div>
+          </div>
+          <div class="p-info">
+            <p class="p-cat">Candles</p>
+            <h3 class="p-name"><a href='/products/candle-trio.html' style='color:inherit;text-decoration:none;'>Chocolate</a></h3>
+            <p class="p-desc">Rich, indulgent, cosy comfort. 220g hand-poured beeswax. 40–45 hour burn.</p>
+            <div class="p-foot"><span class="p-price">£20</span></div>
           </div>
         </div>
       </div>
-    </div>
 
-
-    <!-- Product 4 – Rattan Storage Tray -->
-    <div class="p-card reveal d1" id="cat-trays" data-tilt onclick="window.location.href='/products/rattan-tray.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
-      <div class="p-card-inner">
-        <div class="p-img-wrap">
-          <div class="p-img pi4"></div>
-          <img class="p-photo" src="/images/products/coming-soon.svg" alt="Handwoven rattan storage tray for home organisation" loading="lazy">
-          <span class="p-badge badge-dark">Popular</span>
-          <div class="p-overlay"><button class="btn-add">Add to Cart</button></div>
-        </div>
-        <div class="p-info">
-          <p class="p-cat">Trays &amp; Storage</p>
-          <h3 class="p-name"><a href='/products/rattan-tray.html' style='color:inherit;text-decoration:none;'>Rattan Storage Tray</a></h3>
-          <p class="p-desc">Hand-woven rattan with natural grain finish. A beautiful way to keep surfaces serene.</p>
-          <div class="p-foot">
-            <span class="p-price">£38</span>
+      <!-- Cinnamon Candle -->
+      <div class="p-card" id="cat-cinnamon" data-tilt onclick="window.location.href='/products/candle-trio.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
+        <div class="p-card-inner">
+          <div class="p-img-wrap">
+            <div class="p-img pi-cinnamon"></div>
+            <img class="p-photo" src="/images/products/coming-soon.svg" alt="Hand-poured 220g beeswax candle — Cinnamon" loading="lazy">
+            <span class="p-badge badge-sage">Warming</span>
+            <div class="p-overlay"><button class="btn-add">Add to Cart</button></div>
+          </div>
+          <div class="p-info">
+            <p class="p-cat">Candles</p>
+            <h3 class="p-name"><a href='/products/candle-trio.html' style='color:inherit;text-decoration:none;'>Cinnamon</a></h3>
+            <p class="p-desc">Warm, spicy, festive glow. 220g hand-poured beeswax. 40–45 hour burn.</p>
+            <div class="p-foot"><span class="p-price">£20</span></div>
           </div>
         </div>
       </div>
+
     </div>
-
-    <!-- Product 5 – Soy Wax Candle Trio -->
-    <div class="p-card reveal d2" id="cat-candles-trio" data-tilt onclick="window.location.href='/products/candle-trio.html'" onkeydown="if(event.key==='Enter')this.click()" style="cursor:pointer" tabindex="0" role="link">
-      <div class="p-card-inner">
-        <div class="p-img-wrap">
-          <div class="p-img pi5"></div>
-          <img class="p-photo" src="/images/products/coming-soon.svg" alt="Set of three hand-poured soy wax candles in calming scents" loading="lazy">
-          <span class="p-badge badge-sage">Favourite</span>
-          <div class="p-overlay"><button class="btn-add">Add to Cart</button></div>
-        </div>
-        <div class="p-info">
-          <p class="p-cat">Candles &amp; Diffusers</p>
-          <h3 class="p-name"><a href='/products/candle-trio.html' style='color:inherit;text-decoration:none;'>Soy Wax Candle Trio</a></h3>
-          <p class="p-desc">Three hand-poured soy candles in warm, complementary scents. Hours of calm in every burn.</p>
-          <div class="p-foot">
-            <span class="p-price">£15</span>
-          </div>
-        </div>
-      </div>
+    <div class="carousel-dots" id="carouselDots">
+      <button class="carousel-dot active" data-slide="0" aria-label="Vanilla"></button>
+      <button class="carousel-dot" data-slide="1" aria-label="Chocolate"></button>
+      <button class="carousel-dot" data-slide="2" aria-label="Cinnamon"></button>
     </div>
-
-
+    <div class="carousel-arrows">
+      <button class="carousel-arrow" id="carouselPrev" aria-label="Previous scent"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <button class="carousel-arrow" id="carouselNext" aria-label="Next scent"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+    <p class="swipe-hint">Swipe to explore scents</p>
   </div>
+  <p style="text-align:center; margin-top:36px; font-family:var(--font-display); font-size:1.2rem; font-style:italic; color:var(--text-light); letter-spacing:0.02em;">Soy candles coming soon</p>
 </section>
 
-<!-- ─── COMPLETE THE LOOK BUNDLE ─── -->
+<!-- ─── BEESWAX CANDLE TRIO BUNDLE ─── -->
 <section class="sec-bundle" id="bundle">
   <div style="text-align:center;">
-    <p class="eyebrow" style="margin-bottom:12px;">Curated Bundle</p>
-    <h2 class="s-title">Complete the <em>Look</em></h2>
+    <p class="eyebrow" style="margin-bottom:12px;">Bundle &amp; Save</p>
+    <h2 class="s-title">The Beeswax <em>Candle Trio</em></h2>
   </div>
   <div class="bundle-grid">
     <div class="bundle-item">
-      <img src="/images/products/coming-soon.svg" alt="Heritage wool blanket included in bundle" loading="lazy"/>
-      <p class="bundle-item-name">Heritage Wool Blanket</p>
-      <p class="bundle-item-price">&pound;13.99</p>
+      <img src="/images/products/coming-soon.svg" alt="Beeswax candle in vanilla scent" loading="lazy"/>
+      <p class="bundle-item-name">Vanilla</p>
+      <p class="bundle-item-price">&pound;20</p>
     </div>
     <span class="bundle-plus">+</span>
     <div class="bundle-item">
-      <img src="/images/products/coming-soon.svg" alt="Soy wax candle trio included in bundle" loading="lazy"/>
-      <p class="bundle-item-name">Soy Wax Candle Trio</p>
-      <p class="bundle-item-price">&pound;15</p>
+      <img src="/images/products/coming-soon.svg" alt="Beeswax candle in chocolate scent" loading="lazy"/>
+      <p class="bundle-item-name">Chocolate</p>
+      <p class="bundle-item-price">&pound;20</p>
     </div>
     <span class="bundle-plus">+</span>
     <div class="bundle-item">
-      <img src="/images/products/coming-soon.svg" alt="Bonfire flame diffuser included in bundle" loading="lazy"/>
-      <p class="bundle-item-name">Bonfire Flame Diffuser</p>
-      <p class="bundle-item-price">&pound;29.99</p>
+      <img src="/images/products/coming-soon.svg" alt="Beeswax candle in cinnamon scent" loading="lazy"/>
+      <p class="bundle-item-name">Cinnamon</p>
+      <p class="bundle-item-price">&pound;20</p>
     </div>
   </div>
   <div class="bundle-summary">
-    <h3 class="bundle-name">The Snug Evening Bundle</h3>
+    <h3 class="bundle-name">Beeswax Candle Trio</h3>
     <p class="bundle-pricing">
-      <span class="bundle-original">&pound;58.98</span>
-      Save 15%
+      <span class="bundle-original">&pound;60</span>
+      Save &pound;10
     </p>
-    <span class="bundle-final">&pound;50.13</span>
+    <span class="bundle-final">&pound;50</span>
     <br><br>
     <button class="btn-bundle" onclick="addBundle()">Add Bundle to Cart</button>
   </div>
@@ -1793,14 +1754,14 @@
   <div class="foot-top">
     <div>
       <a href="/" class="foot-logo">The Snug<span>Spot</span></a>
-      <p class="foot-desc">Blankets, candles, diffusers and home accessories — hand-picked for warmth, beauty and quality. Free 30-day returns on every order.</p>
+      <p class="foot-desc">Hand-poured beeswax candles in Vanilla, Chocolate and Cinnamon. Free 30-day returns on every order.</p>
       <div class="foot-socials">
         <a href="https://instagram.com/thesnugspot" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="foot-soc"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
         <a href="https://tiktok.com/@thesnugspot" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="foot-soc"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"/></svg></a>
         <a href="https://facebook.com/thesnugspot" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="foot-soc"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
       </div>
     </div>
-    <div class="foot-col"><h4>Shop</h4><ul class="foot-links"><li><a href="#products">All Products</a></li><li><a href="#cat-throws">Throws &amp; Blankets</a></li><li><a href="#cat-candles-trio">Candles &amp; Diffusers</a></li><li><a href="#cat-trays">Trays &amp; Storage</a></li><li><a href="#cat-wellness">Wellness</a></li></ul></div>
+    <div class="foot-col"><h4>Shop</h4><ul class="foot-links"><li><a href="#products">All Products</a></li><li><a href="#cat-candles">Candles</a></li><li><a href="#bundle">Candle Trio Bundle</a></li></ul></div>
     <div class="foot-col"><h4>Company</h4><ul class="foot-links"><li><a href='/our-story.html'>Our Story</a></li><li><a href="/#why">Sustainability</a></li></ul></div>
     <div class="foot-col"><h4>Support</h4><ul class="foot-links"><li><a href='/faq.html'>FAQ</a></li><li><a href='/shipping.html'>Shipping</a></li><li><a href='/returns.html'>Returns</a></li><li><a href='/track-order.html'>Track Order</a></li><li><a href='/contact.html'>Contact</a></li></ul></div>
   </div>
@@ -2084,7 +2045,7 @@
   /* ── Bundle add-to-cart ── */
   function addBundle() {
     /* Dispatch a custom event so the IIFE-scoped cart drawer can pick it up */
-    var bundleItem = { name:'The Snug Evening Bundle', price:50.13, qty:1, img:'/images/products/coming-soon.svg' };
+    var bundleItem = { name:'Beeswax Candle Trio', price:50.00, qty:1, img:'/images/products/coming-soon.svg' };
     window.dispatchEvent(new CustomEvent('snugspot:addToCart', { detail: bundleItem }));
   }
 
@@ -2169,11 +2130,7 @@
           }, 0.15 + i * 0.06);
         });
 
-        /* At ~50% scroll: parallax on card images */
-        cardImgs.forEach(function(img, i) {
-          var dir = i % 2 === 0 ? -PARALLAX_RANGE : PARALLAX_RANGE;
-          tl.fromTo(img, { y: -dir }, { y: dir, duration: 0.5, ease: 'none' }, 0.35);
-        });
+        /* Card image parallax removed — keep images static */
 
         /* Subtle darken towards end */
         tl.to('.hero-overlay', { opacity: 1.4, duration: 0.3, ease: 'power1.in' }, 0.65);
@@ -2213,140 +2170,6 @@
       if (modalClose) modalClose.addEventListener('click', closeModal);
       if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal(); });
-
-      /* ── Smoke effect on Bonfire Flame Diffuser card ── */
-      (function() {
-        var diffuserCard = document.querySelector('.hero-card[data-name*="Bonfire"]');
-        if (!diffuserCard) return;
-
-        var smokeInterval = null;
-
-        /* Create a clipping container inside the card */
-        var smokeBox = document.createElement('div');
-        smokeBox.className = 'smoke-box';
-        diffuserCard.appendChild(smokeBox);
-
-        function spawnSmoke() {
-          var boxH = diffuserCard.offsetHeight;
-          var p = document.createElement('div');
-          p.className = 'smoke-particle';
-          var size = 25 + Math.random() * 35;
-          var startX = 5 + Math.random() * 90;
-          var startY = Math.random() * 15;
-          var driftX = (Math.random() - 0.5) * 40;
-          var endY = -(15 + Math.random() * (boxH - 25));
-          var dur = 1.8 + Math.random() * 1.4;
-          p.style.setProperty('--size', size + 'px');
-          p.style.setProperty('--sx', driftX + 'px');
-          p.style.setProperty('--ey', endY + 'px');
-          p.style.setProperty('--dur', dur + 's');
-          p.style.left = startX + '%';
-          p.style.bottom = startY + 'px';
-          smokeBox.appendChild(p);
-          setTimeout(function() { p.remove(); }, dur * 1000);
-        }
-
-        function startSmoke() {
-          if (smokeInterval) return;
-          for (var i = 0; i < 5; i++) spawnSmoke();
-          smokeInterval = setInterval(function() {
-            spawnSmoke(); spawnSmoke();
-            if (Math.random() > 0.3) spawnSmoke();
-          }, 120);
-        }
-
-        function stopSmoke() {
-          clearInterval(smokeInterval);
-          smokeInterval = null;
-        }
-
-        /* Desktop: hover */
-        diffuserCard.addEventListener('mouseenter', startSmoke);
-        diffuserCard.addEventListener('mouseleave', stopSmoke);
-
-        /* Mobile: long-press (hold) */
-        var holdTimer = null;
-        diffuserCard.addEventListener('touchstart', function(e) {
-          holdTimer = setTimeout(function() {
-            startSmoke();
-          }, 300);
-        }, { passive: true });
-        diffuserCard.addEventListener('touchend', function() {
-          clearTimeout(holdTimer);
-          stopSmoke();
-        });
-        diffuserCard.addEventListener('touchcancel', function() {
-          clearTimeout(holdTimer);
-          stopSmoke();
-        });
-      })();
-
-      /* ── Wax drip effect on Candle Trio card ── */
-      (function() {
-        var candleCard = document.querySelector('.hero-card[data-name*="Candle"]');
-        if (!candleCard) return;
-
-        var waxBox = document.createElement('div');
-        waxBox.className = 'wax-box';
-
-        /* Source bar */
-        var bar = document.createElement('div');
-        bar.className = 'wax-bar';
-        waxBox.appendChild(bar);
-
-        /* Pre-create 8 drip blobs — varied sizes, staggered delays, some close for merging */
-        var drips = [
-          { x:'8%',  size:'14px', dur:'4.2s', del:'0s' },
-          { x:'22%', size:'22px', dur:'3.6s', del:'-1.0s' },
-          { x:'26%', size:'12px', dur:'4.8s', del:'-2.8s' },   /* close to 22% — will merge */
-          { x:'44%', size:'20px', dur:'3.9s', del:'-0.5s' },
-          { x:'58%', size:'16px', dur:'4.4s', del:'-2.2s' },
-          { x:'70%', size:'24px', dur:'3.4s', del:'-1.6s' },
-          { x:'73%', size:'10px', dur:'5.0s', del:'-3.5s' },   /* close to 70% — will merge */
-          { x:'88%', size:'18px', dur:'3.8s', del:'-0.8s' }
-        ];
-        drips.forEach(function(cfg) {
-          var d = document.createElement('div');
-          d.className = 'wax-drop';
-          d.style.setProperty('--dx', cfg.x);
-          d.style.setProperty('--ds', cfg.size);
-          d.style.setProperty('--dd', cfg.dur);
-          d.style.setProperty('--del', cfg.del);
-          d.style.animationPlayState = 'paused';
-          waxBox.appendChild(d);
-        });
-
-        candleCard.appendChild(waxBox);
-
-        function startWax() {
-          waxBox.classList.add('active');
-          waxBox.querySelectorAll('.wax-drop').forEach(function(d) {
-            d.style.animationPlayState = 'running';
-          });
-        }
-        function stopWax() {
-          waxBox.classList.remove('active');
-          waxBox.querySelectorAll('.wax-drop').forEach(function(d) {
-            d.style.animationPlayState = 'paused';
-          });
-        }
-
-        /* Desktop: hover */
-        candleCard.addEventListener('mouseenter', startWax);
-        candleCard.addEventListener('mouseleave', stopWax);
-
-        /* Mobile: long-press */
-        var holdTimer = null;
-        candleCard.addEventListener('touchstart', function() {
-          holdTimer = setTimeout(startWax, 300);
-        }, { passive: true });
-        candleCard.addEventListener('touchend', function() {
-          clearTimeout(holdTimer); stopWax();
-        });
-        candleCard.addEventListener('touchcancel', function() {
-          clearTimeout(holdTimer); stopWax();
-        });
-      })();
 
       /* ── Scroll indicator: hide after scrolling ── */
       var scrollInd = document.getElementById('scrollIndicator');
@@ -2465,6 +2288,76 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: .12, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ── Wax drip on hero candle cards ── */
+  (function() {
+    var colourMap = {
+      'Vanilla':   '#F5E6C8',
+      'Chocolate': '#3D2A1C',
+      'Cinnamon':  '#A0795C'
+    };
+    var drips = [
+      { x:'6%',  size:'10px', dur:'4.0s', del:'0s' },
+      { x:'18%', size:'16px', dur:'3.4s', del:'-1.0s' },
+      { x:'22%', size:'8px',  dur:'4.6s', del:'-2.6s' },
+      { x:'38%', size:'14px', dur:'3.8s', del:'-0.5s' },
+      { x:'52%', size:'12px', dur:'4.2s', del:'-2.0s' },
+      { x:'65%', size:'18px', dur:'3.2s', del:'-1.4s' },
+      { x:'69%', size:'8px',  dur:'4.8s', del:'-3.2s' },
+      { x:'80%', size:'14px', dur:'3.6s', del:'-0.8s' },
+      { x:'92%', size:'10px', dur:'4.4s', del:'-1.8s' }
+    ];
+
+    var heroCards = document.querySelectorAll('.hero-card');
+    heroCards.forEach(function(card) {
+      var name = card.getAttribute('data-name') || '';
+      var colour = '#fff';
+      Object.keys(colourMap).forEach(function(scent) {
+        if (name.indexOf(scent) !== -1) colour = colourMap[scent];
+      });
+
+      var waxBox = document.createElement('div');
+      waxBox.className = 'pwax-box';
+
+      var bar = document.createElement('div');
+      bar.className = 'pwax-bar';
+      bar.style.background = colour;
+      waxBox.appendChild(bar);
+
+      drips.forEach(function(cfg) {
+        var d = document.createElement('div');
+        d.className = 'pwax-drop';
+        d.style.setProperty('--dx', cfg.x);
+        d.style.setProperty('--ds', cfg.size);
+        d.style.setProperty('--dd', cfg.dur);
+        d.style.setProperty('--del', cfg.del);
+        d.style.background = colour;
+        d.style.animationPlayState = 'paused';
+        waxBox.appendChild(d);
+      });
+
+      card.appendChild(waxBox);
+
+      function startWax() {
+        waxBox.classList.add('active');
+        waxBox.querySelectorAll('.pwax-drop').forEach(function(d) {
+          d.style.animationPlayState = 'running';
+        });
+      }
+      function stopWax() {
+        waxBox.classList.remove('active');
+        waxBox.querySelectorAll('.pwax-drop').forEach(function(d) {
+          d.style.animationPlayState = 'paused';
+        });
+      }
+
+      card.addEventListener('mouseenter', startWax);
+      card.addEventListener('mouseleave', stopWax);
+      card.addEventListener('touchstart', function() { setTimeout(startWax, 200); }, { passive: true });
+      card.addEventListener('touchend', stopWax);
+      card.addEventListener('touchcancel', stopWax);
+    });
+  })();
 
   /* ── 3D Card Tilt ── */
   document.querySelectorAll('[data-tilt]').forEach(card => {
@@ -2897,12 +2790,10 @@
 </script>
 
 
-<!-- ─── THREE.JS — Atmospheric Background v4 ─── -->
-<script src="https://unpkg.com/three@0.157.0/build/three.min.js"></script>
+<!-- ─── Interactive Honey/Gold WebGL Background ─── -->
 <script>
 (function(){
 'use strict';
-if(typeof THREE==='undefined')return;
 try{
 
 var heroPin=document.querySelector('.hero-pin');
@@ -2912,310 +2803,165 @@ canvas.id='hero-canvas';
 canvas.setAttribute('aria-hidden','true');
 heroPin.insertBefore(canvas,heroPin.firstChild);
 
-/* ── Renderer ── */
-var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-renderer.setSize(heroPin.clientWidth,heroPin.clientHeight);
-renderer.setClearColor(0x000000,0);
-renderer.toneMapping=THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure=0.95;
 
-/* ── Scene / Camera ── */
-var scene=new THREE.Scene();
-var camera=new THREE.PerspectiveCamera(50,heroPin.clientWidth/heroPin.clientHeight,0.1,200);
-camera.position.set(0,0,5);
-var isMobile=window.innerWidth<768;
+/* ── Raw WebGL honey/gold fluid shader ── */
+var gl=canvas.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:false});
+if(!gl)return;
 
-/* Nothing here — pure atmospheric background */
+var dpr=Math.min(window.devicePixelRatio||1,2);
+function resize(){
+  var w=heroPin.clientWidth,h=heroPin.clientHeight;
+  canvas.width=w*dpr;canvas.height=h*dpr;
+  canvas.style.width=w+'px';canvas.style.height=h+'px';
+  gl.viewport(0,0,canvas.width,canvas.height);
+}
+resize();
 
-/* ═══════════════════════════════════════
-   1. FULLSCREEN ATMOSPHERE SHADER
-   Warm volumetric light, animated fog,
-   soft caustics, drifting bokeh
-   ═══════════════════════════════════════ */
-var bgVert=[
-  'varying vec2 vUv;',
-  'void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}'
+/* ── Compile shaders ── */
+function mkShader(src,type){
+  var s=gl.createShader(type);
+  gl.shaderSource(s,src);gl.compileShader(s);
+  return s;
+}
+
+var vertSrc='attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0.0,1.0);}';
+
+var fragSrc=[
+'precision highp float;',
+'uniform float u_time;',
+'uniform vec2 u_res;',
+'uniform vec2 u_mouse;',
+'',
+'/* simplex-style hash noise */',
+'vec2 hash2(vec2 p){',
+'  p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));',
+'  return-1.0+2.0*fract(sin(p)*43758.5453123);',
+'}',
+'float noise(vec2 p){',
+'  vec2 i=floor(p),f=fract(p);',
+'  vec2 u=f*f*(3.0-2.0*f);',
+'  return mix(mix(dot(hash2(i),f),',
+'    dot(hash2(i+vec2(1,0)),f-vec2(1,0)),u.x),',
+'    mix(dot(hash2(i+vec2(0,1)),f-vec2(0,1)),',
+'    dot(hash2(i+vec2(1,1)),f-vec2(1,1)),u.x),u.y);',
+'}',
+'float fbm(vec2 p){',
+'  float v=0.0,a=0.5;',
+'  mat2 rot=mat2(cos(0.5),sin(0.5),-sin(0.5),cos(0.5));',
+'  for(int i=0;i<5;i++){v+=a*noise(p);p=rot*p*2.0;a*=0.5;}',
+'  return v;',
+'}',
+'',
+'void main(){',
+'  vec2 uv=gl_FragCoord.xy/u_res;',
+'  vec2 p=(gl_FragCoord.xy-u_res*0.5)/u_res.y;',
+'  float t=u_time;',
+'',
+'  /* Mouse influence — smooth honey displacement */',
+'  vec2 mOff=u_mouse*0.12;',
+'  p+=mOff;',
+'',
+'  /* Honey/gold base colours */',
+'  vec3 deepBrown=vec3(0.173,0.102,0.055);',  // #2C1A0E
+'  vec3 gold1=vec3(0.831,0.659,0.294);',       // #D4A84B
+'  vec3 gold2=vec3(0.769,0.580,0.227);',       // #C4943A
+'  vec3 honeyLight=vec3(0.910,0.773,0.416);',  // #E8C56A
+'',
+'  /* Slow flowing honey distortion */',
+'  vec2 flow1=vec2(t*0.02,t*0.015);',
+'  vec2 flow2=vec2(-t*0.018,t*0.025);',
+'  float n1=fbm(p*1.8+flow1);',
+'  float n2=fbm(p*2.4+flow2+4.3);',
+'  float n3=fbm(p*1.2+vec2(t*0.01,-t*0.02)+8.7);',
+'',
+'  /* Thick honey fluid warp */',
+'  vec2 warp=vec2(n1,n2)*0.35;',
+'  float honeyFlow=fbm(p*1.5+warp+vec2(t*0.025,t*0.015));',
+'',
+'  /* Mouse ripple — interactive honey surface */',
+'  float mouseDist=length(p-mOff*2.0);',
+'  float ripple=sin(mouseDist*8.0-t*2.5)*exp(-mouseDist*2.5)*0.15;',
+'  honeyFlow+=ripple;',
+'',
+'  /* Build colour from honey layers */',
+'  vec3 col=deepBrown;',
+'  col=mix(col,gold2,smoothstep(-0.2,0.5,honeyFlow));',
+'  col=mix(col,gold1,smoothstep(0.1,0.7,honeyFlow+n3*0.3));',
+'  col=mix(col,honeyLight,smoothstep(0.4,0.9,honeyFlow+n2*0.2)*0.6);',
+'',
+'  /* Glossy honey highlights — thick specular-like sheen */',
+'  float spec=pow(max(0.0,honeyFlow+0.1),6.0)*0.4;',
+'  col+=vec3(1.0,0.92,0.7)*spec;',
+'',
+'  /* Slow caustic shimmer on surface */',
+'  float c1=noise(p*5.0+vec2(t*0.08,t*0.06)+warp*2.0);',
+'  float c2=noise(p*5.0+vec2(-t*0.07,t*0.09)+warp*2.0+3.0);',
+'  float caustic=pow(abs(sin(c1*6.28)*sin(c2*6.28)),0.8);',
+'  col+=vec3(1.0,0.85,0.5)*caustic*0.08;',
+'',
+'  /* Warm volumetric light from upper-right */',
+'  vec2 lightPos=vec2(0.8,0.85)+mOff*0.05;',
+'  float lDist=length(uv-lightPos);',
+'  float glow=exp(-lDist*lDist*2.5)*0.35;',
+'  col+=vec3(1.0,0.8,0.45)*glow;',
+'',
+'  /* Secondary warm glow lower-left */',
+'  float g2=exp(-length(p-vec2(-0.5,0.2)+mOff*0.15)*1.5)*0.12;',
+'  col+=vec3(0.9,0.6,0.25)*g2;',
+'',
+'  /* Soft vignette */',
+'  float vig=1.0-smoothstep(0.3,1.3,length(p*vec2(0.8,1.0)));',
+'  col*=0.75+vig*0.25;',
+'',
+'  /* Subtle film grain */',
+'  float grain=fract(sin(dot(gl_FragCoord.xy+t*100.0,vec2(12.9898,78.233)))*43758.5453)*0.025-0.0125;',
+'  col+=grain;',
+'',
+'  gl_FragColor=vec4(max(col,0.0),1.0);',
+'}'
 ].join('\n');
 
-var bgFrag=[
-  'uniform float uTime;',
-  'uniform vec2 uResolution;',
-  'uniform vec2 uMouse;',
-  '',
-  '/* Noise functions */',
-  'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}',
-  'float noise(vec2 p){',
-  '  vec2 i=floor(p),f=fract(p);',
-  '  f=f*f*(3.0-2.0*f);',
-  '  float a=hash(i),b=hash(i+vec2(1,0)),c=hash(i+vec2(0,1)),d=hash(i+vec2(1,1));',
-  '  return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);',
-  '}',
-  'float fbm(vec2 p){',
-  '  float v=0.0,a=0.5;',
-  '  for(int i=0;i<5;i++){v+=a*noise(p);p*=2.0;a*=0.5;}',
-  '  return v;',
-  '}',
-  '',
-  'void main(){',
-  '  vec2 uv=gl_FragCoord.xy/uResolution;',
-  '  vec2 p=(gl_FragCoord.xy-uResolution*0.5)/uResolution.y;',
-  '  float t=uTime;',
-  '',
-  '  /* Mouse influence — subtle shift */',
-  '  vec2 mOff=uMouse*0.08;',
-  '  p+=mOff;',
-  '',
-  '  /* ── Base gradient — warm moody ── */',
-  '  vec3 darkBrown=vec3(0.06,0.035,0.02);',
-  '  vec3 warmBrown=vec3(0.12,0.07,0.04);',
-  '  vec3 deepAmber=vec3(0.2,0.11,0.05);',
-  '  float gy=uv.y;',
-  '  vec3 bg=mix(warmBrown,darkBrown,smoothstep(0.2,0.9,gy));',
-  '  bg=mix(bg,deepAmber,smoothstep(0.7,0.0,gy)*0.5);',
-  '',
-  '  /* ── Volumetric light from upper-right ── */',
-  '  vec2 lightUV=vec2(0.85,0.9)+mOff*0.05;',
-  '  float lDist=length(uv-lightUV);',
-  '  float radialGlow=exp(-lDist*lDist*3.0);',
-  '',
-  '  /* Directional cone — light spreads toward lower-left */',
-  '  vec2 lightDir=normalize(vec2(-0.7,-0.5));',
-  '  vec2 toPixel=normalize(uv-lightUV);',
-  '  float dirMatch=max(0.0,dot(toPixel,lightDir));',
-  '  float cone=pow(dirMatch,1.5)*smoothstep(1.6,0.0,lDist);',
-  '',
-  '  /* Animated god rays */',
-  '  float rayAngle=atan(uv.y-lightUV.y,uv.x-lightUV.x);',
-  '  float rays=0.0;',
-  '  for(int i=0;i<5;i++){',
-  '    float fi=float(i);',
-  '    float r=sin(rayAngle*5.0+fi*2.5+t*0.06*(fi+1.0));',
-  '    rays+=smoothstep(0.3,0.8,r)*0.12/(1.0+fi*0.25);',
-  '  }',
-  '',
-  '  /* Fog turbulence within light */',
-  '  float fogNoise=fbm(p*1.5+vec2(t*0.06,-t*0.04));',
-  '  float fogNoise2=fbm(p*2.8+vec2(-t*0.03,t*0.05)+3.7);',
-  '  float fogDetail=0.6+fogNoise*0.5+fogNoise2*0.3;',
-  '',
-  '  float volumetric=(radialGlow*0.35+cone*0.65)*(0.7+rays)*fogDetail;',
-  '  vec3 lightCol=vec3(1.0,0.72,0.35);',
-  '  bg+=lightCol*volumetric*0.7;',
-  '',
-  '  /* ── Secondary warm glow from lower-left ── */',
-  '  vec2 glow2Origin=vec2(-0.6,0.3)+mOff*0.2;',
-  '  float g2Dist=length(p-glow2Origin);',
-  '  float glow2=exp(-g2Dist*g2Dist*0.4)*0.2;',
-  '  bg+=vec3(0.9,0.5,0.2)*glow2;',
-  '',
-  '  /* ── Soft animated fog layers ── */',
-  '  float fog1=fbm(p*0.8+vec2(t*0.04,t*0.02));',
-  '  float fog2=fbm(p*1.2+vec2(-t*0.03,t*0.06)+5.5);',
-  '  float fog3=fbm(p*0.5+vec2(t*0.02,-t*0.015)+10.0);',
-  '  float fogMix=fog1*0.4+fog2*0.3+fog3*0.3;',
-  '  vec3 fogColor=mix(vec3(0.1,0.06,0.03),vec3(0.2,0.12,0.06),fogMix);',
-  '  bg=mix(bg,fogColor,fogMix*0.25);',
-  '',
-  '  /* ── Warm caustic ripples on lower area ── */',
-  '  float caustic1=noise(p*4.0+vec2(t*0.15,t*0.1));',
-  '  float caustic2=noise(p*4.0+vec2(-t*0.12,t*0.18)+2.0);',
-  '  float causticPattern=pow(abs(sin(caustic1*6.28)*sin(caustic2*6.28)),0.6);',
-  '  float causticMask=smoothstep(0.4,0.0,uv.y)*volumetric*0.6;',
-  '  bg+=vec3(1.0,0.75,0.4)*causticPattern*causticMask*0.2;',
-  '',
-  '  /* ── Subtle vignette ── */',
-  '  float vignette=1.0-smoothstep(0.4,1.4,length(p*vec2(0.8,1.0)));',
-  '  bg*=0.7+vignette*0.3;',
-  '',
-  '  /* ── Film grain ── */',
-  '  float grain=hash(uv*uResolution+t*100.0)*0.03-0.015;',
-  '  bg+=grain;',
-  '',
-  '  gl_FragColor=vec4(max(bg,0.0),1.0);',
-  '}'
-].join('\n');
+var vs=mkShader(vertSrc,gl.VERTEX_SHADER);
+var fs=mkShader(fragSrc,gl.FRAGMENT_SHADER);
+var prog=gl.createProgram();
+gl.attachShader(prog,vs);gl.attachShader(prog,fs);
+gl.linkProgram(prog);gl.useProgram(prog);
 
-var bgUniforms={
-  uTime:{value:0},
-  uResolution:{value:new THREE.Vector2(heroPin.clientWidth,heroPin.clientHeight)},
-  uMouse:{value:new THREE.Vector2(0,0)}
-};
+/* Fullscreen quad */
+var buf=gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+var aPos=gl.getAttribLocation(prog,'a_pos');
+gl.enableVertexAttribArray(aPos);
+gl.vertexAttribPointer(aPos,2,gl.FLOAT,false,0,0);
 
-var bgMesh=new THREE.Mesh(
-  new THREE.PlaneGeometry(2,2),
-  new THREE.ShaderMaterial({
-    vertexShader:bgVert,fragmentShader:bgFrag,
-    uniforms:bgUniforms,transparent:true,depthWrite:false,depthTest:false
-  })
-);
-scene.add(bgMesh);
+var uTime=gl.getUniformLocation(prog,'u_time');
+var uRes=gl.getUniformLocation(prog,'u_res');
+var uMouse=gl.getUniformLocation(prog,'u_mouse');
 
-/* ═══════════════════════════════════════
-   2. BOKEH PARTICLES — warm floating orbs
-   ═══════════════════════════════════════ */
-var bokehCount=isMobile?40:100;
-var bokehPos=new Float32Array(bokehCount*3);
-var bokehData=[];/* {speed,phase,radius,brightness} */
-for(var i=0;i<bokehCount;i++){
-  bokehPos[i*3]=(Math.random()-0.5)*8;
-  bokehPos[i*3+1]=(Math.random()-0.5)*5;
-  bokehPos[i*3+2]=-1-Math.random()*4;
-  bokehData.push({
-    speed:0.0003+Math.random()*0.0008,
-    phase:Math.random()*Math.PI*2,
-    driftX:0.0002+Math.random()*0.0004,
-    baseY:bokehPos[i*3+1]
-  });
-}
-var bokehGeo=new THREE.BufferGeometry();
-bokehGeo.setAttribute('position',new THREE.BufferAttribute(bokehPos,3));
-
-/* Soft bokeh sprite texture */
-var bokehTex=(function(){
-  var c=document.createElement('canvas');c.width=128;c.height=128;
-  var ctx=c.getContext('2d');
-  /* Outer soft glow */
-  var g1=ctx.createRadialGradient(64,64,0,64,64,64);
-  g1.addColorStop(0,'rgba(255,210,140,0.8)');
-  g1.addColorStop(0.15,'rgba(255,190,110,0.4)');
-  g1.addColorStop(0.4,'rgba(255,160,80,0.1)');
-  g1.addColorStop(0.7,'rgba(200,120,50,0.03)');
-  g1.addColorStop(1,'rgba(150,80,30,0)');
-  ctx.fillStyle=g1;ctx.fillRect(0,0,128,128);
-  /* Bright centre ring — mimics real bokeh */
-  ctx.beginPath();ctx.arc(64,64,24,0,Math.PI*2);
-  ctx.strokeStyle='rgba(255,230,180,0.12)';ctx.lineWidth=3;ctx.stroke();
-  return new THREE.CanvasTexture(c);
-})();
-
-var bokehMat=new THREE.PointsMaterial({
-  map:bokehTex,size:0.5,transparent:true,opacity:0.4,
-  depthWrite:false,blending:THREE.AdditiveBlending,sizeAttenuation:true
-});
-var bokeh=new THREE.Points(bokehGeo,bokehMat);
-scene.add(bokeh);
-
-/* ═══════════════════════════════════════
-   3. TINY DUST MOTES — fine golden specks
-   ═══════════════════════════════════════ */
-var dustCount=isMobile?80:200;
-var dustPos=new Float32Array(dustCount*3);
-var dustSpeeds=[];
-for(var di=0;di<dustCount;di++){
-  dustPos[di*3]=(Math.random()-0.5)*7;
-  dustPos[di*3+1]=(Math.random()-0.5)*5;
-  dustPos[di*3+2]=-0.5-Math.random()*3;
-  dustSpeeds.push({
-    vy:0.0002+Math.random()*0.0006,
-    vx:(Math.random()-0.5)*0.0003,
-    phase:Math.random()*6.28
-  });
-}
-var dustGeo=new THREE.BufferGeometry();
-dustGeo.setAttribute('position',new THREE.BufferAttribute(dustPos,3));
-var dustTex=(function(){
-  var c=document.createElement('canvas');c.width=32;c.height=32;
-  var ctx=c.getContext('2d');
-  var g=ctx.createRadialGradient(16,16,0,16,16,16);
-  g.addColorStop(0,'rgba(255,220,160,1)');
-  g.addColorStop(0.3,'rgba(255,200,120,0.4)');
-  g.addColorStop(1,'rgba(200,140,60,0)');
-  ctx.fillStyle=g;ctx.fillRect(0,0,32,32);
-  return new THREE.CanvasTexture(c);
-})();
-var dustMat=new THREE.PointsMaterial({
-  map:dustTex,size:0.04,transparent:true,opacity:0.4,
-  depthWrite:false,blending:THREE.AdditiveBlending,sizeAttenuation:true
-});
-var dustMesh=new THREE.Points(dustGeo,dustMat);
-scene.add(dustMesh);
-
-/* ═══════════════════════════════════════
-   4. WARM LIGHT ORB — soft sphere glow
-   ═══════════════════════════════════════ */
-var orbMat=new THREE.MeshBasicMaterial({
-  color:0xFFAA44,transparent:true,opacity:0.08,
-  blending:THREE.AdditiveBlending,depthWrite:false
-});
-var orb=new THREE.Mesh(new THREE.SphereGeometry(1.2,32,32),orbMat);
-orb.position.set(1.8,-0.8,-2);
-scene.add(orb);
-var orb2Mat=new THREE.MeshBasicMaterial({
-  color:0xFF8833,transparent:true,opacity:0.04,
-  blending:THREE.AdditiveBlending,depthWrite:false
-});
-var orb2=new THREE.Mesh(new THREE.SphereGeometry(2.5,32,32),orb2Mat);
-orb2.position.set(1.8,-0.8,-2);
-scene.add(orb2);
-
-/* ═══════════════════════════════════════
-   INTERACTIONS
-   ═══════════════════════════════════════ */
+/* ── Mouse interaction ── */
 var mouse={x:0,y:0},smoothMouse={x:0,y:0};
 window.addEventListener('mousemove',function(e){
   mouse.x=(e.clientX/window.innerWidth-0.5)*2;
   mouse.y=(e.clientY/window.innerHeight-0.5)*-2;
 },{passive:true});
 
-window.addEventListener('resize',function(){
-  camera.aspect=heroPin.clientWidth/heroPin.clientHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(heroPin.clientWidth,heroPin.clientHeight);
-  bgUniforms.uResolution.value.set(heroPin.clientWidth,heroPin.clientHeight);
-});
+window.addEventListener('resize',resize);
 
-/* ═══════════════════════════════════════
-   ANIMATION LOOP
-   ═══════════════════════════════════════ */
+/* ── Animation loop ── */
 var rafId,time=0;
 function animate(){
   rafId=requestAnimationFrame(animate);
   time+=0.016;
 
-  /* Smooth mouse for parallax */
   smoothMouse.x+=(mouse.x-smoothMouse.x)*0.03;
   smoothMouse.y+=(mouse.y-smoothMouse.y)*0.03;
 
-  /* Background shader */
-  bgUniforms.uTime.value=time;
-  bgUniforms.uMouse.value.set(smoothMouse.x,smoothMouse.y);
+  gl.uniform1f(uTime,time);
+  gl.uniform2f(uRes,canvas.width,canvas.height);
+  gl.uniform2f(uMouse,smoothMouse.x,smoothMouse.y);
 
-  /* Bokeh particles — slow float with drift */
-  var bArr=bokehGeo.attributes.position.array;
-  for(var bi=0;bi<bokehCount;bi++){
-    var bd=bokehData[bi];
-    bArr[bi*3+1]+=bd.speed;
-    bArr[bi*3]+=Math.sin(time*0.3+bd.phase)*bd.driftX;
-    /* Parallax shift based on depth */
-    var depth=Math.abs(bArr[bi*3+2]);
-    bArr[bi*3]+=smoothMouse.x*0.001/depth;
-    bArr[bi*3+1]+=smoothMouse.y*0.0005/depth;
-    /* Reset when out of view */
-    if(bArr[bi*3+1]>3){
-      bArr[bi*3+1]=-3;
-      bArr[bi*3]=(Math.random()-0.5)*8;
-    }
-  }
-  bokehGeo.attributes.position.needsUpdate=true;
-
-  /* Dust motes */
-  var dArr=dustGeo.attributes.position.array;
-  for(var dj=0;dj<dustCount;dj++){
-    var ds=dustSpeeds[dj];
-    dArr[dj*3+1]+=ds.vy;
-    dArr[dj*3]+=ds.vx+Math.sin(time*0.5+ds.phase)*0.00015;
-    if(dArr[dj*3+1]>2.8){dArr[dj*3+1]=-2.8;dArr[dj*3]=(Math.random()-0.5)*7;}
-  }
-  dustGeo.attributes.position.needsUpdate=true;
-
-  /* Orb gentle drift */
-  orb.position.x=1.8+Math.sin(time*0.15)*0.3+smoothMouse.x*0.15;
-  orb.position.y=-0.8+Math.cos(time*0.12)*0.2+smoothMouse.y*0.1;
-  orb2.position.copy(orb.position);
-  orb.material.opacity=0.04+Math.sin(time*0.8)*0.008;
-
-  renderer.render(scene,camera);
+  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
 }
 
 document.addEventListener('visibilitychange',function(){
@@ -3226,226 +2972,50 @@ animate();
 new IntersectionObserver(function(e){if(!e[0].isIntersecting){cancelAnimationFrame(rafId);}else{animate();}},{threshold:0}).observe(heroPin);
 window.addEventListener('unload',function(){cancelAnimationFrame(rafId);});
 
-}catch(e){console.error('Atmosphere error:',e.message,e.stack);}
+}catch(e){console.error('Honey BG error:',e.message,e.stack);}
 })();
 </script>
 
-<!-- ─── FIRE SPARKS — hero overlay, scroll→flame ─── -->
 <script>
 (function(){
-'use strict';
-var heroPin=document.querySelector('.hero-pin');
-if(!heroPin)return;
-var canvas=document.createElement('canvas');
-canvas.id='fire-canvas';
-canvas.setAttribute('aria-hidden','true');
-heroPin.appendChild(canvas);
-var ctx=canvas.getContext('2d');
-var W,H,dpr=Math.min(window.devicePixelRatio||1,2);
-var needsScale=true;
+  var track=document.getElementById('carouselTrack');
+  var dots=document.querySelectorAll('.carousel-dot');
+  var prev=document.getElementById('carouselPrev');
+  var next=document.getElementById('carouselNext');
+  if(!track)return;
+  var current=0, total=3;
+  var startX=0, diffX=0, dragging=false, swiped=false;
 
-function resize(){
-  W=heroPin.clientWidth;H=heroPin.clientHeight;
-  canvas.width=W*dpr;canvas.height=H*dpr;
-  needsScale=true;
-}
-resize();
-window.addEventListener('resize',resize);
-
-function rng(a,b){return a+Math.random()*(b-a);}
-
-/* ── Scroll progress: 0 = top, 1 = scrolled past hero ── */
-var scrollP=0;
-window.addEventListener('scroll',function(){
-  scrollP=Math.min(1,Math.max(0,window.scrollY/(H*0.8)));
-},{passive:true});
-
-/* ── Spark pool ── */
-var MAX_SPARKS=200;
-var sparks=[];
-function spawnSpark(intensity){
-  var baseSpeed=1+intensity*3.5;
-  var spread=0.15+intensity*0.7;
-  return{
-    x:rng(W*((1-spread)/2),W*(1-(1-spread)/2)),
-    y:H+rng(0,20),
-    vx:rng(-1,1)*(0.5+intensity*1.5),
-    vy:rng(-baseSpeed*0.4,-baseSpeed),
-    life:1,
-    decay:rng(0.004,0.012+intensity*0.008),
-    size:rng(1,2.5+intensity*3),
-    g:Math.floor(rng(100,220)),
-    b:Math.floor(rng(10,60)),
-    flickSpeed:rng(6,20),
-    trail:rng(0.2,0.5+intensity*0.5),
-    age:0
-  };
-}
-
-/* ── Ember pool ── */
-var MAX_EMBERS=60;
-var embers=[];
-function spawnEmber(intensity){
-  return{
-    x:rng(W*0.1,W*0.9),
-    y:H+rng(0,10),
-    vx:rng(-0.4,0.4),
-    vy:rng(-1.2,-0.2)*(1+intensity),
-    life:1,
-    decay:rng(0.002,0.006),
-    size:rng(3+intensity*4,6+intensity*6),
-    g:Math.floor(rng(60,180)),
-    pulse:rng(3,9),age:0
-  };
-}
-
-/* Pre-fill at low intensity */
-for(var i=0;i<80;i++)sparks.push(spawnSpark(0));
-for(var j=0;j<20;j++)embers.push(spawnEmber(0));
-
-var time=0;
-var rafId;
-
-function animate(){
-  rafId=requestAnimationFrame(animate);
-  time+=0.016;
-  if(needsScale){ctx.setTransform(dpr,0,0,dpr,0,0);needsScale=false;}
-
-  var p=scrollP; /* 0→sparks, 1→full flame */
-
-  /* Clear — transparent canvas overlays the Three.js background */
-  ctx.clearRect(0,0,W,H);
-
-  /* ── Target particle counts based on scroll ── */
-  var targetSparks=Math.floor(30+p*170);
-  var targetEmbers=Math.floor(5+p*55);
-  while(sparks.length<targetSparks&&sparks.length<MAX_SPARKS)sparks.push(spawnSpark(p));
-  while(embers.length<targetEmbers&&embers.length<MAX_EMBERS)embers.push(spawnEmber(p));
-
-  ctx.globalCompositeOperation='lighter';
-
-  /* ── Fire base glow — grows with scroll ── */
-  var baseAlpha=0.02+p*0.2;
-  var baseHeight=H*(0.85-p*0.5);
-  var base=ctx.createLinearGradient(0,H,0,baseHeight);
-  base.addColorStop(0,'rgba(200,70,10,'+(baseAlpha)+')');
-  base.addColorStop(0.3,'rgba(255,100,20,'+(baseAlpha*0.4)+')');
-  base.addColorStop(0.6,'rgba(200,60,10,'+(baseAlpha*0.1)+')');
-  base.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=base;
-  ctx.fillRect(0,0,W,H);
-
-  /* ── Hotspots along bottom — more and brighter with scroll ── */
-  var hotCount=Math.floor(3+p*6);
-  for(var h=0;h<hotCount;h++){
-    var hx=W*(0.08+h/(hotCount-0.5)*0.84)+Math.sin(time*1.8+h*2.3)*W*0.03;
-    var hy=H-3;
-    var hSz=(30+p*50)+Math.sin(time*3.5+h*1.9)*(10+p*15);
-    var hA=(0.03+p*0.1)+Math.sin(time*4.5+h*2.7)*(0.02+p*0.04);
-    var hg=ctx.createRadialGradient(hx,hy,0,hx,hy,hSz);
-    hg.addColorStop(0,'rgba(255,160,40,'+hA+')');
-    hg.addColorStop(0.4,'rgba(255,90,15,'+(hA*0.4)+')');
-    hg.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=hg;
-    ctx.fillRect(hx-hSz,hy-hSz,hSz*2,hSz*2);
+  function goTo(i){
+    current=Math.max(0,Math.min(total-1,i));
+    track.style.transform='translateX(-'+current*100+'%)';
+    dots.forEach(function(d,idx){d.classList.toggle('active',idx===current);});
   }
 
-  /* ── Big flame glow when scrolled ── */
-  if(p>0.3){
-    var flameP=(p-0.3)/0.7;
-    var fCx=W*0.5;
-    var fCy=H-10;
-    var fSz=100+flameP*250;
-    var fA=flameP*0.12;
-    var fg=ctx.createRadialGradient(fCx,fCy,0,fCx,fCy,fSz);
-    fg.addColorStop(0,'rgba(255,120,20,'+fA+')');
-    fg.addColorStop(0.3,'rgba(255,70,10,'+(fA*0.5)+')');
-    fg.addColorStop(0.6,'rgba(200,40,0,'+(fA*0.15)+')');
-    fg.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=fg;
-    ctx.fillRect(fCx-fSz,fCy-fSz,fSz*2,fSz*2);
+  dots.forEach(function(d){d.addEventListener('click',function(){goTo(+d.dataset.slide);});});
+  if(prev)prev.addEventListener('click',function(){goTo(current-1);});
+  if(next)next.addEventListener('click',function(){goTo(current+1);});
 
-    /* Secondary flame lobes */
-    for(var fl=0;fl<3;fl++){
-      var flx=W*(0.3+fl*0.2)+Math.sin(time*2+fl*2.5)*40;
-      var fly=H-5;
-      var flSz=60+flameP*120+Math.sin(time*3+fl)*20;
-      var flA=flameP*0.08;
-      var flg=ctx.createRadialGradient(flx,fly,0,flx,fly,flSz);
-      flg.addColorStop(0,'rgba(255,140,30,'+flA+')');
-      flg.addColorStop(0.5,'rgba(255,60,5,'+(flA*0.3)+')');
-      flg.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=flg;
-      ctx.fillRect(flx-flSz,fly-flSz,flSz*2,flSz*2);
-    }
-  }
+  // block card clicks during swipe
+  track.addEventListener('click',function(e){if(swiped){e.preventDefault();e.stopPropagation();swiped=false;}},true);
 
-  /* ── Embers ── */
-  for(var ei=embers.length-1;ei>=0;ei--){
-    var e=embers[ei];
-    e.x+=e.vx+Math.sin(time*2+ei*0.6)*0.35;
-    e.y+=e.vy*(1+p*0.5);
-    e.vy*=0.999;
-    e.life-=e.decay;e.age+=0.016;
-    if(e.life<=0||e.y<-40){
-      if(ei<targetEmbers){embers[ei]=spawnEmber(p);}
-      else{embers.splice(ei,1);}
-      continue;
-    }
-    var ea=e.life;
-    var ep=0.6+0.4*Math.sin(e.age*e.pulse);
-    var esz=e.size*ea*ep;
-    var eg=ctx.createRadialGradient(e.x,e.y,0,e.x,e.y,esz*4);
-    eg.addColorStop(0,'rgba(255,'+e.g+',20,'+(ea*0.35)+')');
-    eg.addColorStop(0.4,'rgba(255,'+Math.floor(e.g*0.5)+',0,'+(ea*0.1)+')');
-    eg.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=eg;
-    ctx.fillRect(e.x-esz*4,e.y-esz*4,esz*8,esz*8);
-    ctx.beginPath();ctx.arc(e.x,e.y,esz,0,6.28);
-    ctx.fillStyle='rgba(255,'+Math.floor(210*ep)+','+Math.floor(90*ep)+','+(ea*0.9)+')';
-    ctx.fill();
-  }
+  // touch swipe
+  track.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;diffX=0;dragging=true;swiped=false;track.style.transition='none';},{passive:true});
+  track.addEventListener('touchmove',function(e){if(!dragging)return;diffX=e.touches[0].clientX-startX;if(Math.abs(diffX)>10)swiped=true;track.style.transform='translateX(calc(-'+current*100+'% + '+diffX+'px))';},{passive:true});
+  track.addEventListener('touchend',function(){if(!dragging)return;dragging=false;track.style.transition='transform .45s cubic-bezier(.4,0,.2,1)';if(diffX>50)goTo(current-1);else if(diffX<-50)goTo(current+1);else goTo(current);});
 
-  /* ── Sparks ── */
-  for(var si=sparks.length-1;si>=0;si--){
-    var s=sparks[si];
-    s.vx+=rng(-0.08,0.08);
-    s.vy-=0.006*(1+p);
-    s.x+=s.vx;
-    s.y+=s.vy*(1+p*0.8);
-    s.life-=s.decay;s.age+=0.016;
-    if(s.life<=0||s.y<-40||s.x<-40||s.x>W+40){
-      if(si<targetSparks){sparks[si]=spawnSpark(p);}
-      else{sparks.splice(si,1);}
-      continue;
-    }
-    var sa=s.life*(0.5+0.5*Math.sin(s.age*s.flickSpeed));
-    /* Trail */
-    if(s.trail>0.35){
-      ctx.beginPath();ctx.moveTo(s.x,s.y);
-      ctx.lineTo(s.x-s.vx*(3+p*3),s.y-s.vy*(3+p*3));
-      ctx.strokeStyle='rgba(255,'+s.g+','+s.b+','+(sa*0.5)+')';
-      ctx.lineWidth=s.size*(0.3+p*0.3);ctx.stroke();
-    }
-    ctx.beginPath();ctx.arc(s.x,s.y,s.size*sa,0,6.28);
-    ctx.fillStyle='rgba(255,'+s.g+','+s.b+','+sa+')';
-    ctx.fill();
-    if(sa>0.25){
-      ctx.beginPath();ctx.arc(s.x,s.y,s.size*sa*0.3,0,6.28);
-      ctx.fillStyle='rgba(255,255,230,'+(sa*0.8)+')';
-      ctx.fill();
-    }
-  }
+  // mouse drag
+  track.addEventListener('mousedown',function(e){e.preventDefault();startX=e.clientX;diffX=0;dragging=true;swiped=false;track.style.transition='none';track.style.cursor='grabbing';});
+  window.addEventListener('mousemove',function(e){if(!dragging)return;diffX=e.clientX-startX;if(Math.abs(diffX)>10)swiped=true;track.style.transform='translateX(calc(-'+current*100+'% + '+diffX+'px))';});
+  window.addEventListener('mouseup',function(){if(!dragging)return;dragging=false;track.style.transition='transform .45s cubic-bezier(.4,0,.2,1)';track.style.cursor='';if(diffX>50)goTo(current-1);else if(diffX<-50)goTo(current+1);else goTo(current);});
 
-  ctx.globalCompositeOperation='source-over';
-}
+  // keyboard arrow keys
+  document.getElementById('candleCarousel').addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft')goTo(current-1);
+    if(e.key==='ArrowRight')goTo(current+1);
+  });
 
-document.addEventListener('visibilitychange',function(){
-  if(document.hidden)cancelAnimationFrame(rafId);else animate();
-});
-animate();
-new IntersectionObserver(function(e){if(!e[0].isIntersecting){cancelAnimationFrame(rafId);}else{animate();}},{threshold:0}).observe(document.querySelector('.hero-pin')||document.body);
-window.addEventListener('unload',function(){cancelAnimationFrame(rafId);});
+  track.style.cursor='grab';
 })();
 </script>
 

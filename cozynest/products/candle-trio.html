@@ -3,40 +3,65 @@
 <head>
   <meta charset="UTF-8"/>
   <link rel="icon" type="image/png" href="/images/sofa-logo.png"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Soy Wax Candle Trio | Hand-Poured Scented Candles | The Snug Spot</title>
-  <meta name="description" content="Three hand-poured soy wax candles in complementary scents: Amber & Sandalwood, Cedarwood & Moss, Vanilla & Tonka. 35+ hour burn each. Free UK shipping over £75."/>
-  <meta name="keywords" content="soy candle set UK, hand poured candles, scented candle trio, luxury candle gift set"/>
+  <title>Beeswax Candle | Hand-Poured Scented Candle | The Snug Spot</title>
+  <meta name="description" content="Hand-poured 220g beeswax candle in your choice of Vanilla, Chocolate or Cinnamon. 40-45 hour burn time. Free UK shipping over £75."/>
+  <meta name="keywords" content="beeswax candle UK, hand poured candle, scented candle, luxury candle, vanilla candle, chocolate candle, cinnamon candle"/>
   <link rel="canonical" href="https://thesnugspot.com/products/candle-trio.html"/>
-  <meta property="og:title" content="Soy Wax Candle Trio — The Snug Spot"/>
-  <meta property="og:description" content="Three hand-poured soy wax candles in complementary scents: Amber & Sandalwood, Cedarwood & Moss, Vanilla & Tonka. 35+ hour burn each."/>
+  <meta property="og:title" content="Beeswax Candle — The Snug Spot"/>
+  <meta property="og:description" content="Hand-poured 220g beeswax candle in Vanilla, Chocolate or Cinnamon. 40-45 hour burn time."/>
   <meta property="og:image" content="/images/products/coming-soon.svg"/>
   <meta property="og:type" content="product"/>
   <meta property="og:url" content="https://thesnugspot.com/products/candle-trio.html"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <script type="application/ld+json">{"@context":"https://schema.org/","@type":"Product","name":"Soy Wax Candle Trio","image":"https://thesnugspot.com/images/products/coming-soon.svg","description":"Three hand-poured soy candles in warm, complementary scents. Hours of calm in every burn.","brand":{"@type":"Brand","name":"The Snug Spot"},"offers":{"@type":"Offer","price":"15.00","priceCurrency":"GBP","availability":"https://schema.org/InStock"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org/","@type":"Product","name":"Beeswax Candle","image":"https://thesnugspot.com/images/products/coming-soon.svg","description":"Hand-poured 220g beeswax candle available in Vanilla, Chocolate and Cinnamon. 40-45 hour burn time.","brand":{"@type":"Brand","name":"The Snug Spot"},"offers":{"@type":"Offer","price":"20.00","priceCurrency":"GBP","availability":"https://schema.org/InStock"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="/products/product.css"/>
+  <style>
+    .scent-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    .scent-btn {
+      width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--sand);
+      cursor: pointer; transition: transform .2s, border-color .2s; position: relative;
+    }
+    .scent-btn:hover { transform: scale(1.1); }
+    .scent-btn.selected { border-color: var(--deep-brown); transform: scale(1.1); }
+    .scent-btn[title]::before {
+      content: attr(title); position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%); font-size: 10px; white-space: nowrap;
+      background: var(--deep-brown); color: var(--cream); padding: 3px 8px; border-radius: 3px;
+      opacity: 0; transition: opacity .2s; pointer-events: none;
+    }
+    .scent-btn:hover::before { opacity: 1; }
+  </style>
 </head>
 <body>
 <nav><a href="/" class="nav-logo"><span class="nav-mark"><img src="/images/sofa-logo.png" alt="The Snug Spot"/></span>The Snug<span>Spot</span></a><div class="nav-right"><a href="/" class="nav-back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Shop</a><button class="nav-cart-btn" onclick="goToCart()" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-count" id="cartCount">0</span></button></div></nav>
-<nav class="breadcrumb"><a href="/">Home</a><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><a href="/#products">Collection</a><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><span>Soy Wax Candle Trio</span></nav>
+<nav class="breadcrumb"><a href="/">Home</a><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><a href="/#products">Collection</a><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg><span>Beeswax Candle</span></nav>
 <div class="product-wrap">
   <div>
-    <div class="gallery-main"><img id="mainImg" src="/images/products/coming-soon.svg" alt="Soy Wax Candle Trio hand-poured"/></div>
+    <div class="gallery-main"><img id="mainImg" src="/images/products/coming-soon.svg" alt="Beeswax Candle hand-poured"/></div>
     <div class="gallery-thumbs">
-      <div class="thumb active" tabindex="0" role="button" onclick="switchImg(this,'/images/products/coming-soon.svg')"><img src="/images/products/coming-soon.svg" alt="Candle set front"/></div>
+      <div class="thumb active" tabindex="0" role="button" onclick="switchImg(this,'/images/products/coming-soon.svg')"><img src="/images/products/coming-soon.svg" alt="Candle front view"/></div>
     </div>
   </div>
   <div class="product-info">
-    <p class="p-eyebrow">Candles &amp; Diffusers</p>
-    <h1 class="p-name">Soy Wax Candle Trio</h1>
-    <div class="p-price">£15</div>
+    <p class="p-eyebrow">Candles</p>
+    <h1 class="p-name">Beeswax Candle</h1>
+    <div class="p-price">£20</div>
+
+    <!-- SCENT SELECTOR -->
+    <p class="option-label">Scent <span id="selectedScentLabel">— Vanilla</span></p>
+    <div class="scent-grid">
+      <button class="scent-btn selected" data-scent="Vanilla" title="Vanilla" onclick="selectScent(this)" style="background:#F5E6C8;"></button>
+      <button class="scent-btn" data-scent="Chocolate" title="Chocolate" onclick="selectScent(this)" style="background:#5C3D2E;"></button>
+      <button class="scent-btn" data-scent="Cinnamon" title="Cinnamon" onclick="selectScent(this)" style="background:#C4785A;"></button>
+    </div>
+
     <div class="add-row"><div class="qty-wrap"><button class="qty-btn" onclick="changeQty(-1)">−</button><span class="qty-num" id="qty">1</span><button class="qty-btn" onclick="changeQty(1)">+</button></div><button class="btn-atc" onclick="addToCart()">Add to Cart</button></div>
     <div class="trust-row"><div class="trust-item"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Free UK shipping over £75</div><div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>30-day returns</div></div>
     <div class="accordion">
-      <div class="acc-item"><button class="acc-trigger open" onclick="toggleAcc(this)" aria-expanded="true">The Three Scents<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="acc-body open"><ul><li><strong>No.1 — Amber &amp; Sandalwood:</strong> Warm, grounding, rich base notes</li><li><strong>No.2 — Cedarwood &amp; Moss:</strong> Fresh, woody, earthy mid notes</li><li><strong>No.3 — Vanilla &amp; Tonka:</strong> Soft, sweet, creamy comfort</li></ul></div></div>
-      <div class="acc-item"><button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">Product Details<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="acc-body"><ul><li>100% natural soy wax, hand-poured</li><li>Cotton lead-free wick</li><li>Each candle: 200g / 7oz</li><li>Burn time: 35–40 hours per candle</li><li>Reusable glass jar</li><li>Vegan &amp; cruelty-free</li></ul></div></div>
+      <div class="acc-item"><button class="acc-trigger open" onclick="toggleAcc(this)" aria-expanded="true">Available Scents<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="acc-body open"><ul><li><strong>Vanilla:</strong> Soft, sweet, creamy warmth</li><li><strong>Chocolate:</strong> Rich, indulgent, cosy comfort</li><li><strong>Cinnamon:</strong> Warm, spicy, festive glow</li></ul></div></div>
+      <div class="acc-item"><button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">Product Details<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="acc-body"><ul><li>100% natural beeswax, hand-poured</li><li>Cotton lead-free wick</li><li>220g / 7.8oz</li><li>Burn time: 40–45 hours</li><li>Reusable glass jar</li><li>Natural &amp; hand-finished</li></ul></div></div>
       <div class="acc-item"><button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">Candle Care<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="acc-body"><ul><li>First burn: allow wax to pool to the edges (2–3 hours)</li><li>Trim wick to 5mm before each use</li><li>Never burn for more than 4 hours at a time</li><li>Keep away from draughts, children and pets</li><li>Stop burning when 1cm of wax remains</li></ul></div></div>
       <div class="acc-item"><button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">Shipping &amp; Returns<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="acc-body"><p>Dispatched within 3–4 business days. Free UK shipping over £75 (otherwise £4.95). 30-day returns on unused items. Contact <a href="mailto:support@thesnugspot.com" style="color:var(--terracotta)">support@thesnugspot.com</a>.</p></div></div>
     </div>
@@ -46,9 +71,11 @@
 <footer><p class="foot-copy">© 2026 The Snug Spot is a trading name of Milene Borges de Moura (Sole Trader). 58 Sydney Road, London SW20 8EF. All rights reserved.</p><div class="foot-legal"><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a><a href="/returns.html">Returns</a><a href="/accessibility.html">Accessibility</a><a href="#" id="cookiePrefLink">Cookie Preferences</a><a href="/">Back to Shop</a></div></footer>
 <script>
 const CART_KEY='snugspot_cart';let cart;try{cart=JSON.parse(localStorage.getItem(CART_KEY)||'[]');}catch(e){cart=[];localStorage.setItem(CART_KEY,'[]');}let qty=1;
+let selectedScent='Vanilla';
 function updateCartCount(){document.getElementById('cartCount').textContent=cart.reduce((s,i)=>s+i.qty,0);}updateCartCount();
 function changeQty(d){qty=Math.max(1,Math.min(10,qty+d));document.getElementById('qty').textContent=qty;}
-function addToCart(){const name='Soy Wax Candle Trio';const img='/images/products/coming-soon.svg';const e=cart.find(i=>i.name===name);if(e){e.qty+=qty;}else{cart.push({name,price:15,qty,img});}localStorage.setItem(CART_KEY,JSON.stringify(cart));updateCartCount();showToast();}
+function selectScent(btn){document.querySelectorAll('.scent-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selectedScent=btn.dataset.scent;document.getElementById('selectedScentLabel').textContent='— '+selectedScent;}
+function addToCart(){const name='Beeswax Candle — '+selectedScent;const img='/images/products/coming-soon.svg';const e=cart.find(i=>i.name===name);if(e){e.qty+=qty;}else{cart.push({name,price:20,qty,img});}localStorage.setItem(CART_KEY,JSON.stringify(cart));updateCartCount();showToast();}
 function showToast(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 function goToCart(){window.location.href='/?opencart=1';}
 function switchImg(thumb,src){document.getElementById('mainImg').src=src;document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));thumb.classList.add('active');}
