@@ -2088,6 +2088,10 @@
         <input type="checkbox" id="ckAgreeTC" style="margin-top:3px;accent-color:var(--terracotta);flex-shrink:0;">
         <span>I agree to the <a href="/terms.html" target="_blank" style="color:var(--terracotta);text-decoration:underline;">Terms of Service</a> and <a href="/privacy.html" target="_blank" style="color:var(--terracotta);text-decoration:underline;">Privacy Policy</a>, and understand I have a <strong>14-day right to cancel</strong> under the Consumer Contracts Regulations 2013.</span>
       </label>
+      <label class="ck-tc-agree" style="display:flex;align-items:flex-start;gap:10px;margin-top:10px;font-size:12px;color:var(--text-mid);line-height:1.6;cursor:pointer;">
+        <input type="checkbox" id="ckAgeConfirm" style="margin-top:3px;accent-color:var(--terracotta);flex-shrink:0;">
+        <span>I confirm that I am <strong>18 years of age or older</strong>.</span>
+      </label>
       <div class="ck-actions">
         <button class="btn-ck-back" id="ckBackShipping">← Back</button>
         <button class="btn-ck-next" id="ckPlaceOrder">Place Order</button>
@@ -2834,10 +2838,17 @@
     ckPlaceOrder.addEventListener('click', async () => {
       if (_submitting) return;
       const tcBox = document.getElementById('ckAgreeTC');
+      const ageBox = document.getElementById('ckAgeConfirm');
       if (!tcBox || !tcBox.checked) {
         tcBox.parentElement.style.outline = '2px solid var(--terracotta)';
         tcBox.parentElement.style.outlineOffset = '4px';
         tcBox.focus();
+        return;
+      }
+      if (!ageBox || !ageBox.checked) {
+        ageBox.parentElement.style.outline = '2px solid var(--terracotta)';
+        ageBox.parentElement.style.outlineOffset = '4px';
+        ageBox.focus();
         return;
       }
       tcBox.parentElement.style.outline = '';
