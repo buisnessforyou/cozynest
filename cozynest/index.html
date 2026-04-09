@@ -42,11 +42,30 @@
   [{
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "Beeswax Candle",
+    "name": "Beeswax Candle — Vanilla",
     "image": "https://thesnugspot.com/images/products/coming-soon.svg",
-    "description": "Hand-poured 220g beeswax candle available in Vanilla, Chocolate and Cinnamon. 40-45 hour burn time.",
+    "description": "Hand-poured 220g beeswax candle in Vanilla. Notes of Madagascan vanilla bean and warm tonka. 100% natural beeswax with cotton lead-free wick in a reusable ceramic vessel. 40-45 hour burn time. Ingredients: beeswax, fragrance oils, cotton wick.",
+    "sku": "SS-BEESWAX-VANILLA",
     "brand": {"@type": "Brand", "name": "The Snug Spot"},
-    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
+    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
+  },{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Beeswax Candle — Chocolate",
+    "image": "https://thesnugspot.com/images/products/coming-soon.svg",
+    "description": "Hand-poured 220g beeswax candle in Chocolate. Deep cocoa and roasted hazelnut notes. 100% natural beeswax with cotton lead-free wick in a reusable ceramic vessel. 40-45 hour burn time. Ingredients: beeswax, fragrance oils, cotton wick.",
+    "sku": "SS-BEESWAX-CHOCOLATE",
+    "brand": {"@type": "Brand", "name": "The Snug Spot"},
+    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
+  },{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Beeswax Candle — Cinnamon",
+    "image": "https://thesnugspot.com/images/products/coming-soon.svg",
+    "description": "Hand-poured 220g beeswax candle in Cinnamon. Ceylon cinnamon and clove bud blend. 100% natural beeswax with cotton lead-free wick in a reusable ceramic vessel. 40-45 hour burn time. Ingredients: beeswax, fragrance oils, cotton wick.",
+    "sku": "SS-BEESWAX-CINNAMON",
+    "brand": {"@type": "Brand", "name": "The Snug Spot"},
+    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
   }]
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -476,6 +495,12 @@
       .hero-card:hover, .hero-card:focus-visible { transform:translateY(-4px) !important; }
       .hero-bg { will-change:auto; }
       .hero-card-img { will-change:auto; }
+      .p-card, .p-card-inner, .p-img, .p-photo, .p-overlay, .btn-add { transition:none !important; }
+      .cart-drawer { transition:none !important; }
+      .nav-mobile-menu { transition:none !important; }
+      .reveal { transition:none !important; opacity:1; transform:none; }
+      .d1,.d2,.d3,.d4,.d5 { transition-delay:0s !important; }
+      .checkout-overlay, .checkout-modal { transition:none !important; }
     }
 
     /* ======= MOBILE HERO — Entirely different template ======= */
@@ -632,7 +657,9 @@
       cursor:pointer; transform-style:preserve-3d;
       transition:transform .3s var(--ease);
     }
-    .p-card:hover { transform:translateY(-4px); }
+    @media (hover: hover) {
+      .p-card:hover { transform:translateY(-4px); }
+    }
 
     .btn-add-mob { display:none; }
 
@@ -662,8 +689,10 @@
       border:1px solid rgba(196,120,90,.07);
       transition:box-shadow .4s var(--ease);
     }
-    .p-card:hover .p-card-inner {
-      box-shadow:0 28px 56px rgba(44,26,14,.11), 0 8px 16px rgba(44,26,14,.06);
+    @media (hover: hover) {
+      .p-card:hover .p-card-inner {
+        box-shadow:0 28px 56px rgba(44,26,14,.11), 0 8px 16px rgba(44,26,14,.06);
+      }
     }
 
     .p-img-wrap { position:relative; height:280px; overflow:hidden; }
@@ -676,7 +705,7 @@
       content:''; position:absolute; inset:0;
       background:radial-gradient(circle at 38% 32%,rgba(255,255,255,.22),transparent 60%);
     }
-    .p-card:hover .p-img { transform:scale(1.05); }
+    @media (hover: hover) { .p-card:hover .p-img { transform:scale(1.05); } }
 
     .pi-vanilla { background:linear-gradient(148deg,#FDF6E8 0%,#F5E6C8 45%,#D4BA8A 100%); }
     .pi-chocolate { background:linear-gradient(148deg,#4A3525 0%,#3D2A1C 45%,#2C1A0E 100%); }
@@ -689,9 +718,11 @@
       filter:brightness(.97) saturate(.92);
       display:block;
     }
-    .p-card:hover .p-photo {
-      transform:scale(1.05);
-      filter:brightness(.93) saturate(1);
+    @media (hover: hover) {
+      .p-card:hover .p-photo {
+        transform:scale(1.05);
+        filter:brightness(.93) saturate(1);
+      }
     }
 
     .p-badge {
@@ -709,14 +740,14 @@
       display:flex; align-items:center; justify-content:center;
       opacity:0; transition:opacity .3s;
     }
-    .p-card:hover .p-overlay { opacity:1; }
+    @media (hover: hover) { .p-card:hover .p-overlay { opacity:1; } }
     .btn-add {
       font-size:11px; letter-spacing:.12em; text-transform:uppercase;
       padding:13px 30px; background:var(--cream); color:var(--deep-brown);
       border:none; border-radius:2px; cursor:pointer;
       transform:translateY(6px); transition:transform .3s var(--ease);
     }
-    .p-card:hover .btn-add { transform:translateY(0); }
+    @media (hover: hover) { .p-card:hover .btn-add { transform:translateY(0); } }
 
     .p-info { padding:22px 22px 24px; }
     .p-cat { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--warm-gray); margin-bottom:7px; }
@@ -1385,14 +1416,14 @@
 
 <!-- ─── MOBILE MENU OVERLAY ─── -->
 <div class="nav-mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <a href="#products" class="mob-link">Shop</a>
-  <a href="#products" class="mob-link">Collections</a>
-  <a href="/our-story.html" class="mob-link">Stories</a>
+  <a href="#products" class="mob-link" aria-label="Shop our candles">Shop</a>
+  <a href="#products" class="mob-link" aria-label="Browse collections">Collections</a>
+  <a href="/our-story.html" class="mob-link" aria-label="Read our story">Stories</a>
   <button class="mob-cart-btn" id="mobCartBtn">View Cart</button>
 </div>
 
 <!-- ─── NAVBAR ─── -->
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" aria-label="Main navigation">
   <a href="/" class="nav-logo"><span class="nav-mark"><img src="/images/sofa-logo.png" alt="The Snug Spot sofa icon"/></span><span class="logo-the">The</span><span class="logo-snugspot">SnugSpot</span></a>
   <ul class="nav-links">
     <li><a href="#products">Our Candles</a></li>
@@ -1501,7 +1532,7 @@
   <div class="grid-products">
 
     <!-- Vanilla -->
-    <div class="p-card" tabindex="0">
+    <article class="p-card" tabindex="0">
       <div class="p-card-inner">
         <div class="p-img-wrap">
           <div class="p-img pi-vanilla"></div>
@@ -1512,15 +1543,15 @@
         <div class="p-info">
           <p class="p-cat">Beeswax Candle</p>
           <h3 class="p-name">Vanilla</h3>
-          <p class="p-desc">Soft, sweet, creamy warmth. 220g hand-poured beeswax. 40–45 hour burn.</p>
+          <p class="p-desc">Soft, sweet, creamy warmth — like a cashmere blanket in candle form. Notes of Madagascan vanilla bean and warm tonka melt into a gentle, lingering sweetness. 220g hand-poured beeswax in a reusable ceramic vessel. 40–45 hour burn.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
           <button class="btn-add-mob" data-name="Vanilla">Add to Cart</button>
         </div>
       </div>
-    </div>
+    </article>
 
     <!-- Chocolate -->
-    <div class="p-card" tabindex="0">
+    <article class="p-card" tabindex="0">
       <div class="p-card-inner">
         <div class="p-img-wrap">
           <div class="p-img pi-chocolate"></div>
@@ -1531,15 +1562,15 @@
         <div class="p-info">
           <p class="p-cat">Beeswax Candle</p>
           <h3 class="p-name">Chocolate</h3>
-          <p class="p-desc">Rich, indulgent, cosy comfort. 220g hand-poured beeswax. 40–45 hour burn.</p>
+          <p class="p-desc">Rich, indulgent, cosy comfort — an evening treat for the senses. Deep cocoa and roasted hazelnut notes create an enveloping warmth that fills the room. 220g hand-poured beeswax in a reusable ceramic vessel. 40–45 hour burn.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
           <button class="btn-add-mob" data-name="Chocolate">Add to Cart</button>
         </div>
       </div>
-    </div>
+    </article>
 
     <!-- Cinnamon -->
-    <div class="p-card" tabindex="0">
+    <article class="p-card" tabindex="0">
       <div class="p-card-inner">
         <div class="p-img-wrap">
           <div class="p-img pi-cinnamon"></div>
@@ -1550,12 +1581,12 @@
         <div class="p-info">
           <p class="p-cat">Beeswax Candle</p>
           <h3 class="p-name">Cinnamon</h3>
-          <p class="p-desc">Warm, spicy, festive glow. 220g hand-poured beeswax. 40–45 hour burn.</p>
+          <p class="p-desc">Warm, spicy, festive glow — like a kitchen full of freshly baked treats. Ceylon cinnamon and clove bud blend into a comforting, nostalgic fragrance. 220g hand-poured beeswax in a reusable ceramic vessel. 40–45 hour burn.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
           <button class="btn-add-mob" data-name="Cinnamon">Add to Cart</button>
         </div>
       </div>
-    </div>
+    </article>
 
   </div>
 
@@ -1564,7 +1595,7 @@
     <button class="mob-dot" data-i="1" aria-label="Chocolate"></button>
     <button class="mob-dot" data-i="2" aria-label="Cinnamon"></button>
   </div>
-  <p class="mob-swipe-hint">Swipe to explore scents</p>
+  <p class="mob-swipe-hint" aria-live="polite" id="mobSwipeHint">Swipe to explore scents</p>
 
   <p style="text-align:center; margin-top:36px; font-family:var(--font-display); font-size:1.2rem; font-style:italic; color:var(--text-light); letter-spacing:0.02em;">Soy candles coming soon</p>
 </section>
@@ -2264,7 +2295,24 @@
     nav.classList.toggle('open', open);
     hamburger.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      var firstLink = mobileMenu.querySelector('.mob-link');
+      if (firstLink) firstLink.focus();
+    } else {
+      hamburger.focus();
+    }
   }
+
+  /* Focus trap inside mobile menu */
+  mobileMenu.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { toggleMenu(false); return; }
+    if (e.key !== 'Tab') return;
+    var focusable = Array.from(mobileMenu.querySelectorAll('a,button'));
+    if (!focusable.length) return;
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
 
   hamburger.addEventListener('click', () => toggleMenu());
   mobCartBtn.addEventListener('click', () => { toggleMenu(false); if(window._snugOpenCart) window._snugOpenCart(); });
@@ -2373,10 +2421,11 @@
       if (!Array.isArray(cart)) cart = [];
       cart = cart.filter(i => i && typeof i.name === 'string' && typeof i.price === 'number' && typeof i.qty === 'number' && i.qty > 0);
     } catch(e) { cart = []; }
-    /* Cart TTL: expire after 7 days */
-    const CART_TTL = 7 * 24 * 60 * 60 * 1000;
+    /* Cart TTL: expire after 30 days */
+    const CART_TTL = 30 * 24 * 60 * 60 * 1000;
     const cartTimestamp = parseInt(localStorage.getItem(CART_KEY + '_ts') || '0', 10);
-    if (cart.length && Date.now() - cartTimestamp > CART_TTL) { cart = []; }
+    let cartExpired = false;
+    if (cart.length && Date.now() - cartTimestamp > CART_TTL) { cart = []; cartExpired = true; }
 
     /* ── DOM refs ── */
     const cartOverlay   = document.getElementById('cartOverlay');
@@ -2446,6 +2495,15 @@
 
     function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
+    /* Show cart expired toast if needed */
+    if (cartExpired) {
+      var expToast = document.createElement('div');
+      expToast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--deep-brown);color:var(--cream);padding:14px 28px;border-radius:8px;font-size:13px;z-index:5000;box-shadow:0 8px 32px rgba(0,0,0,.2);text-align:center;max-width:90%;';
+      expToast.textContent = 'Your cart has expired. Items may have changed since your last visit.';
+      document.body.appendChild(expToast);
+      setTimeout(function() { expToast.style.opacity = '0'; expToast.style.transition = 'opacity .5s'; setTimeout(function() { expToast.remove(); }, 600); }, 5000);
+    }
+
     /* ── Open / close cart ── */
     function openCart() {
       cartOverlay.classList.add('open');
@@ -2482,7 +2540,11 @@
       cartDot.textContent = count || '0';
       if (count > 0) { cartDot.classList.add('has-items'); } else { cartDot.classList.remove('has-items'); }
       cartHeadCount.textContent = count === 1 ? '1 item' : count + ' items';
-      cartTotal.textContent = '£' + total.toFixed(2).replace(/\.00$/, '');
+      if (saving > 0) {
+        cartTotal.innerHTML = '<span style="text-decoration:line-through;color:var(--text-light);font-weight:400;font-size:14px;">£' + rawTotal + '</span> £' + total.toFixed(2).replace(/\.00$/, '') + ' <span style="color:var(--sage);font-size:12px;font-weight:500;">Save £' + saving.toFixed(2).replace(/\.00$/,'') + '</span>';
+      } else {
+        cartTotal.textContent = '£' + total.toFixed(2).replace(/\.00$/, '');
+      }
       btnCheckout.disabled = count === 0;
 
       // Clear existing items (keep empty state el)
@@ -2658,6 +2720,15 @@
       const country = document.getElementById('ckCountry');
       if (!country.value) { country.style.borderColor = 'var(--terracotta)'; valid = false; }
       else { country.style.borderColor = ''; }
+      /* UK postcode validation */
+      const postEl = document.getElementById('ckPost');
+      const postVal = postEl.value.trim().toUpperCase();
+      if (country.value === 'GB' && postVal && !/^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/.test(postVal)) {
+        postEl.style.borderColor = 'var(--terracotta)'; valid = false;
+        var ckErr = document.getElementById('ckError');
+        ckErr.textContent = 'Please enter a valid UK postcode (e.g. SW1A 1AA).';
+        ckErr.classList.add('show');
+      }
       if (!valid) return;
       ckSummary.innerHTML = buildSummaryHTML();
       showCkStep(2);
@@ -2683,6 +2754,7 @@
       : '';  // production: API endpoint
 
     let _submitting = false;
+    let _checkoutRetries = 0;
     ckPlaceOrder.addEventListener('click', async () => {
       if (_submitting) return;
       const tcBox = document.getElementById('ckAgreeTC');
@@ -2769,12 +2841,20 @@
         renderCart();
 
       } catch (err) {
+        _checkoutRetries = (_checkoutRetries || 0) + 1;
         var ckErr = document.getElementById('ckError');
-        ckErr.textContent = err.message || 'Something went wrong. Please try again.';
+        if (_checkoutRetries >= 3) {
+          ckErr.innerHTML = 'We\'re having trouble processing your order. Please contact us at <a href="mailto:support@thesnugspot.com" style="color:var(--terracotta)">support@thesnugspot.com</a> and we\'ll help you complete your purchase.';
+        } else {
+          ckErr.textContent = (err.message || 'Something went wrong.') + ' Please try again.';
+        }
         ckErr.classList.add('show');
         _submitting = false;
         ckPlaceOrder.disabled    = false;
-        ckPlaceOrder.textContent = 'Place Order';
+        ckPlaceOrder.textContent = _checkoutRetries >= 3 ? 'Contact Support' : 'Try Again';
+        if (_checkoutRetries >= 3) {
+          ckPlaceOrder.onclick = function() { window.location.href = 'mailto:support@thesnugspot.com'; };
+        }
       }
     });
 
@@ -3043,8 +3123,37 @@ window.addEventListener('unload',function(){cancelAnimationFrame(rafId);running=
         var i=+d.dataset.i;
         var cardWidth=cards[0].offsetWidth+16;
         grid.scrollTo({left:i*cardWidth, behavior:'smooth'});
+        updateHint(i);
       });
     });
+
+    // Arrow key navigation on product grid
+    grid.setAttribute('tabindex','0');
+    grid.setAttribute('role','region');
+    grid.setAttribute('aria-label','Product carousel');
+    var currentIdx = 0;
+    grid.addEventListener('keydown',function(e){
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        currentIdx = Math.min(currentIdx + 1, cards.length - 1);
+        var cardWidth = cards[0].offsetWidth + 16;
+        grid.scrollTo({left: currentIdx * cardWidth, behavior:'smooth'});
+        dots.forEach(function(d,di){ d.classList.toggle('active', di === currentIdx); });
+        updateHint(currentIdx);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        currentIdx = Math.max(currentIdx - 1, 0);
+        var cardWidth = cards[0].offsetWidth + 16;
+        grid.scrollTo({left: currentIdx * cardWidth, behavior:'smooth'});
+        dots.forEach(function(d,di){ d.classList.toggle('active', di === currentIdx); });
+        updateHint(currentIdx);
+      }
+    });
+
+    function updateHint(idx) {
+      var hint = document.getElementById('mobSwipeHint');
+      if (hint) hint.textContent = 'Viewing ' + scents[idx] + ' (' + (idx+1) + ' of ' + scents.length + ')';
+    }
   }
 })();
 </script>
