@@ -33,7 +33,7 @@
     "image": "https://thesnugspot.com/images/products/coming-soon.svg",
     "description": "Hand-poured 220g beeswax candle available in Vanilla, Chocolate and Cinnamon. 40-45 hour burn time.",
     "brand": {"@type": "Brand", "name": "The Snug Spot"},
-    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
+    "offers": {"@type": "Offer", "url": "https://thesnugspot.com/", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
   }]
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +61,6 @@
       --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
       --border:      rgba(44,26,14,.12);
       --linen:       #F2ECE1;
-      --font-disp:   'Cormorant Garamond', serif;
     }
 
     /* ===== SECTION HEADINGS ===== */
@@ -604,13 +603,46 @@
       max-width:960px; margin:0 auto;
     }
     @media (max-width:820px) { .grid-products { grid-template-columns:repeat(2,1fr); gap:20px; } }
-    @media (max-width:540px) { .grid-products { grid-template-columns:1fr; max-width:380px; gap:24px; } }
+
+    /* ── Mobile swipe ── */
+    .mob-swipe-dots { display:none; justify-content:center; gap:10px; margin-top:20px; }
+    .mob-dot {
+      width:9px; height:9px; border-radius:50%;
+      background:var(--sand); border:none; padding:0; cursor:pointer;
+      transition:all .3s ease;
+    }
+    .mob-dot.active { background:var(--terracotta); transform:scale(1.3); }
+    .mob-swipe-hint { display:none; text-align:center; margin-top:10px; font-size:12px; color:var(--text-light); letter-spacing:.06em; opacity:.6; }
 
     .p-card {
       cursor:pointer; transform-style:preserve-3d;
       transition:transform .3s var(--ease);
     }
     .p-card:hover { transform:translateY(-4px); }
+
+    .btn-add-mob { display:none; }
+
+    @media (max-width:540px) {
+      .sec-products { overflow:visible; padding:80px 0; }
+      .sec-products .s-head { padding:0 32px; }
+      .grid-products {
+        display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch; gap:0; max-width:100%;
+        scrollbar-width:none; padding:0 24px;
+      }
+      .grid-products::-webkit-scrollbar { display:none; }
+      .p-card {
+        min-width:calc(100vw - 64px); flex:0 0 calc(100vw - 64px);
+        scroll-snap-align:center; margin:0 8px;
+      }
+      .p-card:hover { transform:none; }
+      .p-overlay { display:none; }
+      .p-info { position:relative; }
+      .btn-add-mob { display:block; width:100%; padding:14px; margin-top:12px; background:var(--deep-brown); color:var(--cream); border:none; border-radius:8px; font-size:13px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; font-family:var(--font-body); }
+      .mob-swipe-dots { display:flex; }
+      .mob-swipe-hint { display:block; }
+    }
+
     .p-card-inner {
       background:var(--card-bg); border-radius:12px; overflow:hidden;
       border:1px solid rgba(196,120,90,.07);
@@ -951,7 +983,7 @@
       padding:28px 32px 20px;
       border-bottom:1px solid var(--border);
     }
-    .cart-head h2 { font-family:var(--font-disp); font-size:22px; color:var(--deep-brown); font-weight:400; }
+    .cart-head h2 { font-family:var(--font-display); font-size:22px; color:var(--deep-brown); font-weight:400; }
     .cart-head-count { font-size:11px; letter-spacing:.1em; color:var(--text-mid); margin-left:8px; }
     .cart-close {
       width:34px; height:34px; border:1px solid var(--border); background:none;
@@ -1007,7 +1039,7 @@
       margin-bottom:6px;
     }
     .cart-subtotal span { font-size:13px; color:var(--text-mid); letter-spacing:.04em; }
-    .cart-subtotal strong { font-size:18px; color:var(--deep-brown); font-family:var(--font-disp); font-weight:400; }
+    .cart-subtotal strong { font-size:18px; color:var(--deep-brown); font-family:var(--font-display); font-weight:400; }
     .cart-shipping-note { font-size:11px; color:var(--text-light); letter-spacing:.05em; margin-bottom:18px; }
     .btn-checkout {
       width:100%; padding:15px; background:var(--deep-brown); color:var(--cream);
@@ -1025,23 +1057,33 @@
       opacity:0; pointer-events:none;
       transition:opacity .35s var(--ease);
       display:flex; align-items:center; justify-content:center; padding:20px;
+      overflow-y:auto; -webkit-overflow-scrolling:touch;
     }
     .checkout-overlay.open { opacity:1; pointer-events:all; }
 
     .checkout-modal {
       background:var(--cream); border-radius:6px;
-      width:100%; max-width:560px; max-height:90vh; overflow-y:auto;
+      width:100%; max-width:560px; max-height:88vh; overflow-y:auto;
+      scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
       transform:translateY(24px) scale(.97);
       transition:transform .4s var(--ease-out);
       box-shadow:0 24px 80px rgba(30,20,10,.22);
     }
+    .checkout-modal::-webkit-scrollbar { width:6px; }
+    .checkout-modal::-webkit-scrollbar-track { background:transparent; }
+    .checkout-modal::-webkit-scrollbar-thumb { background:rgba(44,26,14,.2); border-radius:3px; }
+    .checkout-modal::-webkit-scrollbar-thumb:hover { background:rgba(44,26,14,.35); }
     .checkout-overlay.open .checkout-modal { transform:translateY(0) scale(1); }
+    @media (max-width:540px) {
+      .checkout-overlay { padding:0; align-items:flex-end; }
+      .checkout-modal { max-height:95vh; border-radius:16px 16px 0 0; max-width:100%; }
+    }
 
     .ck-head {
       padding:28px 36px 0;
       display:flex; align-items:center; justify-content:space-between;
     }
-    .ck-head h2 { font-family:var(--font-disp); font-size:24px; font-weight:400; color:var(--deep-brown); }
+    .ck-head h2 { font-family:var(--font-display); font-size:24px; font-weight:400; color:var(--deep-brown); }
     .ck-secure-badge { display:flex; align-items:center; gap:6px; margin:14px 36px 0; font-size:11px; letter-spacing:.04em; color:var(--sage); font-weight:500; }
     .ck-secure-badge svg { width:14px; height:14px; stroke:var(--sage); fill:none; stroke-width:2; flex-shrink:0; }
     .ck-close {
@@ -1133,7 +1175,7 @@
       display:flex; align-items:center; justify-content:center; margin:0 auto 20px;
     }
     .ck-confirm-icon svg { width:28px; height:28px; stroke:var(--sage); fill:none; stroke-width:1.8; }
-    .ck-confirm h3 { font-family:var(--font-disp); font-size:26px; font-weight:400; color:var(--deep-brown); margin-bottom:8px; }
+    .ck-confirm h3 { font-family:var(--font-display); font-size:26px; font-weight:400; color:var(--deep-brown); margin-bottom:8px; }
     .ck-confirm p { font-size:14px; color:var(--text-mid); line-height:1.7; }
     .ck-order-num { font-size:11px; letter-spacing:.12em; color:var(--terracotta); margin-top:12px; }
 
@@ -1332,8 +1374,8 @@
 <!-- ─── MOBILE MENU OVERLAY ─── -->
 <div class="nav-mobile-menu" id="mobileMenu">
   <a href="#products" class="mob-link">Shop</a>
-  <a href="#why" class="mob-link">Collections</a>
-  <a href="#why" class="mob-link">Stories</a>
+  <a href="#products" class="mob-link">Collections</a>
+  <a href="/our-story.html" class="mob-link">Stories</a>
   <button class="mob-cart-btn" id="mobCartBtn">View Cart</button>
 </div>
 
@@ -1341,10 +1383,9 @@
 <nav class="nav" id="nav">
   <a href="/" class="nav-logo"><span class="nav-mark"><img src="/images/sofa-logo.png" alt="The Snug Spot sofa icon"/></span><span class="logo-the">The</span><span class="logo-snugspot">SnugSpot</span></a>
   <ul class="nav-links">
-    <li><a href="#products">Shop</a></li>
     <li><a href="#products">Our Candles</a></li>
 
-    <li><a href="#why">Stories</a></li>
+    <li><a href="/our-story.html">Stories</a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-cart" role="button" tabindex="0" aria-label="Open cart" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();if(window._snugOpenCart)window._snugOpenCart();}">
@@ -1460,6 +1501,7 @@
           <h3 class="p-name">Vanilla</h3>
           <p class="p-desc">Soft, sweet, creamy warmth. 220g hand-poured beeswax. 40–45 hour burn.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
+          <button class="btn-add-mob" data-name="Vanilla">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -1478,6 +1520,7 @@
           <h3 class="p-name">Chocolate</h3>
           <p class="p-desc">Rich, indulgent, cosy comfort. 220g hand-poured beeswax. 40–45 hour burn.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
+          <button class="btn-add-mob" data-name="Chocolate">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -1496,11 +1539,19 @@
           <h3 class="p-name">Cinnamon</h3>
           <p class="p-desc">Warm, spicy, festive glow. 220g hand-poured beeswax. 40–45 hour burn.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
+          <button class="btn-add-mob" data-name="Cinnamon">Add to Cart</button>
         </div>
       </div>
     </div>
 
   </div>
+
+  <div class="mob-swipe-dots" id="mobSwipeDots">
+    <button class="mob-dot active" data-i="0" aria-label="Vanilla"></button>
+    <button class="mob-dot" data-i="1" aria-label="Chocolate"></button>
+    <button class="mob-dot" data-i="2" aria-label="Cinnamon"></button>
+  </div>
+  <p class="mob-swipe-hint">Swipe to explore scents</p>
 
   <p style="text-align:center; margin-top:36px; font-family:var(--font-display); font-size:1.2rem; font-style:italic; color:var(--text-light); letter-spacing:0.02em;">Soy candles coming soon</p>
 </section>
@@ -1673,7 +1724,7 @@
 <div class="toast" id="toast"></div>
 
 <!-- ─── COOKIE MODAL ─── -->
-<div id="cookieModal" style="display:none;position:fixed;inset:0;z-index:4000;background:rgba(30,20,10,.52);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px;">
+<div id="cookieModal" role="dialog" aria-modal="true" aria-label="Cookie preferences" style="display:none;position:fixed;inset:0;z-index:4000;background:rgba(30,20,10,.52);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px;">
   <div style="background:var(--cream);border-radius:10px;max-width:520px;width:100%;box-shadow:0 24px 80px rgba(30,20,10,.22);overflow:hidden;">
     <div style="background:var(--deep-brown);padding:28px 36px;">
       <p style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px;">Your privacy</p>
@@ -1938,9 +1989,13 @@
 
   /* ── Bundle add-to-cart ── */
   function addBundle() {
-    /* Dispatch a custom event so the IIFE-scoped cart drawer can pick it up */
-    var bundleItem = { name:'Beeswax Candle Trio', price:50.00, qty:1, img:'/images/products/coming-soon.svg' };
-    window.dispatchEvent(new CustomEvent('snugspot:addToCart', { detail: bundleItem }));
+    /* Dispatch 3 individual items so auto-bundle detection kicks in */
+    var scents = ['Vanilla', 'Chocolate', 'Cinnamon'];
+    scents.forEach(function(scent) {
+      window.dispatchEvent(new CustomEvent('snugspot:addToCart', {
+        detail: { name: 'Beeswax Candle \u2014 ' + scent, price: 20.00, qty: 1, img: '/images/products/coming-soon.svg' }
+      }));
+    });
   }
 
 
@@ -2065,6 +2120,18 @@
       if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal(); });
 
+      /* Focus trap for hero modal */
+      if (modal) {
+        modal.addEventListener('keydown', function(e) {
+          if (e.key !== 'Tab') return;
+          var focusable = modal.querySelectorAll('input,select,button,a[href],[tabindex]:not([tabindex="-1"])');
+          if (!focusable.length) return;
+          var first = focusable[0], last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        });
+      }
+
       /* ── Scroll indicator: hide after scrolling ── */
       var scrollInd = document.getElementById('scrollIndicator');
       if (scrollInd) {
@@ -2144,6 +2211,16 @@
     rejectBtn.addEventListener('click', () => {
       localStorage.setItem('cnCookiePrefs', JSON.stringify({ analytics: false, personalisation: false }));
       closeCookieModal();
+    });
+
+    /* Focus trap for cookie modal */
+    modal.addEventListener('keydown', function(e) {
+      if (e.key !== 'Tab') return;
+      var focusable = modal.querySelectorAll('input,select,button,[tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
 
     // Auto-show on first visit if no cookie choice has been made
@@ -2307,6 +2384,45 @@
     const ckConfirmSummary= document.getElementById('ckConfirmSummary');
     const ckOrderNum      = document.getElementById('ckOrderNum');
 
+    /* ── Bundle detection ── */
+    const BUNDLE_SCENTS = ['Beeswax Candle — Vanilla', 'Beeswax Candle — Chocolate', 'Beeswax Candle — Cinnamon'];
+    const BUNDLE_PRICE = 50;
+    const INDIVIDUAL_PRICE = 20;
+
+    function detectBundle() {
+      const hasAll = BUNDLE_SCENTS.every(name => {
+        const item = cart.find(i => i.name === name);
+        return item && item.qty >= 1;
+      });
+      return hasAll;
+    }
+
+    function getBundleTotal() {
+      const isBundle = detectBundle();
+      if (!isBundle) return cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const bundleQtys = BUNDLE_SCENTS.map(name => {
+        const item = cart.find(i => i.name === name);
+        return item ? item.qty : 0;
+      });
+      const completeBundles = Math.min(...bundleQtys);
+      let total = completeBundles * BUNDLE_PRICE;
+      BUNDLE_SCENTS.forEach(name => {
+        const item = cart.find(i => i.name === name);
+        if (item) {
+          const extras = item.qty - completeBundles;
+          if (extras > 0) total += extras * INDIVIDUAL_PRICE;
+        }
+      });
+      cart.forEach(item => {
+        if (!BUNDLE_SCENTS.includes(item.name)) {
+          total += item.price * item.qty;
+        }
+      });
+      return total;
+    }
+
+    function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
     /* ── Open / close cart ── */
     function openCart() {
       cartOverlay.classList.add('open');
@@ -2331,15 +2447,15 @@
     cartClose.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
 
-    function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-
     /* ── Render cart ── */
     function renderCart() {
-      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const total = getBundleTotal();
+      const rawTotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
       const count = cart.reduce((s, i) => s + i.qty, 0);
+      const isBundle = detectBundle();
+      const saving = rawTotal - total;
 
       localStorage.setItem(CART_KEY, JSON.stringify(cart));
-      localStorage.setItem(CART_KEY + '_ts', String(Date.now()));
       cartDot.textContent = count || '0';
       cartDot.style.background = count ? 'var(--terracotta)' : 'var(--text-light)';
       cartHeadCount.textContent = count === 1 ? '1 item' : count + ' items';
@@ -2353,6 +2469,15 @@
         cartEmpty.style.display = 'flex';
         return;
       }
+
+      // Show bundle banner if all 3 scents present
+      if (isBundle && saving > 0) {
+        const banner = document.createElement('div');
+        banner.style.cssText = 'background:linear-gradient(135deg,#f0e8d8,#e8dcc8);padding:12px 16px;border-radius:8px;margin-bottom:12px;text-align:center;font-size:13px;color:var(--deep-brown);';
+        banner.innerHTML = '<strong style="font-size:14px;">🕯 Candle Trio Bundle applied!</strong><br><span style="color:var(--sage);font-weight:600;">You save £' + saving.toFixed(2).replace(/\.00$/,'') + '</span>';
+        cartItemsEl.appendChild(banner);
+      }
+
       cart.forEach((item, idx) => {
         const el = document.createElement('div');
         el.className = 'cart-item';
@@ -2386,7 +2511,7 @@
 
     /* ── Build summary HTML ── */
     function buildSummaryHTML() {
-      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const subtotal = getBundleTotal();
       const shipSel = document.getElementById('ckShipping');
       const shipMethod = shipSel ? shipSel.value : 'standard';
       let shipping;
@@ -2397,6 +2522,11 @@
       let rows = cart.map(i =>
         `<div class="ck-sum-item"><span>${esc(i.name)} × ${i.qty}</span><span>£${(i.price*i.qty).toFixed(2)}</span></div>`
       ).join('');
+      const rawTotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const bundleDiscount = detectBundle() ? rawTotal - subtotal : 0;
+      if (bundleDiscount > 0) {
+        rows += `<div class="ck-sum-item" style="color:var(--sage);font-weight:600;"><span>Candle Trio Bundle discount</span><span>−£${bundleDiscount.toFixed(2)}</span></div>`;
+      }
       return `<div class="ck-summary-title">Order Summary</div>${rows}
         <div class="ck-sum-divider"></div>
         <div class="ck-sum-item"><span>Subtotal</span><span>£${subtotal.toFixed(2)}</span></div>
@@ -2411,7 +2541,7 @@
       // Reset to step 1
       showCkStep(1);
       /* Set shipping selector based on cart subtotal */
-      var subtotal = cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+      var subtotal = getBundleTotal();
       var shipSel = document.getElementById('ckShipping');
       if (shipSel) {
         var freeOpt = shipSel.querySelector('[value="free"]');
@@ -2419,7 +2549,7 @@
         var expOpt = shipSel.querySelector('[value="express"]');
         if (subtotal >= 75) {
           freeOpt.disabled = false; freeOpt.selected = true;
-          stdOpt.disabled = true; expOpt.disabled = true;
+          stdOpt.disabled = true; expOpt.disabled = false;
         } else {
           freeOpt.disabled = true; stdOpt.disabled = false; expOpt.disabled = false;
           stdOpt.selected = true;
@@ -2445,6 +2575,23 @@
       const first = focusable[0], last = focusable[focusable.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    /* Focus trap for cart drawer */
+    cartDrawer.addEventListener('keydown', e => {
+      if (e.key !== 'Tab') return;
+      const focusable = cartDrawer.querySelectorAll('button,[tabindex]:not([tabindex="-1"]),a[href]');
+      if (!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    /* Close cart / checkout on Escape key */
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if (checkoutOverlay.classList.contains('open')) { closeCheckout(); }
+      else if (cartDrawer.classList.contains('open')) { closeCart(); }
     });
 
     /* ── Step navigation ── */
@@ -2614,12 +2761,11 @@
       var existing = cart.find(function(c) { return c.name === item.name; });
       if (existing) { existing.qty += item.qty; }
       else { cart.push({ name: item.name, price: item.price, qty: item.qty, img: item.img }); }
+      localStorage.setItem(CART_KEY + '_ts', String(Date.now()));
       renderCart();
       openCart();
     });
 
-    /* Initial render */
-    renderCart();
   })();
 </script>
 
@@ -2813,6 +2959,12 @@ window.addEventListener('unload',function(){cancelAnimationFrame(rafId);});
 <!-- ─── PRODUCT CARD ADD-TO-CART ─── -->
 <script>
 (function(){
+  var grid=document.querySelector('.grid-products');
+  var cards=document.querySelectorAll('.p-card');
+  var dots=document.querySelectorAll('.mob-dot');
+  var scents=['Vanilla','Chocolate','Cinnamon'];
+
+  // Desktop: hover overlay Add to Cart
   document.querySelectorAll('.btn-add').forEach(function(btn){
     btn.addEventListener('click',function(e){
       e.stopPropagation();
@@ -2822,12 +2974,48 @@ window.addEventListener('unload',function(){cancelAnimationFrame(rafId);});
       }));
     });
   });
-  // Card click goes to product page
-  document.querySelectorAll('.p-card').forEach(function(card){
-    card.addEventListener('click',function(){
-      window.location.href='/products/candle-trio.html';
+
+  // Card click goes to product page (desktop only)
+  cards.forEach(function(card,i){
+    card.addEventListener('click',function(e){
+      if(window.innerWidth>540) window.location.href='/products/candle-trio.html';
     });
   });
+
+  // Mobile: real Add to Cart buttons
+  document.querySelectorAll('.btn-add-mob').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var name=btn.dataset.name;
+      window.dispatchEvent(new CustomEvent('snugspot:addToCart',{
+        detail:{name:'Beeswax Candle — '+name, price:20, qty:1, img:'/images/products/coming-soon.svg'}
+      }));
+    });
+  });
+
+  // Mobile swipe dots — sync on scroll
+  if(grid){
+    var scrollTimer;
+    grid.addEventListener('scroll',function(){
+      clearTimeout(scrollTimer);
+      scrollTimer=setTimeout(function(){
+        var scrollLeft=grid.scrollLeft;
+        var cardWidth=cards[0].offsetWidth+16; // card width + margins
+        var idx=Math.round(scrollLeft/cardWidth);
+        idx=Math.max(0,Math.min(idx,cards.length-1));
+        dots.forEach(function(d,di){d.classList.toggle('active',di===idx);});
+      },60);
+    },{passive:true});
+
+    // Dot click scrolls to card
+    dots.forEach(function(d){
+      d.addEventListener('click',function(){
+        var i=+d.dataset.i;
+        var cardWidth=cards[0].offsetWidth+16;
+        grid.scrollTo({left:i*cardWidth, behavior:'smooth'});
+      });
+    });
+  }
 })();
 </script>
 
