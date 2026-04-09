@@ -86,7 +86,7 @@
     <div id="loaderBar" style="width:0%;height:100%;background:linear-gradient(90deg,#C4785A,#FAF7F2);border-radius:2px;transition:width .3s ease;"></div>
   </div>
 </div>
-<script>!function(){var e=document.getElementById("loaderBar"),t=document.getElementById("loader"),n=0,o=setInterval(function(){(n+=15*Math.random()+5)>90&&(n=90),e.style.width=n+"%"},150);window.addEventListener("load",function(){clearInterval(o),e.style.width="100%",setTimeout(function(){document.body.style.overflow="",t.style.opacity="0",t.style.visibility="hidden",setTimeout(function(){t.remove()},600)},1200)}),document.body.style.overflow="hidden"}();</script>
+<script>!function(){var e=document.getElementById("loaderBar"),t=document.getElementById("loader"),n=0,o=setInterval(function(){(n+=10*Math.random()+3)>85&&(n=85),e.style.width=n+"%"},200);var s=Date.now();window.addEventListener("load",function(){clearInterval(o);var r=Date.now()-s,a=Math.max(0,2500-r);e.style.width="92%",setTimeout(function(){e.style.width="100%",setTimeout(function(){document.body.style.overflow="",t.style.opacity="0",t.style.visibility="hidden",setTimeout(function(){t.remove()},600)},600)},a)}),document.body.style.overflow="hidden"}();</script>
 
 
 <!-- SVG goo filter for product card wax drip -->
