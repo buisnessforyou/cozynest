@@ -65,21 +65,31 @@
     });
   }
 
+  function updateGtagConsent(analytics) {
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { analytics_storage: analytics ? 'granted' : 'denied' });
+    }
+  }
+
   acceptAllBtn.addEventListener('click', function() {
     localStorage.setItem('snugspot_cookies', JSON.stringify({ analytics: true, personalisation: true }));
+    updateGtagConsent(true);
     closeCookieModal();
   });
 
   saveBtn.addEventListener('click', function() {
+    var a = document.getElementById('cookieAnalytics').checked;
     localStorage.setItem('snugspot_cookies', JSON.stringify({
-      analytics: document.getElementById('cookieAnalytics').checked,
+      analytics: a,
       personalisation: document.getElementById('cookiePersonalisation').checked
     }));
+    updateGtagConsent(a);
     closeCookieModal();
   });
 
   rejectBtn.addEventListener('click', function() {
     localStorage.setItem('snugspot_cookies', JSON.stringify({ analytics: false, personalisation: false }));
+    updateGtagConsent(false);
     closeCookieModal();
   });
 
