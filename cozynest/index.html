@@ -24,6 +24,9 @@
   <link rel="canonical" href="https://thesnugspot.com/"/>
   <meta name="robots" content="index, follow"/>
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Snug Spot — Hand-Poured Beeswax Candles"/>
+  <meta name="twitter:description" content="Hand-poured beeswax candles in three warming scents. Individually or as a trio bundle. Free 30-day returns."/>
+  <meta name="twitter:image" content="https://thesnugspot.com/images/products/coming-soon.svg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -316,7 +319,7 @@
     }
     .hero-h1 em { font-style:italic; color:var(--terracotta); }
     .hero-sub {
-      font-size:15px; line-height:1.75; color:rgba(255,248,238,.85);
+      font-size:15px; line-height:1.75; color:#FAF3EA;
       font-weight:300; max-width:400px; margin-bottom:40px;
       opacity:0; transform:translate3d(0,24px,0);
     }
@@ -325,7 +328,7 @@
       opacity:0; transform:translate3d(0,20px,0);
     }
     .hero-curated-line {
-      font-size:13px; letter-spacing:.08em; color:rgba(255,248,238,.75);
+      font-size:13px; letter-spacing:.08em; color:rgba(255,248,238,.9);
       font-weight:300; margin-top:36px;
       opacity:0; transform:translate3d(0,16px,0);
     }
@@ -1036,7 +1039,7 @@
     .qty-num { font-size:14px; font-weight:500; color:var(--deep-brown); min-width:20px; text-align:center; }
     .cart-item-remove {
       margin-left:auto; background:none; border:none; cursor:pointer;
-      font-size:11px; letter-spacing:.08em; color:var(--text-light);
+      font-size:11px; letter-spacing:.08em; color:#5C5047;
       text-decoration:underline; transition:color .2s;
     }
     .cart-item-remove:hover { color:var(--terracotta); }
@@ -1402,7 +1405,7 @@
       <span class="cart-dot">0</span>
     </div>
     <button class="btn-nav" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -2259,6 +2262,7 @@
     const open = force !== undefined ? force : !mobileMenu.classList.contains('open');
     mobileMenu.classList.toggle('open', open);
     nav.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
   }
 
@@ -2506,9 +2510,9 @@
             <div class="cart-item-name">${esc(item.name)}</div>
             <div class="cart-item-price">£${item.price}</div>
             <div class="cart-item-controls">
-              <button class="qty-btn" data-action="dec" data-idx="${idx}">−</button>
+              <button class="qty-btn" data-action="dec" data-idx="${idx}" aria-label="Decrease quantity">−</button>
               <span class="qty-num">${item.qty}</span>
-              <button class="qty-btn" data-action="inc" data-idx="${idx}">+</button>
+              <button class="qty-btn" data-action="inc" data-idx="${idx}" aria-label="Increase quantity">+</button>
               <button class="cart-item-remove" data-action="remove" data-idx="${idx}">Remove</button>
             </div>
           </div>`;
