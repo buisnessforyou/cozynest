@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://thesnugspot.com/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://thesnugspot.com/products/heritage-wool-blanket.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://thesnugspot.com/products/mist-diffuser.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://thesnugspot.com/products/candle-trio.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://thesnugspot.com/products/rattan-tray.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://thesnugspot.com/our-story.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://thesnugspot.com/faq.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://thesnugspot.com/shipping.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>

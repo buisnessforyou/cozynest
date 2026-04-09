@@ -9,7 +9,7 @@
 body { background: var(--cream); color: var(--text-dark); font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
 nav { position: sticky; top: 0; z-index: 100; background: rgba(250,247,242,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(44,26,14,0.08); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .nav-logo { display: flex; align-items: baseline; gap: 6px; font-family: 'Playfair Display','Cormorant Garamond',Georgia,serif; color: var(--deep-brown); text-decoration: none; }
-.nav-logo .logo-the { font-size: 30px; font-weight: 900; letter-spacing: -1px; }
+.nav-logo .logo-the { font-size: 30px; font-weight: 900; letter-spacing: -1px; margin-right:-4px; }
 .nav-logo .logo-snugspot { font-size: 18px; font-weight: 400; letter-spacing: -0.5px; }
 .nav-mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; border: 1.5px solid rgba(44,26,14,.15); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .nav-mark img { height: 36px; object-fit: contain; }

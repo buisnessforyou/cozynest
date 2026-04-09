@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /sourcing.html
 Disallow: /logo-concepts.html
 
 Sitemap: https://thesnugspot.com/sitemap.xml
