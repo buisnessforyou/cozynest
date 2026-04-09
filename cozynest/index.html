@@ -44,7 +44,7 @@
     "@type": "Product",
     "name": "Beeswax Candle — Vanilla",
     "image": "https://thesnugspot.com/images/products/coming-soon.svg",
-    "description": "Hand-poured 220g beeswax candle in Vanilla. Notes of Madagascan vanilla bean and warm tonka. 100% natural beeswax with cotton lead-free wick in a reusable ceramic vessel. 40-45 hour burn time. Ingredients: beeswax, fragrance oils, cotton wick.",
+    "description": "Hand-poured 220g beeswax candle in Vanilla. Notes of Madagascan vanilla bean and warm tonka. 100% natural beeswax, cotton lead-free wick, vanilla fragrance oil. 220g (7.8 oz), approx. 8cm x 9cm, reusable ceramic vessel. 40-45 hour burn. Trim wick to 5mm before each use. Perfect for unwinding or as a thoughtful gift.",
     "sku": "SS-BEESWAX-VANILLA",
     "brand": {"@type": "Brand", "name": "The Snug Spot"},
     "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
@@ -53,7 +53,7 @@
     "@type": "Product",
     "name": "Beeswax Candle — Chocolate",
     "image": "https://thesnugspot.com/images/products/coming-soon.svg",
-    "description": "Hand-poured 220g beeswax candle in Chocolate. Deep cocoa and roasted hazelnut notes. 100% natural beeswax with cotton lead-free wick in a reusable ceramic vessel. 40-45 hour burn time. Ingredients: beeswax, fragrance oils, cotton wick.",
+    "description": "Hand-poured 220g beeswax candle in Chocolate. Deep cocoa and roasted hazelnut notes. 100% natural beeswax, cotton lead-free wick, chocolate fragrance oil. 220g (7.8 oz), approx. 8cm x 9cm, reusable ceramic vessel. 40-45 hour burn. Trim wick to 5mm before each use. Light alongside a book for the ultimate cosy night in.",
     "sku": "SS-BEESWAX-CHOCOLATE",
     "brand": {"@type": "Brand", "name": "The Snug Spot"},
     "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
@@ -62,7 +62,7 @@
     "@type": "Product",
     "name": "Beeswax Candle — Cinnamon",
     "image": "https://thesnugspot.com/images/products/coming-soon.svg",
-    "description": "Hand-poured 220g beeswax candle in Cinnamon. Ceylon cinnamon and clove bud blend. 100% natural beeswax with cotton lead-free wick in a reusable ceramic vessel. 40-45 hour burn time. Ingredients: beeswax, fragrance oils, cotton wick.",
+    "description": "Hand-poured 220g beeswax candle in Cinnamon. Ceylon cinnamon and clove bud blend. 100% natural beeswax, cotton lead-free wick, cinnamon fragrance oil. 220g (7.8 oz), approx. 8cm x 9cm, reusable ceramic vessel. 40-45 hour burn. Trim wick to 5mm before each use. A wonderful centrepiece for dinner parties or a warming gift.",
     "sku": "SS-BEESWAX-CINNAMON",
     "brand": {"@type": "Brand", "name": "The Snug Spot"},
     "offers": {"@type": "Offer", "url": "https://thesnugspot.com/products/candle-trio.html", "priceCurrency": "GBP", "price": "20.00", "availability": "https://schema.org/InStock"}
@@ -652,6 +652,11 @@
     }
     .mob-dot.active { background:var(--terracotta); transform:scale(1.3); }
     .mob-swipe-hint { display:none; text-align:center; margin-top:10px; font-size:12px; color:var(--text-light); letter-spacing:.06em; opacity:.6; }
+    .mob-arrows { display:none; justify-content:center; gap:16px; margin-top:12px; }
+    .mob-arrow { width:40px; height:40px; border-radius:50%; border:1px solid var(--sand); background:var(--cream); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s, border-color .2s; }
+    .mob-arrow:hover { border-color:var(--terracotta); }
+    .mob-arrow:disabled { opacity:.3; cursor:default; }
+    .mob-arrow svg { width:16px; height:16px; stroke:var(--deep-brown); fill:none; stroke-width:2; }
 
     .p-card {
       cursor:pointer; transform-style:preserve-3d;
@@ -682,6 +687,7 @@
       .btn-add-mob { display:block; width:100%; padding:14px; margin-top:12px; background:var(--deep-brown); color:var(--cream); border:none; border-radius:8px; font-size:13px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; font-family:var(--font-body); }
       .mob-swipe-dots { display:flex; }
       .mob-swipe-hint { display:block; }
+      .mob-arrows { display:flex; }
     }
 
     .p-card-inner {
@@ -1061,7 +1067,7 @@
     .cart-item-price { font-size:13px; color:var(--terracotta); font-weight:500; }
     .cart-item-controls { display:flex; align-items:center; gap:10px; margin-top:10px; }
     .qty-btn {
-      width:26px; height:26px; border:1px solid var(--border); background:none;
+      min-width:26px; min-height:26px; width:26px; height:26px; border:1px solid var(--border); background:none;
       border-radius:50%; cursor:pointer; font-size:15px; line-height:1;
       display:flex; align-items:center; justify-content:center;
       color:var(--text-mid); transition:background .2s, border-color .2s, color .2s;
@@ -1415,7 +1421,7 @@
 
 
 <!-- ─── MOBILE MENU OVERLAY ─── -->
-<div class="nav-mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+<div class="nav-mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="-1">
   <a href="#products" class="mob-link" aria-label="Shop our candles">Shop</a>
   <a href="#products" class="mob-link" aria-label="Browse collections">Collections</a>
   <a href="/our-story.html" class="mob-link" aria-label="Read our story">Stories</a>
@@ -1543,7 +1549,7 @@
         <div class="p-info">
           <p class="p-cat">Beeswax Candle</p>
           <h3 class="p-name">Vanilla</h3>
-          <p class="p-desc">Soft, sweet, creamy warmth — like a cashmere blanket in candle form. Notes of Madagascan vanilla bean and warm tonka melt into a gentle, lingering sweetness. 220g hand-poured beeswax in a reusable ceramic vessel. 40–45 hour burn.</p>
+          <p class="p-desc">Soft, sweet, creamy warmth — like a cashmere blanket in candle form. Notes of Madagascan vanilla bean and warm tonka melt into a gentle, lingering sweetness that fills any room. Ingredients: 100% natural beeswax, cotton lead-free wick, vanilla fragrance oil. 220g (7.8 oz), approx. 8 cm diameter &times; 9 cm tall, in a reusable ceramic vessel. Burn time: 40&ndash;45 hours. Trim wick to 5 mm before each use; never burn longer than 4 hours at a time. Perfect for unwinding after a long day or as a thoughtful gift.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
           <button class="btn-add-mob" data-name="Vanilla">Add to Cart</button>
         </div>
@@ -1562,7 +1568,7 @@
         <div class="p-info">
           <p class="p-cat">Beeswax Candle</p>
           <h3 class="p-name">Chocolate</h3>
-          <p class="p-desc">Rich, indulgent, cosy comfort — an evening treat for the senses. Deep cocoa and roasted hazelnut notes create an enveloping warmth that fills the room. 220g hand-poured beeswax in a reusable ceramic vessel. 40–45 hour burn.</p>
+          <p class="p-desc">Rich, indulgent, cosy comfort — an evening treat for the senses. Deep cocoa and roasted hazelnut notes create an enveloping warmth you can smell from the next room. Ingredients: 100% natural beeswax, cotton lead-free wick, chocolate fragrance oil. 220g (7.8 oz), approx. 8 cm diameter &times; 9 cm tall, in a reusable ceramic vessel. Burn time: 40&ndash;45 hours. Trim wick to 5 mm before each use; never burn longer than 4 hours at a time. Light alongside a book and a hot drink for the ultimate cosy night in.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
           <button class="btn-add-mob" data-name="Chocolate">Add to Cart</button>
         </div>
@@ -1581,7 +1587,7 @@
         <div class="p-info">
           <p class="p-cat">Beeswax Candle</p>
           <h3 class="p-name">Cinnamon</h3>
-          <p class="p-desc">Warm, spicy, festive glow — like a kitchen full of freshly baked treats. Ceylon cinnamon and clove bud blend into a comforting, nostalgic fragrance. 220g hand-poured beeswax in a reusable ceramic vessel. 40–45 hour burn.</p>
+          <p class="p-desc">Warm, spicy, festive glow — like a kitchen full of freshly baked treats. Ceylon cinnamon and clove bud blend into a comforting, nostalgic fragrance that feels like the holidays year-round. Ingredients: 100% natural beeswax, cotton lead-free wick, cinnamon fragrance oil. 220g (7.8 oz), approx. 8 cm diameter &times; 9 cm tall, in a reusable ceramic vessel. Burn time: 40&ndash;45 hours. Trim wick to 5 mm before each use; never burn longer than 4 hours at a time. A wonderful centrepiece for dinner parties or a warming gift for someone special.</p>
           <div class="p-foot"><span class="p-price">&pound;20</span></div>
           <button class="btn-add-mob" data-name="Cinnamon">Add to Cart</button>
         </div>
@@ -1590,6 +1596,10 @@
 
   </div>
 
+  <div class="mob-arrows" id="mobArrows">
+    <button class="mob-arrow" id="mobArrowPrev" aria-label="Previous product" disabled><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="mob-arrow" id="mobArrowNext" aria-label="Next product"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+  </div>
   <div class="mob-swipe-dots" id="mobSwipeDots">
     <button class="mob-dot active" data-i="0" aria-label="Vanilla"></button>
     <button class="mob-dot" data-i="1" aria-label="Chocolate"></button>
@@ -2297,7 +2307,7 @@
     document.body.style.overflow = open ? 'hidden' : '';
     if (open) {
       var firstLink = mobileMenu.querySelector('.mob-link');
-      if (firstLink) firstLink.focus();
+      if (firstLink) { firstLink.focus(); } else { mobileMenu.focus(); }
     } else {
       hamburger.focus();
     }
@@ -2651,6 +2661,24 @@
     btnCheckout.addEventListener('click', openCheckout);
     ckClose.addEventListener('click', closeCheckout);
     checkoutOverlay.addEventListener('click', e => { if (e.target === checkoutOverlay) closeCheckout(); });
+
+    /* Blur validation on checkout fields */
+    ['ckFirst','ckLast','ckEmail','ckAddr','ckCity','ckPost'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('blur', function() {
+        var val = el.value.trim();
+        var errMsg = '';
+        if (!val) { errMsg = el.previousElementSibling ? el.previousElementSibling.textContent + ' is required' : 'This field is required'; }
+        else if (id === 'ckEmail' && !/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(val)) { errMsg = 'Please enter a valid email address'; }
+        else if (id === 'ckPost') {
+          var country = document.getElementById('ckCountry');
+          if (country && country.value === 'GB' && !/^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i.test(val)) { errMsg = 'Please enter a valid UK postcode'; }
+        }
+        if (errMsg) { el.style.borderColor = 'var(--terracotta)'; el.setAttribute('aria-invalid','true'); el.title = errMsg; }
+        else { el.style.borderColor = ''; el.removeAttribute('aria-invalid'); el.title = ''; }
+      });
+    });
 
     /* Focus trap for checkout modal */
     checkoutOverlay.addEventListener('keydown', e => {
@@ -3103,19 +3131,9 @@ window.addEventListener('unload',function(){cancelAnimationFrame(rafId);running=
     });
   });
 
-  // Mobile swipe dots — sync on scroll
+  // Mobile swipe dots + arrows
   if(grid){
     var scrollTimer;
-    grid.addEventListener('scroll',function(){
-      clearTimeout(scrollTimer);
-      scrollTimer=setTimeout(function(){
-        var scrollLeft=grid.scrollLeft;
-        var cardWidth=cards[0].offsetWidth+16; // card width + margins
-        var idx=Math.round(scrollLeft/cardWidth);
-        idx=Math.max(0,Math.min(idx,cards.length-1));
-        dots.forEach(function(d,di){d.classList.toggle('active',di===idx);});
-      },60);
-    },{passive:true});
 
     // Dot click scrolls to card
     dots.forEach(function(d){
@@ -3132,23 +3150,38 @@ window.addEventListener('unload',function(){cancelAnimationFrame(rafId);running=
     grid.setAttribute('role','region');
     grid.setAttribute('aria-label','Product carousel');
     var currentIdx = 0;
+    var prevBtn = document.getElementById('mobArrowPrev');
+    var nextBtn = document.getElementById('mobArrowNext');
+
+    function goToCard(idx) {
+      currentIdx = Math.max(0, Math.min(idx, cards.length - 1));
+      var cardWidth = cards[0].offsetWidth + 16;
+      grid.scrollTo({left: currentIdx * cardWidth, behavior:'smooth'});
+      dots.forEach(function(d,di){ d.classList.toggle('active', di === currentIdx); });
+      if (prevBtn) prevBtn.disabled = currentIdx === 0;
+      if (nextBtn) nextBtn.disabled = currentIdx === cards.length - 1;
+      updateHint(currentIdx);
+    }
+
     grid.addEventListener('keydown',function(e){
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        currentIdx = Math.min(currentIdx + 1, cards.length - 1);
-        var cardWidth = cards[0].offsetWidth + 16;
-        grid.scrollTo({left: currentIdx * cardWidth, behavior:'smooth'});
-        dots.forEach(function(d,di){ d.classList.toggle('active', di === currentIdx); });
-        updateHint(currentIdx);
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        currentIdx = Math.max(currentIdx - 1, 0);
-        var cardWidth = cards[0].offsetWidth + 16;
-        grid.scrollTo({left: currentIdx * cardWidth, behavior:'smooth'});
-        dots.forEach(function(d,di){ d.classList.toggle('active', di === currentIdx); });
-        updateHint(currentIdx);
-      }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goToCard(currentIdx + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goToCard(currentIdx - 1); }
     });
+
+    if (prevBtn) prevBtn.addEventListener('click', function() { goToCard(currentIdx - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { goToCard(currentIdx + 1); });
+
+    // Sync currentIdx on scroll
+    grid.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        var cardWidth = cards[0].offsetWidth + 16;
+        currentIdx = Math.round(grid.scrollLeft / cardWidth);
+        currentIdx = Math.max(0, Math.min(currentIdx, cards.length - 1));
+        if (prevBtn) prevBtn.disabled = currentIdx === 0;
+        if (nextBtn) nextBtn.disabled = currentIdx === cards.length - 1;
+      }, 80);
+    }, {passive:true});
 
     function updateHint(idx) {
       var hint = document.getElementById('mobSwipeHint');
