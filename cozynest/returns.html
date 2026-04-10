@@ -2,14 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <!-- Google tag (gtag.js) — respects cookie consent -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1E2B0V1H6K"></script>
-  <script>
-    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-    gtag('consent','default',{analytics_storage:'denied'});
-    gtag('js',new Date());gtag('config','G-1E2B0V1H6K');
-    try{var cp=JSON.parse(localStorage.getItem('snugspot_cookies')||'{}');if(cp.analytics)gtag('consent','update',{analytics_storage:'granted'});}catch(e){}
-  </script>
+  <script src="/gate.js"></script>
+  <!-- Google tag (gtag.js) — deferred until first interaction for PECR compliance -->
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("consent","default",{analytics_storage:"denied"}),function(){var t=!1;function a(){if(!t){t=!0;var a=document.createElement("script");a.src="https://www.googletagmanager.com/gtag/js?id=G-1E2B0V1H6K",a.async=!0,document.head.appendChild(a),gtag("js",new Date),gtag("config","G-1E2B0V1H6K");try{JSON.parse(localStorage.getItem("snugspot_cookies")||"{}").analytics&&gtag("consent","update",{analytics_storage:"granted"})}catch(t){}}}["scroll","click","keydown","touchstart"].forEach(function(t){window.addEventListener(t,a,{once:!0,passive:!0})}),setTimeout(a,4e3)}();</script>
   <link rel="icon" href="/images/favicon.ico" sizes="any"/>
   <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon-48.png?v=2"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=2"/>
@@ -156,7 +151,7 @@
     <p>As an online shopper, UK law (Consumer Contracts Regulations 2013) gives you an automatic <strong>14-day cooling-off period</strong> from the day you receive your order — no reason needed. Simply email <a href="mailto:support@thesnugspot.com" style="color:var(--terracotta);text-decoration:none;">support@thesnugspot.com</a> within that window. We'll refund the full purchase price plus standard delivery within 14 days of receiving the return.</p>
     <p>On top of that, our own 30-day policy gives you even more time.</p>
 
-    <h3>Model Cancellation Form</h3>
+    <h3 id="cancellation-form">Model Cancellation Form</h3>
     <p>To The Snug Spot, 58 Sydney Road, London SW20 8EF (<a href="mailto:support@thesnugspot.com" style="color:var(--terracotta);text-decoration:none;">support@thesnugspot.com</a>):</p>
     <p>I hereby give notice that I cancel my contract of sale of the following goods:</p>
     <ul>
@@ -200,7 +195,7 @@
 </div>
 
 <footer>
-  <p class="foot-copy">© 2026 The Snug Spot is a trading name of Milene Borges de Moura (Sole Trader). 58 Sydney Road, London SW20 8EF. All rights reserved.</p>
+  <p class="foot-copy">© 2026 The Snug Spot is a trading name of Milene Borges de Moura (Sole Trader). 58 Sydney Road, London SW20 8EF. All rights reserved. <a href="mailto:support@thesnugspot.com" style="color:inherit;">support@thesnugspot.com</a></p>
   <div class="foot-legal">
     <a href="/privacy.html">Privacy Policy</a>
     <a href="/terms.html">Terms</a>
