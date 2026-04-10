@@ -4,5 +4,12 @@
   "description": "Cozynest — root package for Netlify deployment",
   "dependencies": {
     "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.81.1"
+  },
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   }
 }
